@@ -4,6 +4,7 @@
   "description": "Node CLI tool to automate pulling from Git",
   "main": "index.js",
   "dependencies": {
+    "prompt": "^1.0.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {},
