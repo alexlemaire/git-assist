@@ -1,4 +1,4 @@
-# startup-git-auto-pull (WIP)
+# git-helper (WIP)
 
 This is an improved version upon a personal bash script written for that purpose
 

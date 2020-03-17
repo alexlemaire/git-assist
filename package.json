@@ -1,25 +1,26 @@
 {
-  "name": "startup-git-auto-pull",
+  "name": "git-helper",
   "version": "1.0.0",
   "description": "Node CLI tool to automate pulling from Git",
   "main": "index.js",
-  "dependencies": {
-    "prompt": "^1.0.0",
-    "readline-sync": "^1.4.10"
+  "bin": {
+    "git-helper": "./index.js"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexlemaire/startup-git-auto-pull.git"
+    "url": "git+https://github.com/alexlemaire/git-helper.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexlemaire/startup-git-auto-pull/issues"
+    "url": "https://github.com/alexlemaire/git-helper/issues"
   },
-  "homepage": "https://github.com/alexlemaire/startup-git-auto-pull#readme"
+  "homepage": "https://github.com/alexlemaire/git-helper#readme",
+  "keywords": [],
+  "author": "Alexis Lemaire (a.lemaire94@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "promptly": "^3.0.3"
+  }
 }

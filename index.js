@@ -1,29 +1,12 @@
-const reader = require("readline-sync")
-const username = reader.question('Username: ')
-console.log(username)
+#!/usr/bin/env node
 
-// testing with prompt
-const prompt = require('prompt')
-prompt.start()
-const schema = {
-  properties: {
-    name: {
-      description: 'Username: ',
-      required: true
-    },
-    age: {
-      description: 'Age: ',
-      required: false
-    }
-  }
+const functions = {
+  config: require('./functions/config.js')
 }
-prompt.get(schema, function (err, result) {
-    if (err) { return onErr(err) }
-    Object.keys(schema.properties).forEach(key => {
-      console.log(`${key}: ${result[key]}`)
-    })
-})
-function onErr(err) {
-    console.log(err)
-    return 1
+
+async function main() {
+  require('./helpers/check-logs.js')()
+  await functions[process.argv[2]](process.argv.splice(3))
 }
+
+main()
