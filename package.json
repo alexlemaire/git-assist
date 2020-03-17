@@ -1,0 +1,24 @@
+{
+  "name": "startup-git-auto-pull",
+  "version": "1.0.0",
+  "description": "Node CLI tool to automate pulling from Git",
+  "main": "index.js",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexlemaire/startup-git-auto-pull.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexlemaire/startup-git-auto-pull/issues"
+  },
+  "homepage": "https://github.com/alexlemaire/startup-git-auto-pull#readme"
+}
