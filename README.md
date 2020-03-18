@@ -11,4 +11,6 @@ _Features:_
 - easy push (git add/commit/push all in one via interactive CLI)
 - automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options
 
-_Note:_ this is an expansion upon a private work made to automate git pull at machine startup for every repositories.
+_Notes:_
+- this is an expansion upon a private work made to automate git pull at machine startup for every repositories
+- tested on Linux. Cannot guarantee this will work with other OS

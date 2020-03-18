@@ -22,3 +22,9 @@ This is an improved version upon a personal bash script written for that purpose
 - should allow log purging via `<package-name> log purge` (f.e.)
 - send relevant notifications via GUI to user
 - works asynchronously so it doesn't prevent user from working. May be some issues if user tries to commit for a repo which didn't get updated yet though...
+
+# dependencies for doing git async tasks (order by initial preference)
+
+1. [isomorphic-git](https://www.npmjs.com/package/isomorphic-git)
+2. [nodegit](https://www.npmjs.com/package/nodegit)
+3. [simple-git](https://www.npmjs.com/package/simple-git)

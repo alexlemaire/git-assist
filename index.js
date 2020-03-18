@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 const functions = {
+  "auto-pull": require('./functions/auto-pull.js'),
   config: require('./functions/config.js')
 }
 
 async function main() {
-  require('./helpers/check-logs.js')()
   await functions[process.argv[2]](process.argv.splice(3))
 }
 
