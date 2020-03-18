@@ -1,10 +1,10 @@
 {
-  "name": "git-helper",
+  "name": "git-assist",
   "version": "1.0.0",
   "description": "Node CLI tool to automate pulling from Git",
   "main": "index.js",
   "bin": {
-    "git-helper": "./index.js"
+    "git-assist": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexlemaire/git-helper.git"
+    "url": "git+https://github.com/alexlemaire/git-assist.git"
   },
   "bugs": {
-    "url": "https://github.com/alexlemaire/git-helper/issues"
+    "url": "https://github.com/alexlemaire/git-assist/issues"
   },
-  "homepage": "https://github.com/alexlemaire/git-helper#readme",
+  "homepage": "https://github.com/alexlemaire/git-assist#readme",
   "keywords": [],
   "author": "Alexis Lemaire (a.lemaire94@gmail.com)",
   "license": "MIT",

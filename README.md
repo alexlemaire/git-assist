@@ -1,4 +1,4 @@
-# git-helper
+# git-assist
 
 **WIP**
 

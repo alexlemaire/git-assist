@@ -13,6 +13,6 @@ Object.entries(fctsJson).forEach(entry => {
 })
 
 async function main() {
-  await fcts[args[2]](args.splice(3))
+  await fcts[args[2]](args.splice(3)).catch(err => {process.exit(1)})
 }
 main()
