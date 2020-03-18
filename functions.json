@@ -1,5 +1,5 @@
 {
-  "auto-pull": "./functions/auto-pull.js",
-  "config": "./functions/config.js",
-  "push": "./functions/push.js"
+  "auto-pull": "./functions/auto-pull/index.js",
+  "config": "./functions/config/index.js",
+  "push": "./functions/push/index.js"
 }
