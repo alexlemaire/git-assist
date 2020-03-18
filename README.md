@@ -7,7 +7,7 @@ This helper allows users to easily manage _GitHub_ on their machine. Some featur
 _Features:_
 - setup `git` user
 - generate/configure SSH key
-- generate/configure GPG key
+- generate/configure PGP key
 - easy push (git add/commit/push all in one via interactive CLI)
 - automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options
 
