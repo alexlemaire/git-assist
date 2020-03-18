@@ -1,17 +1,18 @@
 #!/usr/bin/env node
-
-if (process.argv.length < 3) {
+const args = process.argv
+if (args.length < 3) {
   console.error('A parameter should be passed to this function')
   process.exit(0)
 }
 
-const functions = {
-  "auto-pull": require('./functions/auto-pull.js'),
-  config: require('./functions/config.js')
-}
+const fs = require('fs')
+const fctsJson = JSON.parse(fs.readFileSync('./functions.json', 'utf-8'))
+let fcts = {}
+Object.entries(fctsJson).forEach(entry => {
+  fcts[entry[0]] = require(entry[1])
+})
 
 async function main() {
-  await functions[process.argv[2]](process.argv.splice(3))
+  await fcts[args[2]](args.splice(3))
 }
-
 main()

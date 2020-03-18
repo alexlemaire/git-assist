@@ -1,0 +1,5 @@
+{
+  "auto-pull": "./functions/auto-pull.js",
+  "config": "./functions/config.js",
+  "push": "./functions/push.js"
+}

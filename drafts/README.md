@@ -25,6 +25,6 @@ This is an improved version upon a personal bash script written for that purpose
 
 # dependencies for doing git async tasks (order by initial preference)
 
-1. [isomorphic-git](https://www.npmjs.com/package/isomorphic-git)
+1. [isomorphic-git](https://www.npmjs.com/package/isomorphic-git): currently trying out this one
 2. [nodegit](https://www.npmjs.com/package/nodegit)
 3. [simple-git](https://www.npmjs.com/package/simple-git)
