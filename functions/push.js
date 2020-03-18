@@ -22,16 +22,27 @@ async function checkConfig() {
 
 async function gitProcess() {
   const promptly = require('promptly')
+  const http = require('isomorphic-git/http/node')
   const filepath = await promptly.prompt('Files to add (default: all): ', {default: '.'})
   const message = await promptly.prompt('Commit message: ')
   await git.add({
     fs,
     dir: '.',
     filepath
-  })
+  }).then(res => {console.log(res)})
   await git.commit({
     fs,
     dir: '.',
     message
-  })
+  }).then(res => {console.log(res)})
+  await git.push({
+    fs,
+    http,
+    dir: '.',
+    remote: 'origin',
+    ref: await git.currentBranch({
+      fs,
+      dir: '.'
+    })
+  }).then(res => {console.log(res)})
 }
