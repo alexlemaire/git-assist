@@ -4,10 +4,12 @@ const dir = '.'
 
 module.exports = async (protocol) => {
   const promptly = require('promptly')
-  const filepath = await promptly.prompt('Files to add (default: all): ', {default: 'all'})
+  const addAll = await promptly.confirm('Do you want to include all changes you made (y/n)? ')
+  const params = !addAll ? await promptly.prompt('Parameters for "git add" command: ') : undefined
   const message = await promptly.prompt('Commit message: ')
-  await stageCommit(filepath, message)
-  // await push(protocol)
+  await stage(addAll, params)
+  await commit(message)
+  await push(protocol)
 }
 
 async function push(protocol) {
@@ -35,16 +37,17 @@ async function push(protocol) {
   }
 }
 
-async function stageCommit(filepath, message) {
-  if (filepath === 'all'){
-    await addAll()
+async function stage(addAll, params) {
+  if (addAll){
+    await stageAll()
   } else {
-    await git.add({
-      fs,
-      dir,
-      filepath
-    }).then(res => {console.log(res)})
+    // TODO: rewrite this to work with isomorphic-git. There needs to be a way
+    const childProc = require('child_process')
+    childProc.execSync(`git add ${params}`)
   }
+}
+
+async function commit(message) {
   await git.commit({
     fs,
     dir,
@@ -52,10 +55,13 @@ async function stageCommit(filepath, message) {
   }).then(res => {console.log(res)})
 }
 
-async function addAll() {
-  const globby = require('globby')
-  const paths = await globby(['./**', './**/.*'], { gitignore: true })
-  for (const filepath of paths) {
-      await git.add({ fs, dir, filepath })
-  }
+async function stageAll() {
+  const repo = {fs, dir}
+  await git.statusMatrix(repo).then((status) =>
+    Promise.all(
+      status.map(([filepath, , worktreeStatus]) =>
+        worktreeStatus ? git.add({ ...repo, filepath }) : git.remove({ ...repo, filepath })
+      )
+    )
+  )
 }
