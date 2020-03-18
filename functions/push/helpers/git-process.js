@@ -1,12 +1,13 @@
 const git = require('isomorphic-git')
 const fs = require('fs')
+const dir = '.'
 
 module.exports = async (protocol) => {
   const promptly = require('promptly')
-  const filepath = await promptly.prompt('Files to add (default: all): ', {default: '.'})
+  const filepath = await promptly.prompt('Files to add (default: all): ', {default: 'all'})
   const message = await promptly.prompt('Commit message: ')
   await stageCommit(filepath, message)
-  await push(protocol)
+  // await push(protocol)
 }
 
 async function push(protocol) {
@@ -16,11 +17,11 @@ async function push(protocol) {
       await git.push({
         fs,
         http,
-        dir: '.',
+        dir,
         remote: 'origin',
         ref: await git.currentBranch({
           fs,
-          dir: '.'
+          dir
         })
       }).then(res => {console.log(res)})
       break
@@ -35,14 +36,26 @@ async function push(protocol) {
 }
 
 async function stageCommit(filepath, message) {
-  await git.add({
-    fs,
-    dir: '.',
-    filepath
-  }).then(res => {console.log(res)})
+  if (filepath === 'all'){
+    await addAll()
+  } else {
+    await git.add({
+      fs,
+      dir,
+      filepath
+    }).then(res => {console.log(res)})
+  }
   await git.commit({
     fs,
-    dir: '.',
+    dir,
     message
   }).then(res => {console.log(res)})
+}
+
+async function addAll() {
+  const globby = require('globby')
+  const paths = await globby(['./**', './**/.*'], { gitignore: true })
+  for (const filepath of paths) {
+      await git.add({ fs, dir, filepath })
+  }
 }
