@@ -28,3 +28,12 @@ This is an improved version upon a personal bash script written for that purpose
 1. [isomorphic-git](https://www.npmjs.com/package/isomorphic-git): currently trying out this one
 2. [nodegit](https://www.npmjs.com/package/nodegit)
 3. [simple-git](https://www.npmjs.com/package/simple-git)
+
+# dependencies for console logging
+
+1. [Consola](https://github.com/nuxt/consola)
+
+# dependencies for logging
+
+1. [WinstonJS](https://github.com/winstonjs/winston)
+2. [simple-node-logger](https://www.npmjs.com/package/simple-node-logger)
