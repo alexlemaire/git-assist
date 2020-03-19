@@ -1,6 +1,6 @@
 {
   "name": "git-assist",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node CLI tool to automate pulling from Git",
   "main": "index.js",
   "bin": {
