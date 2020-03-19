@@ -12,13 +12,16 @@ module.exports = () => {
   }
 }
 
-function createFiles(files) {
-  const childProc = require('child_process')
+async function createFiles(files) {
+  const exec = require('../../../utils/exec.js')
   for (const file of files) {
     let cmd = 'touch'
     if (file.isDir) {
       cmd = 'mkdir'
     }
-    childProc.execSync(`sudo ${cmd} ${file}`)
+    await exec(`sudo ${cmd} ${file}`).catch(err => {
+      console.log(err)
+      process.exit(1)
+    })
   }
 }

@@ -7,9 +7,8 @@ if (args.length < 3) {
 const fs = require('fs')
 
 async function getPublishedVer() {
-  const util = require('util')
-  const exec = util.promisify(require('child_process').exec)
-  return (await exec('npm view git-assist version')).stdout
+  const exec = require('./utils/exec.js')
+  return await exec('npm view git-assist version')
 }
 
 function getFunctions() {
@@ -23,7 +22,13 @@ function getFunctions() {
 
 (async function main() {
   await getFunctions()[args[2]](args.splice(3)).catch(err => {process.exit(1)})
-  const publishedVer = (await getPublishedVer()).trim()
+  const publishedVer = await getPublishedVer().then(res => res.trim()).catch(err => {
+    console.log({
+      message: 'Tried to retrieve published version',
+      error: err
+    })
+    process.exit(1)
+  })
   const currentVer = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, 'utf-8')).version.trim()
   if (currentVer !== publishedVer) {
     console.log(`Your installed git-assist version is outdated. Latest version is ${publishedVer}. Please update via "npm i -g git-assist"`)
