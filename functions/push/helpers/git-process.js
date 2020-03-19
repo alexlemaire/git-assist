@@ -4,7 +4,7 @@ const dir = '.'
 
 module.exports = async (protocol) => {
   const promptly = require('promptly')
-  const exec = require('../../../utils/exec.js')
+  const execSync = require('child_process').execSync
   const addAll = await promptly.confirm('Do you want to include all changes you made (y/n)? ')
   const params = !addAll ? await promptly.prompt('Parameters for "git add" command: ') : undefined
   const message = await promptly.prompt('Commit message: ')
@@ -30,10 +30,7 @@ async function push(protocol) {
       break
     case 'ssh':
       // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
-      await exec('git push').catch(err => {
-        console.log(err)
-        process.exit(1)
-      })
+      execSync('git push')
       break
     default:
       break
@@ -45,10 +42,7 @@ async function stage(addAll, params) {
     await stageAll()
   } else {
     // TODO: rewrite this to work with isomorphic-git. There needs to be a way
-    await exec(`git add ${params}`).catch(err => {
-      console.log(err)
-      process.exit(1)
-    })
+    execSync(`git add ${params}`)
   }
 }
 
