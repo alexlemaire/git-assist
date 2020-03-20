@@ -1,6 +1,22 @@
 {
-  "auto-pull": "./functions/auto-pull/index.js",
-  "config": "./functions/config/index.js",
-  "push": "./functions/push/index.js",
-  "generate-ssh": "./functions/generate-ssh/index.js"
+  "auto-pull": {
+    "path": "./functions/auto-pull/index.js",
+    "desc": ""
+  },
+  "config": {
+    "path": "./functions/config/index.js",
+    "desc": ""
+  },
+  "push": {
+    "path": "./functions/push/index.js",
+    "desc": ""
+  },
+  "generate-ssh": {
+    "path": "./functions/generate-ssh/index.js",
+    "desc": ""
+  },
+  "generate-gpg": {
+    "path": "./functions/generate-gpg/index.js",
+    "desc": ""
+  }
 }
