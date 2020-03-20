@@ -1,4 +1,5 @@
 module.exports = (keyId) => {
+  const spawnSync = require('child_process').spawnSync
   const defaultShell = process.env.SHELL
   let file = ''
   switch (defaultShell) {
@@ -15,6 +16,7 @@ module.exports = (keyId) => {
   }
   consola.success(`${file} updated with GPG key export!`)
   consola.info('Please run "git-assist config" or "git-assist config -g" again in order to set your GPG key for GitHub.\n')
+  spawnSync('source', [file])
 }
 
 function update(file, keyId) {

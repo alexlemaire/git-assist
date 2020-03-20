@@ -1,4 +1,5 @@
 module.exports = (path) => {
+  const spawnSync = require('child_process').spawnSync
   const defaultShell = process.env.SHELL
   let file = ''
   switch (defaultShell) {
@@ -14,6 +15,7 @@ module.exports = (path) => {
       break
   }
   consola.success(`${file} updated with automatic SSH key adding!`)
+  spawnSync('source', [file])
 }
 
 function update(file, path) {
