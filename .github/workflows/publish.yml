@@ -8,6 +8,7 @@ on:
       - 'index.js'
       - 'functions/**'
       - 'utils/**'
+      - 'package.json'
 jobs:
   publish:
     runs-on: ubuntu-latest
