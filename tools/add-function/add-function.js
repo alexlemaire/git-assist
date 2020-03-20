@@ -11,7 +11,8 @@
   let fcts = JSON.parse(fs.readFileSync(fctsPath, 'utf-8'))
   fcts[name] = {
     path: `./${path}`,
-    desc: ''
+    desc: '',
+    args: []
   }
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
   consola.success(`Function ${name} successfully added!`)
