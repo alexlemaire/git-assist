@@ -1,4 +1,5 @@
 module.exports = (path) => {
+  console.log('hey')
   const defaultShell = process.env.SHELL
   let file = ''
   switch (defaultShell) {
@@ -13,15 +14,15 @@ module.exports = (path) => {
     default:
       break
   }
-  console.log(`\nInfo: ${file} updated with automatic SSH key adding!`)
+  consola.success(`${file} updated with automatic SSH key adding!`)
 }
 
 function update(file, path) {
   const fs = require('fs')
   let data = fs.readFileSync(file, 'utf-8')
   const params = {
-    startToken: '# START ADD SSH KEYS',
-    endToken: '# END ADD SSH KEYS'
+    startToken: '# START ADD SSH KEYS TO AGENT',
+    endToken: '# END ADD SSH KEYS TO AGENT'
   }
   const regex = new RegExp(`\\${params.startToken}[\\s\\S]*?\\${params.endToken}`, 'g')
   const regexMatch = data.match(regex)
@@ -30,7 +31,7 @@ function update(file, path) {
     blockLines.splice(blockLines.length - 1, 0, `ssh-add ${path}`)
     data = data.replace(regexMatch[0], blockLines.join('\n'))
   } else {
-    data = `${data}\n${params.startToken}\neval "$(ssh-agent -s)"\nssh-add ${path}\n${params.endToken}\n`
+    data = `${data}\n# DO NOT MODIFY THIS BLOCK\n${params.startToken}\neval "$(ssh-agent -s)"\nssh-add ${path}\n${params.endToken}\n`
   }
   fs.writeFileSync(file, data, 'utf-8')
 }

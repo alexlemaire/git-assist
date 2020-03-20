@@ -1,8 +1,8 @@
-const fs = require('fs')
 const root = '/var/log/git-pull-automation'
 const logFile = `${root}/git-pull-automation-logs.log`
 
 module.exports = () => {
+  const fs = require('fs')
   if (!fs.existsSync(root)) {
     createFiles([{isDir: true, path: root}, {isDir: false, path: logFile}])
   }  else {
