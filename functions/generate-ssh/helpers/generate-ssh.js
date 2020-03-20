@@ -1,6 +1,6 @@
 module.exports = (info) => {
   const spawnSync = require('child_process').spawnSync
-  console.log('\nInfo: generating SSH key...')
+  consola.info('Generating SSH key...')
   spawnSync('ssh-keygen', [
     '-t', 'rsa',
     '-b', '4096',
@@ -8,5 +8,5 @@ module.exports = (info) => {
     '-N', info.pwd,
     '-f', info.path
   ])
-  console.log('Success: SSH key generated!')
+  consola.success('SSH key generated!')
 }

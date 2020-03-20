@@ -17,4 +17,5 @@ module.exports = async (info) => {
       value: param.value
     })
   }
+  consola.success('Local configuration successfully updated!')
 }
