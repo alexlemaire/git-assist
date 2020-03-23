@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $PWD
+
 cd easy-use
 zip -r easy-use.zip .
 git config --global user.name Alexis Lemaire
