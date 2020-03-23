@@ -9,6 +9,7 @@ on:
       - 'functions/**'
       - 'utils/**'
       - 'package.json'
+      - 'functions.json'
 jobs:
   publish:
     runs-on: ubuntu-latest

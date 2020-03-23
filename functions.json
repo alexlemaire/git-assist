@@ -33,7 +33,7 @@
   },
   "--version": {
     "path": "./functions/version/index.js",
-    "desc": "",
+    "desc": "Prints out currently installed package version",
     "args": []
   }
 }
