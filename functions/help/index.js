@@ -1,7 +1,7 @@
 module.exports = (args) => {
   const fs = require('fs')
-  let fcts = JSON.parse(fs.readFileSync(`functions.json`,'utf-8'))
-  const pjson = JSON.parse(fs.readFileSync('package.json','utf-8'))
+  let fcts = require('../../functions.json')
+  const pjson = require('../../package.json')
   delete fcts['--help']
   logHeader(pjson)
   if (args.length === 0) {
