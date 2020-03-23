@@ -2,7 +2,7 @@ module.exports = (args) => {
   const fs = require('fs')
   let fcts = require('../../functions.json')
   delete fcts['--help']
-  require('../../tools/welcome/welcome.js')
+  require('../../scripts/welcome/welcome.js')
   if (args.length === 0) {
     for (const entry of Object.entries(fcts)) {
       logInfo(entry)
