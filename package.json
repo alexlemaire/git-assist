@@ -10,6 +10,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-function": "node tools/add-function/add-function.js"
   },
+  "kaskadi": {
+    "s3-push": {
+      "files": [
+        {
+          "src": "easy-use/",
+          "dest": "alexis/@git-assist/{branch}easy-use/"
+        }
+      ]
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexlemaire/git-assist.git"

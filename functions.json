@@ -7,7 +7,9 @@
   "config": {
     "path": "./functions/config/index.js",
     "desc": "Allows user to configure its GitHub user settings",
-    "args": ["-g"]
+    "args": [
+      "-g"
+    ]
   },
   "push": {
     "path": "./functions/push/index.js",
@@ -26,6 +28,11 @@
   },
   "--help": {
     "path": "./functions/help/index.js",
+    "desc": "",
+    "args": []
+  },
+  "--version": {
+    "path": "./functions/version/index.js",
     "desc": "",
     "args": []
   }
