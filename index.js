@@ -1,15 +1,14 @@
 #!/usr/bin/env node
-const args = process.argv
+let args = process.argv
 if (args.length < 3) {
-  console.error('A parameter should be passed to this function')
-  process.exit(0)
+  args.push('--help')
 }
 const fs = require('fs')
 const consola = require('consola')
 
 function getPublishedVer() {
   const execSync = require('child_process').execSync
-  return execSync('npm view git-assist version').trim()
+  return execSync('npm view git-assist version').toString().trim()
 }
 
 function getCurrentVer() {

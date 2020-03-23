@@ -1,0 +1,20 @@
+name: upload
+on:
+  push:
+    branches:
+      - 'master'
+      - 'release/**'
+    paths:
+      - 'easy-use/**'
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: npm i
+    - name: Upload files to S3 bucket
+      uses: kaskadi/action-s3cp@master
+      env:
+        AWS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+        AWS_KEY_SECRET: ${{ secrets.AWS_KEY_SECRET }}

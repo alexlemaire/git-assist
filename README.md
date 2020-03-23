@@ -1,3 +1,14 @@
+![](https://img.shields.io/github/package-json/v/alexlemaire/git-assist)
+![](https://img.shields.io/badge/code--style-standard-blue)
+![](https://img.shields.io/github/license/alexlemaire/git-assist?color=blue)
+
+**GitHub Actions workflows status**
+
+![](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
+![](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/upload?label=upload&logo=Amazon%20AWS)
+
+---
+
 # git-assist (WIP)
 
 **Attention: this is a work in progress. Some features are currently working and you can try this package and play around with it but be aware that major changes may land in the near future**
