@@ -14,8 +14,8 @@
     "s3-push": {
       "files": [
         {
-          "src": "easy-use/",
-          "dest": "alexis/@git-assist/{branch}easy-use/"
+          "src": "easy-use/easy-use.zip",
+          "dest": "alexis/@git-assist/{branch}easy-use.zip"
         }
       ]
     }
