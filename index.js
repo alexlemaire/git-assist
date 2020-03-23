@@ -12,11 +12,11 @@ function getPublishedVer() {
 }
 
 function getCurrentVer() {
-  return JSON.parse(fs.readFileSync(`${__dirname}/package.json`, 'utf-8')).version.trim()
+  return JSON.parse(fs.readFileSync('package.json', 'utf-8')).version.trim()
 }
 
 function getFunctions() {
-  const fctsJson = JSON.parse(fs.readFileSync(`${__dirname}/functions.json`, 'utf-8'))
+  const fctsJson = JSON.parse(fs.readFileSync('functions.json', 'utf-8'))
   let fcts = {}
   Object.entries(fctsJson).forEach(entry => {
     fcts[entry[0]] = require(entry[1].path)
