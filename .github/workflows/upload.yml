@@ -14,7 +14,7 @@ jobs:
     - name: Install dependencies
       run: npm i
     - name: Build archive
-      run: ./scripts/build-archive.sh
+      run: bash .github/workflows/scripts/build-archive.sh
     - name: Upload files to S3 bucket
       uses: kaskadi/action-s3cp@master
       env:
