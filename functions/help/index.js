@@ -1,9 +1,8 @@
 module.exports = (args) => {
   const fs = require('fs')
   let fcts = require('../../functions.json')
-  const pjson = require('../../package.json')
   delete fcts['--help']
-  logHeader(pjson)
+  require('../../tools/welcome/welcome.js')
   if (args.length === 0) {
     for (const entry of Object.entries(fcts)) {
       logInfo(entry)
@@ -11,18 +10,6 @@ module.exports = (args) => {
   } else {
     logInfo([args[0], fcts[args[0]]])
   }
-}
-
-function logHeader(pjson) {
-  console.log('\n')
-  console.log('Thanks for using this package!')
-  console.log('"git-assist" is a small node utility aiming to help with your basic GitHub tasks and more.')
-  console.log('\n')
-  console.log(`If you encounter any bugs and would like to report it, please head to: ${pjson.bugs.url}`)
-  console.log(`If you would like to contribute to this project, you can find here it at: ${pjson.homepage.replace('#readme', '')}`)
-  console.log('\n')
-  consola.info('To call any of the functions listed below, you can run "git-assist <function_name> <accepted_arguments>"')
-  console.log('\n')
 }
 
 function logInfo(entry) {
