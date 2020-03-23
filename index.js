@@ -9,7 +9,7 @@ const consola = require('consola')
 
 function getPublishedVer() {
   const execSync = require('child_process').execSync
-  return execSync('npm view git-assist version').trim()
+  return execSync('npm view git-assist version').toString().trim()
 }
 
 function getCurrentVer() {
