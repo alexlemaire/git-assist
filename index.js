@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-const args = process.argv
+let args = process.argv
 if (args.length < 3) {
-  console.error('A parameter should be passed to this function')
-  process.exit(0)
+  args.push('--help')
 }
 const fs = require('fs')
 const consola = require('consola')
