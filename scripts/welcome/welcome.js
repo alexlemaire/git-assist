@@ -9,8 +9,3 @@ console.log('\n')
 console.log(chalk.cyan(`If you would like to contribute to this project, you can find us on ${terminalLink(chalk.underline.italic('GitHub'), pjson.homepage.replace('#readme', ''))}`))
 console.log(chalk.red(`If you encounter any bugs and would like to report it, please head to our ${terminalLink(chalk.underline.italic('GitHub repo issues'), pjson.bugs.url)}`))
 console.log('\n')
-clog.info(`To call any of the functions listed below, you can run ${chalk.cyan.italic('git-assist <function_name> <accepted_arguments>')}`, {
-  makeLink: false,
-  format: false
-})
-console.log('\n')
