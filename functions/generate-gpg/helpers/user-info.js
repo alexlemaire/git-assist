@@ -1,5 +1,6 @@
 const path = require('path')
 const staticRoot = path.join(__dirname, '..', 'static')
+const clog = require('../../../utils/loggers/console-log.js')
 
 module.exports = async (gpgKey) => {
   const fs = require('fs')
@@ -11,8 +12,9 @@ module.exports = async (gpgKey) => {
 }
 
 function logInstructions (gpgKey) {
-  consola.info('In order to add your new GPG key on GitHub:')
-  console.log('  1. please follow this link: https://github.com/settings/keys')
+  const chalk = require('chalk')
+  clog.info('In order to add your new GPG key on GitHub:')
+  console.log(`  1. please follow this link: ${chalk.underline('https://github.com/settings/keys')}`)
   console.log('  2. click on "New GPG key"')
   console.log('  3. give a meaningful title to your new key and paste the content below into the "Key" field:\n')
   console.log(gpgKey)
@@ -20,14 +22,18 @@ function logInstructions (gpgKey) {
 
 async function onlineInstructions () {
   const spawnSync = require('child_process').spawnSync
-  const promptly = require('promptly')
+  const inquirer = require('inquirer')
   spawnSync('xdg-open', ['https://github.com/settings/keys'])
   spawnSync('xdg-open', [`${staticRoot}/index.html`])
-  function validator(value) {
-    if (!value) {
-      throw new Error('Please follow the instructions to add your GPG key to GitHub')
+  let confirm = false
+  while (!confirm) {
+    confirm = (await inquirer.prompt({
+      type: 'confirm',
+      name: 'confirm',
+      message: 'Did you follow all given instructions and successfully added your GPG key?'
+    })).confirm
+    if (!confirm) {
+      clog.error('Please follow the instructions to add your GPG key to GitHub')
     }
-    return value
   }
-  await promptly.confirm('Did you follow all given instructions and successfully added your GPG key (y/n)?', {validator})
 }

@@ -1,5 +1,7 @@
 module.exports = async (info) => {
   const git = require('isomorphic-git')
+  const clog = require('../../../utils/loggers/console-log.js')
+  const chalk = require('chalk')
   const fs = require('fs')
   let params = [{
     path: 'user.name',
@@ -10,8 +12,8 @@ module.exports = async (info) => {
     value: info.email
   }]
   if (!process.env.GITHUB_GPGKEY) {
-    consola.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
-    consola.info('Please run "git-assist generate-gpg" in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n')
+    clog.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
+    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`, {makeLink: false, format: false})
   } else {
     params = params.concat([{
       path: 'user.signingkey',
@@ -30,6 +32,5 @@ module.exports = async (info) => {
       value: param.value
     })
   }
-  consola.success('GPG key successfully added to local configuration!')
-  consola.success('Local configuration successfully updated!')
+  clog.success('Local configuration successfully updated!')
 }

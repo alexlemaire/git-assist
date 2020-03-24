@@ -1,6 +1,7 @@
 module.exports = (path) => {
   const fs = require('fs')
-  consola.info('Removing key definition file...')
+  const clog = require('../../../utils/loggers/console-log.js')
+  clog.info('Removing key definition file...')
   fs.unlinkSync(path)
-  consola.success('File removed!')
+  clog.success('File removed!')
 }
