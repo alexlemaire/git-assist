@@ -3,14 +3,38 @@ const fs = require('fs')
 const dir = '.'
 
 module.exports = async (protocol) => {
-  const promptly = require('promptly')
-  const addAll = await promptly.confirm('Do you want to include all changes you made (y/n)? ')
-  let params = !addAll ? await promptly.prompt('Parameters for "git add" command: ') : undefined
-  params = params ? params.split(' ') : undefined
-  const message = await promptly.prompt('Commit message: ')
-  await stage(addAll, params)
-  await commit(message)
+  const answer = await infoPrompter()
+  await stage(answer.addAll, answer.params)
+  await commit(answer.message)
   await push(protocol)
+}
+
+async function infoPrompter() {
+  const inquirer = require('inquirer')
+  const questions = [
+    {
+      type: 'confirm',
+      name: 'addAll',
+      message: 'Do you want to include all changes you made?'
+    },
+    {
+      type: 'input',
+      name: 'params',
+      message: 'Parameters for "git add" command:',
+      when: function (answer) {
+        return !answer.addAll
+      },
+      filter: function (input) {
+        return input.split(' ')
+      }
+    },
+    {
+      type: 'input',
+      name: 'message',
+      message: 'Commit message:'
+    }
+  ]
+  return await inquirer.prompt(questions)
 }
 
 async function push(protocol) {

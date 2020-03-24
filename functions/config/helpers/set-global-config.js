@@ -1,5 +1,6 @@
 module.exports = (info) => {
   const spawnSync = require('child_process').spawnSync
+  const clog = require('../../../utils/loggers/console-log.js')
   // for global config we cannot use isomorphic-git as they do not currently support global config. May be worth helping them with this
   spawnSync('git', ['config', '--global', 'user.name', info.name])
   spawnSync('git', ['config', '--global', 'user.email', info.email])

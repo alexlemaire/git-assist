@@ -24,7 +24,7 @@ const error = (msg, opts) => {
       console.log(`${header} ${body(msg)}`)
       break
     case 'object':
-      console.log(`${header} ${body(msg.stack.replace('Error: ', ''))}`)
+      console.log(`${header} ${body(msg.stack)}`)
       break
     default:
       throw new Error('Invalid message type')

@@ -1,5 +1,6 @@
 module.exports = (path) => {
   const spawnSync = require('child_process').spawnSync
+  const clog = require('../../../utils/loggers/console-log.js')
   const defaultShell = process.env.SHELL
   let file = ''
   switch (defaultShell) {

@@ -1,5 +1,6 @@
 module.exports = async (info) => {
   const git = require('isomorphic-git')
+  const clog = require('../../../utils/loggers/console-log.js')
   const fs = require('fs')
   let params = [{
     path: 'user.name',
@@ -30,6 +31,5 @@ module.exports = async (info) => {
       value: param.value
     })
   }
-  clog.success('GPG key successfully added to local configuration!')
   clog.success('Local configuration successfully updated!')
 }

@@ -10,7 +10,7 @@
     "args": [
       {
         "arg": "-g",
-        "desc": "set global configuration" 
+        "desc": "set global configuration"
       }
     ]
   },
