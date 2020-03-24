@@ -1,11 +1,16 @@
-const consola = require('consola')
+const clog = require('../../utils/loggers/console-log.js')
+const chalk = require('chalk')
+const terminalLink = require('terminal-link')
 const pjson = require('../../package.json')
 console.log('\n')
-console.log('Thanks for using this package!')
-console.log('"git-assist" is a small node utility aiming to help with your basic GitHub tasks and more.')
+console.log(chalk.green(`Thanks for using this package! ${chalk.yellow('🖒')} ${chalk.red('♥')}\n`))
+clog.log('git-assist is a small node utility aiming to help with your basic GitHub tasks and more.')
 console.log('\n')
-console.log(`If you encounter any bugs and would like to report it, please head to: ${pjson.bugs.url}`)
-console.log(`If you would like to contribute to this project, you can find here it at: ${pjson.homepage.replace('#readme', '')}`)
+console.log(chalk.cyan(`If you would like to contribute to this project, you can find us on ${terminalLink(chalk.underline.italic('GitHub'), pjson.homepage.replace('#readme', ''))}`))
+console.log(chalk.red(`If you encounter any bugs and would like to report it, please head to our ${terminalLink(chalk.underline.italic('GitHub repo issues'), pjson.bugs.url)}`))
 console.log('\n')
-consola.info('To call any of the functions listed below, you can run "git-assist <function_name> <accepted_arguments>"')
+clog.info(`To call any of the functions listed below, you can run ${chalk.cyan.italic('git-assist <function_name> <accepted_arguments>')}`, {
+  makeLink: false,
+  format: false
+})
 console.log('\n')

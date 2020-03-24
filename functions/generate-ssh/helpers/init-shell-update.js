@@ -14,7 +14,7 @@ module.exports = (path) => {
     default:
       break
   }
-  consola.success(`${file} updated with automatic SSH key adding!`)
+  clog.success(`${file} updated with automatic SSH key adding!`)
   spawnSync('source', [file])
 }
 

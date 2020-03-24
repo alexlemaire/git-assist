@@ -14,8 +14,8 @@ module.exports = (keyId) => {
     default:
       break
   }
-  consola.success(`${file} updated with GPG key export!`)
-  consola.info('Please run "git-assist config" or "git-assist config -g" again in order to set your GPG key for GitHub.\n')
+  clog.success(`${file} updated with GPG key export!`)
+  clog.info('Please run "git-assist config" or "git-assist config -g" again in order to set your GPG key for GitHub.\n')
   spawnSync('source', [file])
 }
 

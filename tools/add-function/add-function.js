@@ -1,6 +1,6 @@
 (async function main() {
   const promptly = require('promptly')
-  const consola = require('consola')
+  const clog = require('../../utils/loggers/console-log.js')
   const fs = require('fs')
   const name = await promptly.prompt('Function name: ')
   const root = `functions/${name}`
@@ -15,5 +15,5 @@
     args: []
   }
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
-  consola.success(`Function ${name} successfully added!`)
+  clog.success(`Function ${name} successfully added!`)
 })()

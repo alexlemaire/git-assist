@@ -10,8 +10,8 @@ module.exports = async (info) => {
     value: info.email
   }]
   if (!process.env.GITHUB_GPGKEY) {
-    consola.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
-    consola.info('Please run "git-assist generate-gpg" in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n')
+    clog.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
+    clog.info('Please run "git-assist generate-gpg" in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n')
   } else {
     params = params.concat([{
       path: 'user.signingkey',
@@ -30,6 +30,6 @@ module.exports = async (info) => {
       value: param.value
     })
   }
-  consola.success('GPG key successfully added to local configuration!')
-  consola.success('Local configuration successfully updated!')
+  clog.success('GPG key successfully added to local configuration!')
+  clog.success('Local configuration successfully updated!')
 }
