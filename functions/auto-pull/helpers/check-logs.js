@@ -13,12 +13,12 @@ module.exports = () => {
 }
 
 function createFiles(files) {
-  const execSync = require('child_process').execSync
+  const spawnSync = require('child_process').spawnSync
   for (const file of files) {
     let cmd = 'touch'
     if (file.isDir) {
       cmd = 'mkdir'
     }
-    execSync(`sudo ${cmd} ${file}`)
+    spawnSync('sudo', [cmd, file.path])
   }
 }

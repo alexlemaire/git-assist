@@ -30,5 +30,6 @@ module.exports = async (info) => {
       value: param.value
     })
   }
+  consola.success('GPG key successfully added to local configuration!')
   consola.success('Local configuration successfully updated!')
 }

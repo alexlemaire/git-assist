@@ -7,8 +7,8 @@ const fs = require('fs')
 const consola = require('consola')
 
 function getPublishedVer() {
-  const execSync = require('child_process').execSync
-  return execSync('npm view git-assist version').toString().trim()
+  const spawnSync = require('child_process').spawnSync
+  return spawnSync('npm', ['view', 'git-assist', 'version']).stdout.toString().trim()
 }
 
 function getCurrentVer() {
