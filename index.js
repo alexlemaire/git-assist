@@ -5,6 +5,7 @@ if (args.length < 3) {
 }
 const fs = require('fs')
 const clog = require('./utils/loggers/console-log.js')
+const chalk = require('chalk')
 
 function getPublishedVer() {
   const spawnSync = require('child_process').spawnSync
@@ -28,6 +29,6 @@ function getFunctions() {
   const publishedVer = getPublishedVer()
   const currentVer = getCurrentVer()
   if (currentVer !== publishedVer) {
-    console.log(`Your installed git-assist version is outdated. Latest version is ${publishedVer}. Please update via "npm i -g git-assist"`)
+    clog.info(`Your installed ${chalk.italic('git-assist')} version is outdated. Latest version is ${chalk.bold(publishedVer)}. Please update via ${chalk.cyan.italic('npm i -g git-assist')}`, {makeLink: false, format: false})
   }
 })().catch(err => {clog.error(err.message); process.exit(1)})
