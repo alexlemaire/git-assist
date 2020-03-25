@@ -20,22 +20,20 @@ module.exports = async () => {
       type: 'password',
       name: 'pwd',
       message: 'Enter a password:'
-    }
-  ]
-  const answer = await inquirer.prompt(questions)
-  await inquirer.prompt([
+    },
     {
       type: 'password',
-      name: 'pwd',
+      name: 'confpwd',
       message: 'Enter password again:',
-      validate: function (input) {
+      validate: function (input, answer) {
         if (input !== answer.pwd) {
           throw new Error('\nError: passwords must match!\n')
         }
         return true
       }
     }
-  ])
+  ]
+  const answer = await inquirer.prompt(questions)
   return {
     name: `${answer.fname} ${answer.lname}`,
     email: answer.email,
