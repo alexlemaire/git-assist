@@ -3,7 +3,7 @@ const terminalLink = require('terminal-link')
 
 const success = (msg, opts) => {
   opts = processOpts(opts)
-  const header = chalk.green('✓')
+  const header = chalk.green('✔️')
   const body = chalk.green(formatMsg(msg, opts))
   console.log(`${header} ${body}`)
 }
