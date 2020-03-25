@@ -2,17 +2,11 @@ const chalk = require('chalk')
 const terminalLink = require('terminal-link')
 
 const success = (msg, opts) => {
-  opts = processOpts(opts)
-  const header = chalk.green('✔️')
-  const body = chalk.green(formatMsg(msg, opts))
-  console.log(`${header} ${body}`)
+  headedLog(msg, opts, '✔️', 'green')
 }
 
 const info = (msg, opts) => {
-  opts = processOpts(opts)
-  const header = chalk.yellow('ℹ')
-  const body = chalk.yellow(formatMsg(msg, opts))
-  console.log(`${header} ${body}`)
+  headedLog(msg, opts, 'ℹ', 'yellow')
 }
 
 const error = (msg, opts) => {
@@ -33,8 +27,7 @@ const error = (msg, opts) => {
 }
 
 const log = (msg, opts) => {
-  opts = processOpts(opts)
-  console.log(formatMsg(msg, opts))
+  console.log(formatMsg(msg, processOpts(opts)))
 }
 
 function formatMsg(msg, opts) {
@@ -51,6 +44,12 @@ function formatMsg(msg, opts) {
 
 function processOpts(opts) {
   return {...{makeLink: true, format: true}, ...opts}
+}
+
+function headedLog(msg, opts, icon, color) {
+  const header = chalk[color](icon)
+  const body = chalk[color](formatMsg(msg, processOpts(opts)))
+  console.log(`${header} ${body}`)
 }
 
 module.exports = {
