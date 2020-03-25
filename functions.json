@@ -38,5 +38,10 @@
     "path": "./functions/version/index.js",
     "desc": "Prints out currently installed package version",
     "args": []
+  },
+  "clone": {
+    "path": "./functions/clone/index.js",
+    "desc": "",
+    "args": []
   }
 }
