@@ -2,11 +2,11 @@
   const inquirer = require('inquirer')
   const clog = require('../../utils/loggers/console-log.js')
   clog.info('This function will create a new utility function for you.\n')
-  const name = (await inquirer.prompt({
+  const {name} = await inquirer.prompt({
     type: 'input',
     name: 'name',
     message: 'Function name:'
-  })).name
+  })
   const root = `functions/${name}`
   const path = `${root}/index.js`
   const fctsPath = './functions.json'
@@ -17,6 +17,7 @@
   fcts[name] = {
     path: `./${path}`,
     desc: '',
+    tooltip: '',
     args: []
   }
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
