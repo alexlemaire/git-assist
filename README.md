@@ -21,24 +21,27 @@
 
 This helper allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
-_How to use it:_
+## How to use it
+
 - **developers:** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-developers:** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
 
-_Features preview:_
-- setup `git` user (_status: ✓_)
-- generate/configure SSH key (_status: ✓_)
-- generate/configure GPG key (_status: ✓_)
-- clone repositories (_status: ✓_)
-- easy push (git add/commit/push all in one via interactive CLI) (_status: ⏲_)
-- automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options (_status: ❌_)
+## Features
 
-_OS support status:_
+| Feature     | Config           | SSH                        | GPG                        | Clone              | Push                                                           | Auto-pull                                                                                           | Help                        | Version                                         |
+|-------------|------------------|----------------------------|----------------------------|--------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------|-------------------------------------------------|
+| Description | Setup `git` user | Generate/configure SSH key | Generate/configure GPG key | Clone repositories | Easy push (git add/commit/push all in one via interactive CLI) | Automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options | Get help about `git-assist` | Print current installed version of `git-assist` |
+| Command     | `config`         | `generate-ssh`             | `generate-gpg`             | `clone`            | `push`                                                         | `auto-pull`                                                                                         | `--help`                    | `--version`                                     |
+| Arguments   | `-g`             |                            |                            |                    |                                                                |                                                                                                     |                             |                                                 |
+| Status      | ✓                | ✓                          | ✓                          | ✓                  | ⏲                                                              | ❌                                                                                                   | ✓                           | ✓                                               |
+
+## OS support
 
 | Windows | Linux | MacOS |
 |---------|-------|-------|
 | ❌       | ✓     | ❌     |
 
-_Notes:_
+## Notes
+
 - this is an expansion upon a private work made to automate git pull at machine startup for every repositories
 - tested on Linux. Cannot guarantee this will work with other OS
