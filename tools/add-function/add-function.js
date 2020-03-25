@@ -20,5 +20,6 @@
     args: []
   }
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
-  clog.success(`\nFunction ${name} successfully added!`)
+  console.log('\n')
+  clog.success(`Function ${name} successfully added!`)
 })()
