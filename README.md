@@ -33,6 +33,12 @@ _Features preview:_
 - easy push (git add/commit/push all in one via interactive CLI) (_status: ⏲_)
 - automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options (_status: ❌_)
 
+_OS support status:_
+
+| Windows | Linux | MacOS |
+|---------|-------|-------|
+| ❌       | ✓     | ❌     |
+
 _Notes:_
 - this is an expansion upon a private work made to automate git pull at machine startup for every repositories
 - tested on Linux. Cannot guarantee this will work with other OS
