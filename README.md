@@ -19,7 +19,7 @@
 
 **Attention: this is a work in progress. Some features are currently working and you can try this package and play around with it but be aware that major changes may land in the near future**
 
-This helper allows users to easily manage _GitHub_ on their machine. Some features are aimed at developers while some are aiming novice users/non developers.
+This helper allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
 _How to use it:_
 1. **developers:** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`

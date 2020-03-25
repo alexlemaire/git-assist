@@ -10,6 +10,7 @@ on:
       - 'utils/**'
       - 'package.json'
       - 'functions.json'
+      - 'README.md'
 jobs:
   publish:
     runs-on: ubuntu-latest
