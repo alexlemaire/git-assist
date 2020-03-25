@@ -2,19 +2,8 @@ module.exports = (path) => {
   const spawnSync = require('child_process').spawnSync
   const clog = require('../../../utils/loggers/console-log.js')
   const defaultShell = process.env.SHELL
-  let file = ''
-  switch (defaultShell) {
-    case '/bin/bash':
-      file = `${process.env.HOME}/.bashrc`
-      update(file, path)
-      break
-    case '/usr/bin/zsh':
-      file = `${process.env.HOME}/.zshrc`
-      update(file, path)
-      break
-    default:
-      break
-  }
+  const file = require('../../../utils/shell/get-init-file.js')()
+  update(file, path)
   clog.success(`${file} updated with automatic SSH key adding!`)
   spawnSync('source', [file])
 }
