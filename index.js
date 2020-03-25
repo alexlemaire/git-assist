@@ -32,6 +32,7 @@ function getFunctions() {
 
 async function noArgsMode(fcts) {
   const inquirer = require('inquirer')
+  require('./scripts/welcome/welcome.js')
   const {action} = await inquirer.prompt([
     {
       type: 'rawlist',
