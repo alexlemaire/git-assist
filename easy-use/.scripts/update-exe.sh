@@ -1,10 +1,10 @@
 #!/bin/bash
 
+printf "Updating git-assist, please wait...\n"
+
 GLOBAL_DEPS="$(npm ls -g --parseable --depth=0)"
 LOCAL_PROD_DEPS="$(npm ls --prod --parseable --depth=0)"
 LOCAL_DEV_DEPS="$(npm ls --dev --parseable --depth=0)"
-
-printf "Updating git-assist, please wait...\n"
 
 update_pkg() {
   if [[ $1 == *"node_modules/git-assist"* ]]

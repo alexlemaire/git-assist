@@ -1,3 +1,3 @@
 #!/bin/bash
 
-konsole --noclose -e ./scripts/install.sh
+konsole --noclose -e ./.scripts/install-exe.sh

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-konsole --noclose -e ./scripts/update.sh
+konsole --noclose -e ./.scripts/update-exe.sh

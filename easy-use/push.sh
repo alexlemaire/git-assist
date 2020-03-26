@@ -2,4 +2,4 @@
 
 EXEC="$(npm bin -g)/git-assist"
 
-konsole --noclose -e ./scripts/push.sh $EXEC
+konsole --noclose -e ./.scripts/push-exe.sh $EXEC

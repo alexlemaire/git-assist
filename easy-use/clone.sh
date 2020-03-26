@@ -2,4 +2,4 @@
 
 EXEC="$(npm bin -g)/git-assist"
 
-konsole --noclose -e ./scripts/clone.sh $EXEC
+konsole --noclose -e ./.scripts/clone-exe.sh $EXEC

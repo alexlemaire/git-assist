@@ -7,10 +7,10 @@ header_print() {
 
 # Install Node & git-assist
 header_print "Installing the latest Node version and git-assist on your machine..."
-bash ./install.sh --noEndMsg
+bash ./install-exe.sh --noEndMsg
 
 # Machine configuration
 header_print "Configuring your machine to work with GitHub..."
-bash ./machine-config.sh --noEndMsg
+bash ./machine-config-exe.sh --noEndMsg
 
 printf "\nScript ran. You may now close this window if you're done working with it!"

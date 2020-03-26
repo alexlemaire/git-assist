@@ -1,3 +1,3 @@
 #!/bin/bash
 
-konsole --noclose -e ./scripts/full-setup.sh
+konsole --noclose -e ./.scripts/full-setup-exe.sh
