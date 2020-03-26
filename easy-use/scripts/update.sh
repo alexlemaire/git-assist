@@ -9,7 +9,7 @@ printf "Updating git-assist, please wait...\n"
 update_pkg() {
   if [[ $1 == *"node_modules/git-assist"* ]]
   then
-    if [[ $(npm outdated $3 git-assist --parseable --depth=0) ]]
+    if [[ -n $(npm outdated $3 git-assist --parseable --depth=0) ]]
     then
       npm i $2 git-assist@latest
     else
