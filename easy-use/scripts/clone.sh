@@ -8,3 +8,5 @@ header_print() {
 # clone repo
 header_print "Cloning a new repository..."
 $1 clone
+
+printf "\nScript ran. You may now close this window if you're done working with it!"
