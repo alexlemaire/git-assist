@@ -41,6 +41,15 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 |:-------:|:-----:|:-----:|
 | ❓       | ✔️     | ❓     |
 
+## Legend
+
+| Icon |           Meaning           |
+|:----:|:---------------------------:|
+|   ✔️  |     Implemented/working     |
+|   ⏲  |       Work in progress      |
+|   ❓  |          Not tested         |
+|   ❌  | Not implemented/not working |
+
 ## Notes
 
 - this is an expansion upon a private work made to automate git pull at machine startup for every repositories
