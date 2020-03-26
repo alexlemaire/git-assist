@@ -6,5 +6,5 @@ module.exports = async () => {
     dir: '.',
     path: 'remote.origin.url'
   })
-  return originUrl.substring(0, 4) === 'https' ? 'https' : 'ssh'
+  return originUrl.substring(0, 5) === 'https' ? 'https' : 'ssh'
 }
