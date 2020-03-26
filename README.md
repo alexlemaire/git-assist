@@ -29,7 +29,7 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 ## Features
 
 | Feature     | Config           | SSH                        | GPG                        | Clone              | Push                                                           | Auto-pull                                                                                           | Help                        | Version                                         |
-|-------------|------------------|----------------------------|----------------------------|--------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------|-------------------------------------------------|
+|:-----------:|:----------------:|:--------------------------:|:--------------------------:|:------------------:|:--------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|:---------------------------:|:-----------------------------------------------:|
 | Description | Setup `git` user | Generate/configure SSH key | Generate/configure GPG key | Clone repositories | Easy push (git add/commit/push all in one via interactive CLI) | Automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options | Get help about `git-assist` | Print current installed version of `git-assist` |
 | Command     | `config`         | `generate-ssh`             | `generate-gpg`             | `clone`            | `push`                                                         | `auto-pull`                                                                                         | `--help`                    | `--version`                                     |
 | Arguments   | `-g`             |                            |                            |                    |                                                                |                                                                                                     |                             |                                                 |
@@ -38,8 +38,8 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 ## OS support
 
 | Windows | Linux | MacOS |
-|---------|-------|-------|
-| ❌       | ✔️     | ❌     |
+|:-------:|:-----:|:-----:|
+| ❓       | ✔️     | ❓     |
 
 ## Notes
 
