@@ -10,9 +10,9 @@ Two solutions:
 
 ## Scripts
 
-| Script  | `install.sh`                                                               | `machine-config.sh`                                                                                                       | `clone.sh`                                   |
-|---------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Purpose | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | allows you to clone a repository from GitHub |
+| Script  | `install.sh`                                                               | `machine-config.sh`                                                                                                       | `clone.sh`                                   | `update.sh`                                                                                          |
+|---------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------|
+| Purpose | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | allows you to clone a repository from GitHub | updates the installed version of `git-assist`. Will scan for global packages but also local packages |
 
 **Important:**
 - for all those scripts, you should copy them in the folder you want to work from and delete them afterward. This will be improved later on
