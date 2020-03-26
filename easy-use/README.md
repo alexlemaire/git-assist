@@ -5,7 +5,7 @@ Those scripts are mainly intended for non-developer users. It eases the process 
 ## How to get those scripts
 
 Two solutions:
-1. You can clone `git-assist` [repository](https://github.com/alexlemaire/git-assist) on your machine to access those scripts directly
+1. You can clone `git-assist` [repository](https://github.com/alexlemaire/git-assist) on your machine ([how?](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)) to access those scripts directly
 2. You will also find the latest version to download [here](https://cdn.klimapartner.net/alexis/@git-assist/easy-use.zip) as a _ZIP_ archive
 
 ## Scripts
