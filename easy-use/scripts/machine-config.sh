@@ -17,4 +17,7 @@ $1 generate-gpg
 header_print "Configurating GitHub user..."
 $1 config -g
 
-printf "\nScript ran.\nPlease scroll up as some manual operations are required...\nWhen done, you can close this window!"
+if [[ $1 != "--noEndMsg" ]]
+then
+  printf "\nScript ran. You may now close this window if you're done working with it!"
+fi

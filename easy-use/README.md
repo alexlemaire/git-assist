@@ -10,10 +10,23 @@ Two solutions:
 
 ## Scripts
 
-| Script  | `install.sh`                                                               | `machine-config.sh`                                                                                                       | `clone.sh`                                   | `update.sh`                                                                                          |
-|---------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------|
-| Purpose | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | allows you to clone a repository from GitHub | updates the installed version of `git-assist`. Will scan for global packages but also local packages |
+| Script  | `full-setup.sh`                                                               | `install.sh`                                                               | `machine-config.sh`                                                                                                       | `clone.sh`                                   | `update.sh`                                                                                          | `push.sh`                                               |
+|---------|-------------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| Purpose | configure your machine to work with `git-assist` (and its `easy-use` scripts) | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | allows you to clone a repository from GitHub | updates the installed version of `git-assist`. Will scan for global packages but also local packages | stages, commits and pushes changes made in a repository |
 
-**Important:**
+:warning: **Important:**
 - for all those scripts, you should copy them in the folder you want to work from and delete them afterward. This will be improved later on
 - those scripts probably will work only if you're using Linux!
+
+## Initial machine setup
+
+You can follow those instructions in case you are using a machine for the first time and you would like to make it work with `git-assist`
+
+**Manual setup:**
+1. Get the scripts by following the instructions [here](#how-to-get-those-scripts)
+2. Run `install.sh`
+3. Run `machine-config.sh`
+
+**Automated setup:**
+1. See step 1 above
+2. Run `full-setup.sh`

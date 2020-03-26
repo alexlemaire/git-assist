@@ -20,4 +20,7 @@ echo "Installing git-assist on your machine..."
 
 sudo npm i -g git-assist
 
-printf "\nScript ran. You may now close this window if you're done working with it!"
+if [[ $1 != "--noEndMsg" ]]
+then
+  printf "\nScript ran. You may now close this window if you're done working with it!"
+fi
