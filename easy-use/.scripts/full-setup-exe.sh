@@ -11,6 +11,7 @@ bash ./install-exe.sh --noEndMsg
 
 # Machine configuration
 header_print "Configuring your machine to work with GitHub..."
-bash ./machine-config-exe.sh --noEndMsg
+EXEC="$(npm bin -g)/git-assist"
+bash ./machine-config-exe.sh $EXEC --noEndMsg
 
 printf "\nScript ran. You may now close this window if you're done working with it!"
