@@ -7,7 +7,7 @@
     name: 'name',
     message: 'Function name:'
   })
-  const root = `functions/${name}`
+  const root = `src/functions/${name}`
   const path = `${root}/index.js`
   const fctsPath = './functions.json'
   const fs = require('fs')

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const args = process.argv.splice(2)
 const fs = require('fs')
-const clog = require('./utils/loggers/console-log.js')
+const clog = require('./src/utils/loggers/console-log.js')
 const chalk = require('chalk')
 
 function getPublishedVer() {
@@ -32,7 +32,7 @@ function getFunctions() {
 
 async function noArgsMode(fcts) {
   const inquirer = require('inquirer')
-  require('./scripts/welcome/welcome.js')
+  require('./src/utils/welcome/welcome.js')
   const {action} = await inquirer.prompt([
     {
       type: 'rawlist',

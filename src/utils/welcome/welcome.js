@@ -1,7 +1,7 @@
 const clog = require('../../utils/loggers/console-log.js')
 const chalk = require('chalk')
 const terminalLink = require('terminal-link')
-const pjson = require('../../package.json')
+const pjson = require('../../../package.json')
 console.log('\n')
 console.log(chalk.green(`Thanks for using this package! ${chalk.yellow('🖒')} ${chalk.red('♥')}\n`))
 clog.log('git-assist is a small node utility aiming to help with your basic GitHub tasks and more.')

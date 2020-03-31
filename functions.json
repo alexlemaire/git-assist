@@ -1,12 +1,12 @@
 {
   "auto-pull": {
-    "path": "./functions/auto-pull/index.js",
+    "path": "./src/functions/auto-pull/index.js",
     "desc": "Allows user to configure the auto-pull script",
     "tooltip": "Configure auto pulling for your machine",
     "args": []
   },
   "config": {
-    "path": "./functions/config/index.js",
+    "path": "./src/functions/config/index.js",
     "desc": "Allows user to configure its GitHub user settings",
     "tooltip": "Configure GitHub user",
     "args": [
@@ -17,37 +17,37 @@
     ]
   },
   "push": {
-    "path": "./functions/push/index.js",
+    "path": "./src/functions/push/index.js",
     "desc": "Allows user to stage, commit and push files",
     "tooltip": "Commit, stage and push files via interactive console",
     "args": []
   },
   "generate-ssh": {
-    "path": "./functions/generate-ssh/index.js",
+    "path": "./src/functions/generate-ssh/index.js",
     "desc": "Allows user to generate a new SSH key and dynamically add it to its SSH agent on shell startup",
     "tooltip": "Generate a new SSH key (added to SSH agent automatically)",
     "args": []
   },
   "generate-gpg": {
-    "path": "./functions/generate-gpg/index.js",
+    "path": "./src/functions/generate-gpg/index.js",
     "desc": "Allows user to generate a new GPG key",
     "tooltip": "Generate a new GPG key",
     "args": []
   },
   "clone": {
-    "path": "./functions/clone/index.js",
+    "path": "./src/functions/clone/index.js",
     "desc": "Allows user to clone a repository on his machine",
     "tooltip": "Clone a repository",
     "args": []
   },
   "--version": {
-    "path": "./functions/version/index.js",
+    "path": "./src/functions/version/index.js",
     "desc": "Prints out currently installed package version",
     "tooltip": "Get current package installed version",
     "args": []
   },
   "--help": {
-    "path": "./functions/help/index.js",
+    "path": "./src/functions/help/index.js",
     "desc": "",
     "tooltip": "I need help!",
     "args": []

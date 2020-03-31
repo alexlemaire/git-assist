@@ -3,9 +3,9 @@ const chalk = require('chalk')
 module.exports = (args) => {
   const fs = require('fs')
   const clog = require('../../utils/loggers/console-log.js')
-  let fcts = require('../../functions.json')
+  let fcts = require('../../../functions.json')
   delete fcts['--help']
-  require('../../scripts/welcome/welcome.js')
+  require('../../utils/welcome/welcome.js')
   clog.info(`To call any of the functions listed below, you can run ${chalk.cyan.italic('git-assist <function_name> <accepted_arguments>')}`, {
     makeLink: false,
     format: false
