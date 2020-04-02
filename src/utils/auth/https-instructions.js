@@ -20,11 +20,10 @@ module.exports = async () => {
   if (mfa && !token) {
     await tokenInstructions()
   }
-  return mfa
 }
 
 async function tokenInstructions() {
-  const clog = require('../../../../utils/loggers/console-log.js')
+  const clog = require('../loggers/console-log.js')
   clog.info('In order to be able to push with two-factor authentication, you should generate an authentication token for your account.')
   clog.info('Please head to https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line to know how.')
   clog.info('When choosing options for your token, you can go with "repo" (all), "admin:repo_hook" (all) and "delete_repo".')

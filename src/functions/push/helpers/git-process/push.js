@@ -1,48 +1,34 @@
-let mfa = false
-
-module.exports = async (protocol, mfaValue) => {
+module.exports = async (protocol) => {
   switch (protocol) {
     case 'https':
-      const http = require('isomorphic-git/http/node')
-      const git = require('isomorphic-git')
-      const fs = require('fs')
-      const dir = '.'
-      mfa = mfaValue
-      await git.push({
-        fs,
-        http,
-        dir,
-        remote: 'origin',
-        ref: await git.currentBranch({
-          fs,
-          dir
-        }),
-        onAuth
-      })
+      await httpPush()
       break
     case 'ssh':
-      // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
-      const spawnSync = require('child_process').spawnSync
-      spawnSync('git' , ['push'])
+      sshPush()
       break
     default:
       break
   }
 }
 
-async function onAuth(url, auth) {
-  const inquirer = require('inquirer')
-  const questions = [
-    {
-      type: 'input',
-      name: 'username',
-      message: 'GitHub username:'
-    },
-    {
-      type: 'password',
-      name: 'password',
-      message: `GitHub ${mfa ? 'access token' : 'password'}:`
-    }
-  ]
-  return await inquirer.prompt(questions)
+async function httpPush() {
+  const http = require('isomorphic-git/http/node')
+  const git = require('isomorphic-git')
+  const fs = require('fs')
+  const dir = '.'
+  const currentBranch = await git.currentBranch({ fs, dir })
+  await git.push({
+    fs,
+    http,
+    dir,
+    remote: await git.getConfig({ fs, dir, path: `branch.${currentBranch}.remote` }),
+    ref: currentBranch,
+    onAuth: require('../../../../utils/auth/auth.js')
+  })
+}
+
+function sshPush() {
+  // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
+  const spawnSync = require('child_process').spawnSync
+  spawnSync('git' , ['push'])
 }
