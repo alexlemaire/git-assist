@@ -20,6 +20,6 @@ async function setConfig(path) {
   if (value) {
     await git.setConfig({ fs, dir, path, value })
   } else {
-    throw new Error(`Glbal configuration missing for user ${path.replace('user.', '')}`)
+    throw new Error(`Global configuration missing for user ${path.replace('user.', '')}`)
   }
 }

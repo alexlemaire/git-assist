@@ -1,5 +1,5 @@
-module.exports = async (protocol, url, repo) => {
-  const clog = require('../../../utils/loggers/console-log.js')
+module.exports = async (url, protocol, repo) => {
+  const clog = require('../../../../utils/loggers/console-log.js')
   clog.info(`Cloning ${repo} into current folder...`)
   switch (protocol) {
     case 'ssh':
@@ -24,7 +24,8 @@ async function httpsClone(url, repo) {
     http,
     dir: path.join(process.cwd(), repo),
     url,
-    depth: 1
+    depth: 1,
+    onAuth: require('../../../../utils/auth/auth.js')
   })
 }
 

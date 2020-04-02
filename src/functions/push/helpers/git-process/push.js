@@ -1,13 +1,10 @@
-let mfa = false
-
-module.exports = async (protocol, mfaValue) => {
+module.exports = async (protocol) => {
   switch (protocol) {
     case 'https':
       const http = require('isomorphic-git/http/node')
       const git = require('isomorphic-git')
       const fs = require('fs')
       const dir = '.'
-      mfa = mfaValue
       await git.push({
         fs,
         http,
@@ -17,7 +14,7 @@ module.exports = async (protocol, mfaValue) => {
           fs,
           dir
         }),
-        onAuth
+        onAuth: require('../../../../utils/auth/auth.js')
       })
       break
     case 'ssh':
@@ -28,21 +25,4 @@ module.exports = async (protocol, mfaValue) => {
     default:
       break
   }
-}
-
-async function onAuth(url, auth) {
-  const inquirer = require('inquirer')
-  const questions = [
-    {
-      type: 'input',
-      name: 'username',
-      message: 'GitHub username:'
-    },
-    {
-      type: 'password',
-      name: 'password',
-      message: `GitHub ${mfa ? 'access token' : 'password'}:`
-    }
-  ]
-  return await inquirer.prompt(questions)
 }
