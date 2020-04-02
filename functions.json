@@ -51,5 +51,11 @@
     "desc": "",
     "tooltip": "I need help!",
     "args": []
+  },
+  "pull": {
+    "path": "./src/functions/pull/index.js",
+    "desc": "Allows user to pull commits from a repository",
+    "tooltip": "Pull commits from remote repository",
+    "args": []
   }
 }
