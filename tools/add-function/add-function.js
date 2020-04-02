@@ -1,13 +1,13 @@
 (async function main() {
   const inquirer = require('inquirer')
-  const clog = require('../../utils/loggers/console-log.js')
+  const clog = require('../../src/utils/loggers/console-log.js')
   clog.info('This function will create a new utility function for you.\n')
   const {name} = await inquirer.prompt({
     type: 'input',
     name: 'name',
     message: 'Function name:'
   })
-  const root = `functions/${name}`
+  const root = `src/functions/${name}`
   const path = `${root}/index.js`
   const fctsPath = './functions.json'
   const fs = require('fs')

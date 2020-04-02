@@ -1,15 +1,16 @@
 {
   "name": "git-assist",
-  "version": "0.1.13",
+  "version": "0.2.0",
   "description": "node utility to help working with GitHub",
   "main": "index.js",
   "bin": {
     "git-assist": "./index.js"
   },
   "scripts": {
-    "postinstall": "node scripts/welcome/welcome.js",
+    "postinstall": "node src/utils/welcome/welcome.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "add-function": "node tools/add-function/add-function.js"
+    "add-function": "node tools/add-function/add-function.js",
+    "version": "node tools/version/version.js"
   },
   "kaskadi": {
     "s3-push": {

@@ -2,7 +2,7 @@ const git = require('isomorphic-git')
 const fs = require('fs')
 const dir = '.'
 module.exports = async () => {
-  const clog = require('../../../utils/loggers/console-log.js')
+  const clog = require('../loggers/console-log.js')
   let paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
   clog.info('No local configuration found for GitHub, pulling information from global GitHub configuration...')
   for (const path of paths) {
@@ -20,6 +20,6 @@ async function setConfig(path) {
   if (value) {
     await git.setConfig({ fs, dir, path, value })
   } else {
-    throw new Error(`Glbal configuration missing for user ${path.replace('user.', '')}`)
+    throw new Error(`Global configuration missing for user ${path.replace('user.', '')}`)
   }
 }
