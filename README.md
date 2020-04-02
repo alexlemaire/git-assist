@@ -2,6 +2,12 @@
 ![](https://img.shields.io/badge/code--style-standard-blue)
 ![](https://img.shields.io/github/license/alexlemaire/git-assist?color=blue)
 
+**Security**
+
+[![Known Vulnerabilities](https://snyk.io/test/github/alexlemaire/git-assist/badge.svg)](https://snyk.io/test/github/alexlemaire/git-assist)
+[![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
+[![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/count.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
+
 **GitHub Actions workflows status**
 
 ![](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
