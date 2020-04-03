@@ -28,5 +28,6 @@ sudo npm i -g git-assist
 
 if [[ $1 != "--noEndMsg" ]]
 then
-  printf "\nScript ran. You may now close this window if you're done working with it!"
+  echo "Done!"
+  read -p "Press Return to exit"
 fi

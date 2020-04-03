@@ -12,12 +12,13 @@ cp -r $SRC $DEST
 cd $DEST
 FILE=".gitignore"
 if [ -f "$FILE" ]; then
-    echo "# Ignore folder for easy-use scripts from git-assist package" >> $FILE
-    echo "$FOLDER/" >> $FILE
+  echo "# Ignore folder for easy-use scripts from git-assist package" >> $FILE
+  echo "$FOLDER/" >> $FILE
 fi
 
 # Update .info to specify that we're not in root anymore
 cd $FOLDER
 echo "copy" > .info
 
-echo "Done! You can now close this window."
+echo "Done!"
+read -p "Press Return to exit"

@@ -16,4 +16,4 @@ header_print "Configuring your machine to work with GitHub..."
 EXEC="$(npm bin -g)/git-assist"
 bash ./machine-config.sh $EXEC --noEndMsg
 
-printf "\nScript ran. You may now close this window if you're done working with it!"
+read -p "Press Return to exit"

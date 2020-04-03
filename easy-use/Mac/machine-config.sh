@@ -21,5 +21,6 @@ $EXEC config -g
 
 if [[ $2 != "--noEndMsg" ]]
 then
-  printf "\nScript ran. You may now close this window if you're done working with it!"
+  echo "Done!"
+  read -p "Press Return to exit"
 fi

@@ -22,4 +22,5 @@ update_pkg $GLOBAL_DEPS -g -g
 update_pkg $LOCAL_PROD_DEPS -S
 update_pkg $LOCAL_DEV_DEPS -D
 
-printf "\nScript ran. You may now close this window if you're done working with it!"
+echo "Done!"
+read -p "Press Return to exit"
