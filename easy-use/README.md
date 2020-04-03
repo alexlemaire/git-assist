@@ -1,6 +1,6 @@
 # Easy-use
 
-Those scripts are mainly intended for non-developer users. It eases the process of running a basic configuration for your machine and allowing you to quickly work with GitHub.
+Those scripts are mainly intended for non-developer users. It eases the process of running a basic configuration for your machine and allows you to quickly work with GitHub.
 
 ## How to get those scripts
 
@@ -9,6 +9,27 @@ Two solutions:
 2. You will also find the latest version to download [here](https://cdn.klimapartner.net/alexis/@git-assist/easy-use.zip) as a _ZIP_ archive. **Note:** to get OS specific scripts instead of the entire collection, head here:
   - [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
   - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
+
+:warning: **Warning:** you may have changed your default settings to open `.sh` files via something else than your terminal on your system. If so, those scripts won't work as intended... To fix this:
+- _Linux users_:
+  1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
+  2. Click on `Properties`
+  3. Click on the `Open With` tab
+  4. Select your terminal application (`Konsole` for _Kubuntu_ for example)
+  5. Click on `Set as default`
+- _Mac users_:
+  1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
+  2. Click on `Get Info` in the pop-up
+  3. Click `Open With` if the section isn't already expanded
+  4. Click the dropdown and choose `Terminal`
+  5. Click `Change All...`
+  6. Click `Continue` when the Finder asks you if you're sure
+
+## How to use those scripts?
+
+Simply double click the script you want to use! :tada:
+
+:warning: **Warning:** all those scripts uses an hidden directory `.scripts` in the background to work. All the naming + hidden directory pattern was done to limit user errors but mishaps can happen. Do not modify anything in `.scripts` and the scripts themselves if you're not sure of what you're doing! (mostly for people not working with `bash` scripts)
 
 ## Scripts
 
