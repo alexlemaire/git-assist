@@ -1,11 +1,13 @@
 #!/bin/bash
 
-cd ../
-DIR="$(basename "$(pwd)")"
-if [ $DIR == "easy-use" ]
-then
-  cd ../
-fi
+back_if() {
+  if [ "$(basename "$(pwd)")" == $1 ]
+  then
+    cd ../
+  fi
+}
+back_if "Linux"
+back_if "easy-use"
 
 header_print() {
   echo $1
