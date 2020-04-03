@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: npm ci
+      run: npm i
     - uses: actions/setup-node@v1
       with:
         node-version: 12
