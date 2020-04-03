@@ -18,6 +18,14 @@
         {
           "src": "easy-use/easy-use.zip",
           "dest": "alexis/@git-assist/{branch}easy-use.zip"
+        },
+        {
+          "src": "easy-use/easy-use_Linux.zip",
+          "dest": "alexis/@git-assist/{branch}easy-use_Linux.zip"
+        },
+        {
+          "src": "easy-use/easy-use_Mac.zip",
+          "dest": "alexis/@git-assist/{branch}easy-use_Mac.zip"
         }
       ]
     }
