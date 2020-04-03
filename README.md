@@ -45,7 +45,7 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 
 | Windows | Linux | MacOS |
 |:-------:|:-----:|:-----:|
-| ❓       | ✔️     | ❓     |
+| ❓       | ✔️     | ⏲     |
 
 ## Legend
 

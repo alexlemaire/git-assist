@@ -10,7 +10,7 @@ Two solutions:
   - [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
   - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
 
-:warning: **Warning:** you may have changed your default settings to open `.sh` files via something else than your terminal on your system. If so, those scripts won't work as intended... To fix this:
+:warning: **Warning:** for operating systems other than _Linux_, you may need to specify the default application for opening `.sh` files. To do so:
 - _Mac users_:
   1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
   2. Click on `Get Info` in the pop-up
@@ -23,17 +23,15 @@ Two solutions:
 
 Simply double click the script you want to use! :tada:
 
-:warning: **Warning:** all those scripts uses an hidden directory `.scripts` in the background to work. All the naming + hidden directory pattern was done to limit user errors but mishaps can happen. Do not modify anything in `.scripts` and the scripts themselves if you're not sure of what you're doing! (mostly for people not working with `bash` scripts)
+**Important:** all scripts interacting with _GitHub_ are running in the folder where you copy them **or** the one where you copied the directory containing them. This means you have two possibilities:
+1. copy the script file as standalone where you want to use it
+2. copy the whole folder containing those scripts in the destination where you wanna use them. Using `copy-scripts.sh` or `delete-scripts.sh` for this purpose is highly recommended!
 
 ## Scripts
 
-|  Script |                                `full-setup.sh`                                |                                `install.sh`                                |                                                    `machine-config.sh`                                                    |                  `clone.sh`                  |                                              `update.sh`                                             |                        `push.sh`                        |                     `pull.sh`                    |
-|:-------:|:-----------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------:|:----------------------------------------------------------------------------------------------------:|:-------------------------------------------------------:|:------------------------------------------------:|
-| Purpose | configure your machine to work with `git-assist` (and its `easy-use` scripts) | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | allows you to clone a repository from GitHub | updates the installed version of `git-assist`. Will scan for global packages but also local packages | stages, commits and pushes changes made in a repository | pulls from remote repository via interactive CLI |
-
-:warning: **Important:**
-- for all those scripts, you should copy them in the folder you want to work from and delete them afterward. This will be improved later on
-- those scripts probably will work only if you're using Linux!
+|  Script |                                `full-setup.sh`                                |                                `install.sh`                                |                                                    `machine-config.sh`                                                    |                                                          `copy-scripts.sh`                                                          |                                          `delete-scripts.sh`                                         |                  `clone.sh`                  |                                              `update.sh`                                             |                        `push.sh`                        |                     `pull.sh`                    |
+|:-------:|:-----------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|:--------------------------------------------:|:----------------------------------------------------------------------------------------------------:|:-------------------------------------------------------:|:------------------------------------------------:|
+| Purpose | configure your machine to work with `git-assist` (and its `easy-use` scripts) | installs both the latest Node LTS version and `git-assist` on your machine | configures your machine to work with GitHub. Generates a GPG key, an SSH key and setup your user configuration for GitHub | copies the folder containing `easy-use` scripts (prompt user for destination). It also add this folder to `.gitignore` if it exists | remove the containing folder for `easy-use` scripts and erase the entry in `.gitignore` if it exists | allows you to clone a repository from GitHub | updates the installed version of `git-assist`. Will scan for global packages but also local packages | stages, commits and pushes changes made in a repository | pulls from remote repository via interactive CLI |
 
 ## Initial machine setup
 
