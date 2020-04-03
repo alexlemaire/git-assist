@@ -11,12 +11,6 @@ Two solutions:
   - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
 
 :warning: **Warning:** you may have changed your default settings to open `.sh` files via something else than your terminal on your system. If so, those scripts won't work as intended... To fix this:
-- _Linux users_:
-  1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
-  2. Click on `Properties`
-  3. Click on the `Open With` tab
-  4. Select your terminal application (`Konsole` for _Kubuntu_ for example)
-  5. Click on `Set as default`
 - _Mac users_:
   1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
   2. Click on `Get Info` in the pop-up
