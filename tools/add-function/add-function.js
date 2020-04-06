@@ -15,9 +15,10 @@
   fs.copyFileSync('tools/add-function/function.js', path)
   let fcts = JSON.parse(fs.readFileSync(fctsPath, 'utf-8'))
   fcts[name] = {
+    cmds: [name],
     handler: `./${path}`,
     desc: '',
-    args: []
+    optsData: []
   }
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
   console.log('\n')
