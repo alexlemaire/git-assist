@@ -25,7 +25,7 @@ function getFunctions() {
   let fcts = {}
   Object.entries(require('./functions.json')).forEach(entry => {
     fcts[entry[0]] = entry[1]
-    fcts[entry[0]].path = require(entry[1].path)
+    fcts[entry[0]].handler = require(entry[1].handler)
   })
   return fcts
 }
@@ -38,10 +38,10 @@ async function noArgsMode(fcts) {
       type: 'rawlist',
       name: 'action',
       message: 'What would you like to do today?',
-      choices: Object.entries(fcts).map(entry => entry[1].tooltip)
+      choices: Object.entries(fcts).map(entry => entry[1].desc)
     }
   ])
-  const fctEntry = Object.entries(fcts).filter(entry => entry[1].tooltip === action)[0]
+  const fctEntry = Object.entries(fcts).filter(entry => entry[1].desc === action)[0]
   args.push(fctEntry[0])
   if (fctEntry[1].args.length > 0) {
     const {arg} = await inquirer.prompt([
@@ -63,6 +63,6 @@ async function noArgsMode(fcts) {
   if (args.length === 0) {
     await noArgsMode(fcts)
   }
-  await fcts[args[0]].path(args.splice(1))
+  await fcts[args[0]].handler(args.splice(1))
   checkVersion()
 })().catch(err => {clog.error(err.message); process.exit(1)})
