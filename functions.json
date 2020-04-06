@@ -1,61 +1,61 @@
 {
   "auto-pull": {
-    "path": "./src/functions/auto-pull/index.js",
-    "desc": "Allows user to configure the auto-pull script",
-    "tooltip": "Configure auto pulling for your machine",
-    "args": []
+    "cmds": ["auto-pull"],
+    "handler": "./src/functions/auto-pull/index.js",
+    "desc": "Configure auto pulling for your machine",
+    "optsData": []
   },
   "config": {
-    "path": "./src/functions/config/index.js",
-    "desc": "Allows user to configure its GitHub user settings",
-    "tooltip": "Configure GitHub user",
-    "args": [
+    "cmds": ["config"],
+    "handler": "./src/functions/config/index.js",
+    "desc": "Configure GitHub user",
+    "optsData": [
       {
-        "arg": "-g",
+        "opts": ["-g", "--global"],
         "desc": "set global configuration"
       }
     ]
   },
   "push": {
-    "path": "./src/functions/push/index.js",
-    "desc": "Allows user to stage, commit and push files",
-    "tooltip": "Commit, stage and push files via interactive console",
-    "args": []
-  },
-  "generate-ssh": {
-    "path": "./src/functions/generate-ssh/index.js",
-    "desc": "Allows user to generate a new SSH key and dynamically add it to its SSH agent on shell startup",
-    "tooltip": "Generate a new SSH key (added to SSH agent automatically)",
-    "args": []
-  },
-  "generate-gpg": {
-    "path": "./src/functions/generate-gpg/index.js",
-    "desc": "Allows user to generate a new GPG key",
-    "tooltip": "Generate a new GPG key",
-    "args": []
-  },
-  "clone": {
-    "path": "./src/functions/clone/index.js",
-    "desc": "Allows user to clone a repository on his machine",
-    "tooltip": "Clone a repository",
-    "args": []
-  },
-  "--version": {
-    "path": "./src/functions/version/index.js",
-    "desc": "Prints out currently installed package version",
-    "tooltip": "Get current package installed version",
-    "args": []
-  },
-  "--help": {
-    "path": "./src/functions/help/index.js",
-    "desc": "",
-    "tooltip": "I need help!",
-    "args": []
+    "cmds": ["push"],
+    "handler": "./src/functions/push/index.js",
+    "desc": "Commit, stage and push files via interactive console",
+    "optsData": []
   },
   "pull": {
-    "path": "./src/functions/pull/index.js",
-    "desc": "Allows user to pull commits from a repository",
-    "tooltip": "Pull commits from remote repository",
-    "args": []
+    "cmds": ["pull"],
+    "handler": "./src/functions/pull/index.js",
+    "desc": "Pull commits from remote repository",
+    "optsData": []
+  },
+  "generate-ssh": {
+    "cmds": ["generate-ssh"],
+    "handler": "./src/functions/generate-ssh/index.js",
+    "desc": "Generate a new SSH key (added to SSH agent automatically)",
+    "optsData": []
+  },
+  "generate-gpg": {
+    "cmds": ["generate-gpg"],
+    "handler": "./src/functions/generate-gpg/index.js",
+    "desc": "Generate a new GPG key",
+    "optsData": []
+  },
+  "clone": {
+    "cmds": ["clone"],
+    "handler": "./src/functions/clone/index.js",
+    "desc": "Clone a repository",
+    "optsData": []
+  },
+  "version": {
+    "cmds": ["-v", "--version"],
+    "handler": "./src/functions/version/index.js",
+    "desc": "Get current package installed version",
+    "optsData": []
+  },
+  "help": {
+    "cmds": ["-h", "--help"],
+    "handler": "./src/functions/help/index.js",
+    "desc": "I need help!",
+    "optsData": []
   }
 }
