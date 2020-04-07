@@ -20,6 +20,9 @@ async function httpsClone(url, repo) {
   const http = require('isomorphic-git/http/node')
   const git = require('isomorphic-git')
   const path = require('path')
+  if (fs.existsSync('.git/config')) {
+    require('../../../../utils/auth/user-heads-up.js')
+  }
   await git.clone({
     fs,
     http,
