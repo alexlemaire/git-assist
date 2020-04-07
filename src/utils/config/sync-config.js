@@ -4,14 +4,15 @@ const dir = '.'
 module.exports = async () => {
   const clog = require('../loggers/console-log.js')
   let paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
-  clog.info('No local configuration found for GitHub, pulling information from global GitHub configuration...')
   for (const path of paths) {
     const entry = await git.getConfig({ fs, dir, path })
     if (!entry) {
+      const prop = path.replace('user.', '')
+      clog.info(`No local configuration found for ${prop}, pulling information from global GitHub configuration...`)
       await setConfig(path)
+      clog.success(`GitHub local configuration for ${prop} synchronized with global configuration!`)
     }
   }
-  clog.success('GitHub local configuration synchronized with global configuration!')
 }
 
 async function setConfig(path) {
