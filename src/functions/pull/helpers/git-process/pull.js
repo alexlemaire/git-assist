@@ -16,7 +16,7 @@ module.exports = async (protocol, branches) => {
   }
 }
 
-async function httpPull (branches, creds) {
+async function httpPull (branches) {
   const http = require('isomorphic-git/http/node')
   require('../../../../utils/auth/user-heads-up.js')
   for (const branch of branches) {
