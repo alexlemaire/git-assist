@@ -28,6 +28,14 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 
 :question: _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
+## Required dependencies
+
+Until work has been done to automate dependencies installation on package installation (or suppress some of them), here are the dependencies that needs to be on your computer for this utility to work correctly:
+- `git`
+- `gpg` (to generate GPG keys)
+- `ssh` (to generate ssh keys)
+- Linux only: `libsecret` & `gnome-keyring`
+
 ## Features
 
 |   Feature   |      Config      |             SSH            |             GPG            |        Clone       |                              Push                              |             Pull            |                                              Auto-pull                                              |             Help            |                     Version                     |
