@@ -1,5 +1,6 @@
+const clog = require('../../../../utils/loggers/console-log.js')
+
 module.exports = async (url, protocol, repo) => {
-  const clog = require('../../../../utils/loggers/console-log.js')
   clog.info(`Cloning ${repo} into current folder...`)
   switch (protocol) {
     case 'ssh':
@@ -19,13 +20,17 @@ async function httpsClone(url, repo) {
   const http = require('isomorphic-git/http/node')
   const git = require('isomorphic-git')
   const path = require('path')
+  if (fs.existsSync('.git/config')) {
+    require('../../../../utils/auth/user-heads-up.js')
+  }
   await git.clone({
     fs,
     http,
     dir: path.join(process.cwd(), repo),
     url,
     depth: 1,
-    onAuth: require('../../../../utils/auth/auth.js')
+    onAuth: require('../../../../utils/auth/auth.js').onAuth,
+    onAuthFailure: require('../../../../utils/auth/auth.js').onAuthFailure
   })
 }
 

@@ -1,19 +1,9 @@
-![](https://img.shields.io/github/package-json/v/alexlemaire/git-assist)
-![](https://img.shields.io/badge/code--style-standard-blue)
-![](https://img.shields.io/github/license/alexlemaire/git-assist?color=blue)
-
-**Security**
-
+![](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
 [![Known Vulnerabilities](https://snyk.io/test/github/alexlemaire/git-assist/badge.svg)](https://snyk.io/test/github/alexlemaire/git-assist)
 [![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
-[![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/count.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
-
-**GitHub Actions workflows status**
 
 ![](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
 ![](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/upload?label=upload&logo=Amazon%20AWS)
-
-**CodeClimate**
 
 [![](https://img.shields.io/codeclimate/maintainability/alexlemaire/git-assist?label=maintainability&logo=Code%20Climate)](https://codeclimate.com/github/alexlemaire/git-assist)
 [![](https://img.shields.io/codeclimate/tech-debt/alexlemaire/git-assist?label=technical%20debt&logo=Code%20Climate)](https://codeclimate.com/github/alexlemaire/git-assist)
@@ -31,6 +21,12 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 
 - **developers:** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-developers:** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
+
+:warning: **Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
+
+:point_right: You will find the process for creating an access token for your account [here](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+
+:question: _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
 ## Features
 
