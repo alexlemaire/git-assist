@@ -17,7 +17,7 @@ async function getUsername() {
   if (fs.existsSync('.git/config')) {
     const git = require('isomorphic-git')
     require('../config/sync-config.js')()
-    clog.info(`Pulling username from local configuration file (.git/config). If you would like to work under another identity, please update your local configuration file (with ${chalk.blue.italic('git-assist config')})`, {makeLink: false, format: false})
+    clog.info(`Pulling username from local configuration file. If you would like to work under another identity, please update it with ${chalk.blue.italic('git-assist config')}`, {makeLink: false, format: false})
     return await git.getConfig({
       fs,
       dir: '.',
