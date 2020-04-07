@@ -13,7 +13,7 @@ module.exports = {
       {
         type: 'password',
         name: 'password',
-        message: 'GitHub password (access token if using MFA):'
+        message: 'GitHub password (access token if using MFA, see our documentation for info):'
       }
     ])
   }
