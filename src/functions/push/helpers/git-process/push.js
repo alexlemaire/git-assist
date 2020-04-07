@@ -23,7 +23,8 @@ async function httpPush() {
     dir,
     remote: await git.getConfig({ fs, dir, path: `branch.${currentBranch}.remote` }),
     ref: currentBranch,
-    onAuth: require('../../../../utils/auth/auth.js')
+    onAuth: require('../../../../utils/auth/auth.js').onAuth,
+    onAuthFailure: require('../../../../utils/auth/auth.js').onAuthFailure
   })
 }
 
