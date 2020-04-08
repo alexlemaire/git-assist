@@ -1,22 +1,27 @@
 #!/bin/bash
 
 main() {
-  # Get architecture, this may not work...
+  # Get libsecret package name depending on distro
   source /etc/os-release
   if [ $NAME == "Ubuntu" -o $NAME=="Debian" ]; then
-    INSTALL="apt-get install"
     LIBSECRET="libsecret-1-dev"
   elif [ $NAME == "RedHat" ]; then
-    INSTALL="yum install"
     LIBSECRET="libsecret-devel"
   elif [ $NAME == "Arch" ]; then
-    INSTALL="pacman -S"
     LIBSECRET="libsecret"
   else
     # fallback
-    INSTALL="apt-get install"
     LIBSECRET="libsecret-1-dev"
   fi
+
+  # Install universal package installer (does not work on non-package manager system)
+  sudo wget -O /usr/local/bin/pacapt \
+  https://github.com/icy/pacapt/raw/ng/pacapt
+
+  sudo chmod 755 /usr/local/bin/pacapt
+
+  sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
+
   # Node installation
   NODE_VER="$(node -v)"
   NODE_MAJOR="${NODE_VER:1:2}"
@@ -24,9 +29,9 @@ main() {
   if [ $NODE_MAJOR != "12" ]
   then
     echo "Installing latest stable Node release..."
-    sudo $INSTALL curl
+    sudo pacapt install curl
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-    sudo $INSTALL nodejs
+    sudo pacapt install nodejs
     echo "Node has been successfully updated to version $(node -v)!"
   else
     echo "Node is already up to date!"
@@ -38,7 +43,7 @@ main() {
 
   # Dependencies installation
   echo "Installing system dependencies for git-assist..."
-  sudo $INSTALL gpg git gnome-keyring $LIBSECRET
+  sudo pacapt install gpg git gnome-keyring $LIBSECRET
 
   if [[ $1 != "--noEndMsg" ]]
   then
