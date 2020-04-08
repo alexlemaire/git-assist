@@ -6,8 +6,7 @@ on:
       - 'release/**'
     paths:
       - 'index.js'
-      - 'functions/**'
-      - 'utils/**'
+      - 'src/**'
       - 'package.json'
       - 'functions.json'
       - 'README.md'
