@@ -23,8 +23,12 @@ fi
 
 # git-assist installation
 echo "Installing git-assist on your machine..."
-
 sudo npm i -g git-assist
+
+# Dependencies installation
+echo "Installing system dependencies for git-assist..."
+brew install git
+brew install gnupg
 
 if [[ $1 != "--noEndMsg" ]]
 then
