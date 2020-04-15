@@ -21,7 +21,7 @@
 
 This helper allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
-## How to use it
+## :computer: How to use it
 
 - **developers:** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-developers:** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
@@ -32,7 +32,7 @@ This helper allows users to easily manage _GitHub_ on their machines. Some featu
 
 :question: _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
-## Required dependencies
+## :link: Required dependencies
 
 Until work has been done to automate dependencies installation on package installation (or suppress some of them), here are the dependencies that needs to be on your computer for this utility to work correctly:
 - `git`
@@ -40,7 +40,7 @@ Until work has been done to automate dependencies installation on package instal
 - `ssh` (to generate ssh keys)
 - Linux only: `libsecret` & `gnome-keyring`
 
-## Password management
+## :closed_lock_with_key: Password management
 
 Password management is handled via `keytar` (check it out [here](https://www.npmjs.com/package/keytar)). `keytar` is using system specific solutions in order to store your password in a secure way. This allows `git-assist` to reuse your saved password when working with _GitHub_ and not prompt you every time for it.
 
@@ -50,7 +50,7 @@ Below are details on how to handle/prevent this situation.
 
 **Please install `seahorse` on your system via your package manager to get access to a frontend to manage your keyrings easily.**
 
-### How to configure an initial keyring
+### :question: How to configure an initial keyring
 
 It is recommended to perform this step before working with `git-assist` if you don't have a keyring set up on your machine already.
 
@@ -60,7 +60,7 @@ It is recommended to perform this step before working with `git-assist` if you d
 4. type a password that you will remember when prompted for a password
 5. back on the main page of `seahorse`, right click on your newly created keyring and click on _Set as default_
 
-### How to fix a locked default keyring
+### :question: How to fix a locked default keyring
 
 If you started using `git-assist` with no keyring configured it is possible that some of your apps may be frozen or `git-assist` just hangs in a process (fix coming soon).
 
@@ -71,7 +71,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 5. when prompted, confirm deletion
 6. follow the steps 2 to 5 in the section [above](#how-to-configure-an-initial-keyring) to create a new default keyring
 
-## Available features
+## :bulb: Available features
 
 |   Feature   |      Config      |             SSH            |             GPG            |        Clone       |                              Push                              |             Pull            |                                              Auto-pull                                              |             Help            |                     Version                     |
 |:-----------:|:----------------:|:--------------------------:|:--------------------------:|:------------------:|:--------------------------------------------------------------:|:---------------------------:|:---------------------------------------------------------------------------------------------------:|:---------------------------:|:-----------------------------------------------:|
@@ -80,13 +80,13 @@ If you started using `git-assist` with no keyring configured it is possible that
 |  Arguments  |       `-g`       |                            |                            |                    |                                                                |                             |                                                                                                     |                             |                                                 |
 |    Status   |         ✓        |              ✓             |              ✓             |          ✓         |                                ✓                               |              ✓              |                                                  ❌                                                  |              ✓              |                        ✓                        |
 
-## OS support
+## :wrench: OS support
 
 | Windows | Linux | MacOS |
 |:-------:|:-----:|:-----:|
 | ❓       | ✔️     | ⏲     |
 
-## Legend
+## :bookmark: Legend
 
 | Icon |           Meaning           |
 |:----:|:---------------------------:|
@@ -95,7 +95,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 |   ❓  |          Not tested         |
 |   ❌  | Not implemented/not working |
 
-## Notes
+## :memo: Notes
 
 - this is an expansion upon a private work made to automate git pull at machine startup for every repositories
 - tested on Linux. Cannot guarantee this will work with other OS
