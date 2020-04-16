@@ -1,9 +1,9 @@
 module.exports = {
   getPwd: (user) => {
-    return timedWrapper(getPwdHandler, user)
+    return timedWrapper(getPwdHandler, user).catch(err => {throw new Error(err)})
   },
   setPwd: (user, password) => {
-    return timedWrapper(setPwdHandler, user, password)
+    return timedWrapper(setPwdHandler, user, password).catch(err => {throw new Error(err)})
   },
   promptPwd: async () => {
     const inquirer = require('inquirer')
