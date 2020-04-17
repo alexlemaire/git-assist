@@ -7,6 +7,10 @@
       {
         "opts": ["-c", "--config"],
         "desc": "configurate auto-pull behavior"
+      },
+      {
+        "opts": ["--list-hidden"],
+        "desc": "list hidden directories on auto-pull path setting selection"
       }
     ]
   },

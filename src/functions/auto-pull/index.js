@@ -6,7 +6,7 @@ module.exports = async (args) => {
       configName: 'auto-pull',
       fileExtension: 'conf'
     })
-    config.store = await require('./helpers/conf-prompter.js')()
+    config.store = await require('./helpers/conf-prompter.js')(args.splice(1))
   } else {
     const info = await require('./helpers/info-prompter.js')()
     console.log(info.name, info.age)

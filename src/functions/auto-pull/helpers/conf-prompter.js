@@ -1,27 +1,67 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
+const pathMod = require('path')
+const clog = require('../../../utils/loggers/console-log.js')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
-module.exports = async () => {
-  const { path } = await getPath()
-
-  return {path}
+module.exports = async (args) => {
+  const path = await getPath(process.cwd(), args[0] === '--list-hidden')
+  const { excludedDirs } = await getExcludedDirs(path)
+  return {
+    path,
+    excludedDirs
+  }
 }
 
-async function getPath() {
+async function getPath(root, listHidden) {
+  clog.info(`Currently in ${root}`, {makeLink: false, format: false})
+  let { path } = await promptPath(root, listHidden)
+  while (path === '..') {
+    clog.info('Scanning parent folder...')
+    if (fs.existsSync(pathMod.join(root, '..'))) {
+      root = pathMod.join(root, '..')
+    }
+    clog.info(`Currently in ${root}`, {makeLink: false, format: false})
+    path = (await promptPath(root, listHidden)).path
+  }
+  return path
+}
+
+async function promptPath(root, listHidden) {
   return await inquirer.prompt([{
     type: 'fuzzypath',
     name: 'path',
-    excludePath: nodePath => nodePath.includes('node_modules') || fs.existsSync(`${nodePath}/.git`),
+    excludePath: nodePath =>
+    {
+      let test = nodePath.includes('node_modules') || fs.existsSync(pathMod.join(nodePath, '.git'))
+      if (!listHidden) {
+        test = test || pathMod.basename(nodePath).startsWith('.')
+      }
+      return test
+    },
     itemType: 'directory',
-    rootPath: process.cwd(),
+    rootPath: root,
+    default: '..',
     message: 'Path to the directory where you would like to setup auto-pulling:',
     suggestOnly: false,
-    depthLimit: 5
+    depthLimit: 3
   }])
 }
 
-async function getExcludedDirs (path) {
-  // this should retrieve dirs to exclude via a checkbox prompt
-  // will need an helper function to list all repos at every level beyond the path specified by user
+async function getExcludedDirs(path) {
+  return await inquirer.prompt([{
+    type: 'checkbox',
+    name: 'excludedDirs',
+    message: 'Select repositories you would like not to enable auto-pulling for:',
+    choices: listDirs(path)
+  }])
+}
+
+function listDirs(path, parentDir = '') {
+  const files = fs.readdirSync(path, {withFileTypes: true})
+  const dirs = files.filter(file => file.isDirectory())
+  const repos = dirs.filter(dir => fs.existsSync(pathMod.join(path, dir.name, '.git'))).map(dir => pathMod.join(parentDir, dir.name))
+  const nonRepos = dirs.filter(dir => !fs.existsSync(pathMod.join(path, dir.name, '.git'))).map(dir => pathMod.join(parentDir, dir.name))
+  const subRepos = nonRepos.map(dir => listDirs(pathMod.join(path, pathMod.basename(dir)), dir)).flat(Infinity)
+  return [...repos, ...subRepos]
 }
