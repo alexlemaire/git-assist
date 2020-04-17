@@ -37,7 +37,7 @@
     "url": "https://github.com/alexlemaire/git-assist/issues"
   },
   "homepage": "https://github.com/alexlemaire/git-assist#readme",
-  "keywords": [],
+  "keywords": ["git", "cli", "github", "pull", "push", "clone", "commit", "stage"],
   "author": "Alexis Lemaire (a.lemaire94@gmail.com)",
   "license": "MIT",
   "dependencies": {
