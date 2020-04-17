@@ -1,5 +1,4 @@
 module.exports = async (args) => {
-  require('./helpers/check-logs.js')()
   const Conf = require('conf')
   const config = new Conf({
     configName: 'auto-pull',
