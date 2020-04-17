@@ -3,7 +3,16 @@
     "cmds": ["auto-pull"],
     "handler": "./src/functions/auto-pull/index.js",
     "desc": "Configure auto pulling for your machine",
-    "optsData": []
+    "optsData": [
+      {
+        "opts": ["-c", "--config"],
+        "desc": "configurate auto-pull behavior"
+      },
+      {
+        "opts": ["--list-hidden"],
+        "desc": "list hidden directories on auto-pull path setting selection"
+      }
+    ]
   },
   "config": {
     "cmds": ["config"],
