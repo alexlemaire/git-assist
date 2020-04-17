@@ -4,7 +4,6 @@ module.exports = {
   onAuth: async (url, auth) => {
     const username = await getUsername()
     let password = await pwdManager.getPwd(username)
-    console.log(password)
     if (!password) {
       password = await askPwd(username)
     }
