@@ -7,6 +7,7 @@ module.exports = async (args) => {
   })
   if (['-c', '--config'].includes(args[0])) {
     config.store = await require('./helpers/conf-prompter.js')(args.splice(1))
+    require('./helpers/schedule-process.js')(await require('./helpers/schedule-prompter.js')())
   } else {
     const path = config.get('path')
     if (!path) {
