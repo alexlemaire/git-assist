@@ -12,9 +12,9 @@ Two solutions:
 - [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
 - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
 
-:warning: **Warning:** for operating systems other than _Linux_, you may need to specify the default application for opening `.sh` files.
+:warning: **Warning:** for operating systems other than _Linux_, you may need to specify the default application for opening `.sh` files. :warning:
 
-**_Mac users_:**
+<img src="https://simpleicons.org/icons/apple.svg" width="16" height="16" alt="Apple logo"> **_Mac users_:**
 1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
 2. Click on `Get Info` in the pop-up
 3. Click `Open With` if the section isn't already expanded
