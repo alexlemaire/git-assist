@@ -6,18 +6,21 @@ Those scripts are mainly intended for non-developer users. It eases the process 
 
 Two solutions:
 1. You can clone `git-assist` [repository](https://github.com/alexlemaire/git-assist) on your machine ([how?](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)) to access those scripts directly
-2. You will also find the latest version to download [here](https://cdn.klimapartner.net/alexis/@git-assist/easy-use.zip) as a _ZIP_ archive. **Note:** to get OS specific scripts instead of the entire collection, head here:
-  - [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
-  - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
+2. You will also find the latest version to download [here](https://cdn.klimapartner.net/alexis/@git-assist/easy-use.zip) as a _ZIP_ archive.
 
-:warning: **Warning:** for operating systems other than _Linux_, you may need to specify the default application for opening `.sh` files. To do so:
-- _Mac users_:
-  1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
-  2. Click on `Get Info` in the pop-up
-  3. Click `Open With` if the section isn't already expanded
-  4. Click the dropdown and choose `Terminal`
-  5. Click `Change All...`
-  6. Click `Continue` when the Finder asks you if you're sure
+**Note:** to get OS specific scripts instead of the entire collection, head here:
+- [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
+- [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
+
+:warning: **Warning:** for operating systems other than _Linux_, you may need to specify the default application for opening `.sh` files.
+
+**_Mac users_:**
+1. Right-click on a file that uses the file type you'd like to change the default for (`.sh` in our case, you can use the files you've just downloaded)
+2. Click on `Get Info` in the pop-up
+3. Click `Open With` if the section isn't already expanded
+4. Click the dropdown and choose `Terminal`
+5. Click `Change All...`
+6. Click `Continue` when the Finder asks you if you're sure
 
 ## How to use those scripts?
 
