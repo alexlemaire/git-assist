@@ -78,7 +78,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 | Description | Setup `git` user | Generate/configure SSH key | Generate/configure GPG key | Clone repositories | Easy push (git add/commit/push all in one via interactive CLI) | Easy pull (interactive CLI) | Automatically pull for repositories (on machine startup/schedule/etc). Offers configuration options | Get help about `git-assist` | Print current installed version of `git-assist` |
 |   Command   |     `config`     |       `generate-ssh`       |       `generate-gpg`       |       `clone`      |                             `push`                             |            `pull`           |                                             `auto-pull`                                             |           `--help`          |                   `--version`                   |
 |  Arguments  |       `-g`       |                            |                            |                    |                                                                |                             |                                                                                                     |                             |                                                 |
-|    Status   |         ✓        |              ✓             |              ✓             |          ✓         |                                ✓                               |              ✓              |                                                  ❌                                                  |              ✓              |                        ✓                        |
+|    Status   |         ✔️        |              ✔️             |              ✔️             |          ✔️         |                                ✔️                               |              ✔️              |                                                  ⏲                                                  |              ✔️              |                        ✔️                        |
 
 ## :wrench: OS support
 
@@ -94,8 +94,3 @@ If you started using `git-assist` with no keyring configured it is possible that
 |   ⏲  |       Work in progress      |
 |   ❓  |          Not tested         |
 |   ❌  | Not implemented/not working |
-
-## :memo: Notes
-
-- this is an expansion upon a private work made to automate git pull at machine startup for every repositories
-- tested on Linux. Cannot guarantee this will work with other OS
