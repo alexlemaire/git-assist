@@ -7,7 +7,7 @@
     "git-assist": "./index.js"
   },
   "scripts": {
-    "postinstall": "mkdir logs && node src/utils/welcome/welcome.js",
+    "postinstall": "bash tools/create-logs/create-logs.sh && node src/utils/welcome/welcome.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-function": "node tools/add-function/add-function.js"
   },
