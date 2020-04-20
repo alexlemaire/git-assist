@@ -1,6 +1,3 @@
-const appRoot = require('app-root-path').path
-const clog = require(appRoot + '/src/utils/loggers/console-log.js')
-
 module.exports = async (url, protocol, repo) => {
   clog.info(`Cloning ${repo} into current folder...`)
   switch (protocol) {

@@ -1,7 +1,5 @@
 module.exports = (path) => {
   const spawnSync = require('child_process').spawnSync
-  const appRoot = require('app-root-path').path
-  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
   const defaultShell = process.env.SHELL
   const file = require(appRoot + '/src/utils/shell/get-init-file.js')()
   update(file, path)

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 let args = process.argv.splice(2)
-const clog = require('./src/utils/loggers/console-log.js')
 const chalk = require('chalk')
+global.appRoot = require('app-root-path').path
+global.clog = require('./src/utils/loggers/console-log.js')
 
 async function main() {
   const fcts = require('./functions.json')

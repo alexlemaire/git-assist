@@ -10,8 +10,6 @@ module.exports = {
     return { username, password }
   },
   onAuthFailure: async (url, auth) => {
-    const appRoot = require('app-root-path').path
-    const clog = require(appRoot + '/src/loggers/console-log.js')
     clog.error('Wrong password, please provide an up-to-date password.')
     return {
       username: auth.username,

@@ -1,5 +1,3 @@
-const appRoot = require('app-root-path').path
-const clog = require(appRoot + '/src/utils/loggers/console-log.js')
 const chalk = require('chalk')
 
 module.exports = (args) => {

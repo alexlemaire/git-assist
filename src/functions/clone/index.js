@@ -1,6 +1,5 @@
 module.exports = async (args) => {
   const fs = require('fs')
-  const appRoot = require('app-root-path').path
   if (fs.existsSync('.git/config')) {
     await require(appRoot + '/src/utils/config/sync-config.js')()
   }

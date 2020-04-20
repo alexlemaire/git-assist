@@ -15,8 +15,6 @@ async function httpPush() {
   const http = require('isomorphic-git/http/node')
   const git = require('isomorphic-git')
   const fs = require('fs')
-  const appRoot = require('app-root-path').path
-  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
   const dir = '.'
   const currentBranch = await git.currentBranch({ fs, dir })
   require(appRoot + '/src/utils/auth/user-heads-up.js')

@@ -1,8 +1,6 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 const pathMod = require('path')
-const appRoot = require('app-root-path').path
-const clog = require(appRoot + '/src/utils/loggers/console-log.js')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
 module.exports = async (args) => {

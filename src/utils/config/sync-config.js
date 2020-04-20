@@ -2,8 +2,6 @@ const git = require('isomorphic-git')
 const fs = require('fs')
 const dir = '.'
 module.exports = async () => {
-  const appRoot = require('app-root-path').path
-  const clog = require(appRoot + '/src/loggers/console-log.js')
   let paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
   for (const path of paths) {
     const entry = await git.getConfig({ fs, dir, path })

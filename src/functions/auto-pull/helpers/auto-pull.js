@@ -1,7 +1,5 @@
 module.exports = async (path, excludedDirs) => {
   const pathMod = require('path')
-  const appRoot = require('app-root-path').path
-  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
   const repos = require(appRoot + '/src/utils/fs/list-repo.js')(path).filter(repo => !excludedDirs.includes(repo))
   const wd = process.cwd()
   for (const repo of repos) {
