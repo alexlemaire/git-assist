@@ -50,6 +50,7 @@
   "author": "Alexis Lemaire (a.lemaire94@gmail.com)",
   "license": "MIT",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "chalk": "^4.0.0",
     "conf": "^6.2.4",
     "inquirer": "^7.1.0",

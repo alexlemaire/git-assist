@@ -1,5 +1,7 @@
+const appRoot = require('app-root-path').path
+
 module.exports = () => {
-  const clog = require('../loggers/console-log.js')
+  const clog = require(appRoot + '/src/loggers/console-log.js')
   const chalk = require('chalk')
   const publishedVer = getPublishedVer()
   const currentVer = getCurrentVer()
@@ -14,5 +16,5 @@ function getPublishedVer() {
 }
 
 function getCurrentVer() {
-  return require('../../../package.json').version.trim()
+  return require(appRoot + '/package.json').version.trim()
 }

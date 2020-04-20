@@ -1,4 +1,5 @@
-const clog = require('../../../utils/loggers/console-log.js')
+const appRoot = require('app-root-path').path
+const clog = require(appRoot + '/src/utils/loggers/console-log.js')
 
 module.exports = async (info) => {
   await setConfig(generateParams(info))

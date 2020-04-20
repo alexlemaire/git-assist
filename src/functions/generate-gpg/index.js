@@ -1,7 +1,8 @@
 const spawnSync = require('child_process').spawnSync
 
 module.exports = async (args) => {
-  const clog = require('../../utils/loggers/console-log.js')
+  const appRoot = require('app-root-path').path
+  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
   const keyDefPath = '/var/tmp/genkey'
   require('./helpers/create-genkey.js')(await require('./helpers/info-prompter.js')(), keyDefPath)
   require('./helpers/generate-gpg.js')(keyDefPath)

@@ -1,7 +1,8 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 const pathMod = require('path')
-const clog = require('../../../utils/loggers/console-log.js')
+const appRoot = require('app-root-path').path
+const clog = require(appRoot + '/src/utils/loggers/console-log.js')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
 module.exports = async (args) => {
@@ -53,6 +54,6 @@ async function getExcludedDirs(path) {
     type: 'checkbox',
     name: 'excludedDirs',
     message: 'Select repositories you would like not to enable auto-pulling for:',
-    choices: require('../../../utils/fs/list-repo.js')(path)
+    choices: require(appRoot + '/src/utils/fs/list-repo.js')(path)
   }])
 }

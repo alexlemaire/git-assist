@@ -1,10 +1,11 @@
-const clog = require('../../utils/loggers/console-log.js')
+const appRoot = require('app-root-path').path
+const clog = require(appRoot + '/src/utils/loggers/console-log.js')
 const chalk = require('chalk')
 
 module.exports = (args) => {
-  let fcts = require('../../../functions.json')
+  let fcts = require(appRoot + '/functions.json')
   delete fcts['help']
-  require('../../utils/welcome/welcome.js')
+  require(appRoot + '/src/utils/welcome/welcome.js')
   if (args.length === 0) {
     globalHelp(Object.entries(fcts))
     clog.info(`To get help for a specific function, please use ${chalk.italic.cyan('git-assist [-h, --help] <function_name>')}\n`, {makeLink: false, format: false})

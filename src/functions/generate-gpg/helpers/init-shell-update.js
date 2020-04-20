@@ -1,8 +1,9 @@
 module.exports = (keyId) => {
   const spawnSync = require('child_process').spawnSync
-  const clog = require('../../../utils/loggers/console-log.js')
+  const appRoot = require('app-root-path').path
+  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
   const chalk = require('chalk')
-  const file = require('../../../utils/shell/get-init-file.js')()
+  const file = require(appRoot + '/src/utils/shell/get-init-file.js')()
   update(file, keyId)
   clog.success(`${file} updated with GPG key export!`)
   clog.info(`Please run ${chalk.cyan.italic('git-assist config')} or ${chalk.cyan.italic('git-assist config -g')} again in order to set your GPG key for GitHub.\n`, {makeLink: false, format: false})
