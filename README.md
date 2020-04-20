@@ -42,7 +42,7 @@ Until work has been done to automate dependencies installation on package instal
 
 ## :closed_lock_with_key: Password management
 
-Password management is handled via `keytar` (check it out [here](https://www.npmjs.com/package/keytar)). `keytar` is using system specific solutions in order to store your password in a secure way. This allows `git-assist` to reuse your saved password when working with _GitHub_ and not prompt you every time for it.
+Password management is handled via `keytar` (check it out [here](https://www.npmjs.com/package/keytar)). `keytar` is using system specific solutions in order to store your password in a secure way. This allows `git-assist` to reuse your saved password when working with _GitHub_ via HTTPS and not prompt you every time for it.
 
 **For _Linux_ users:** you may encounter some undesired behavior if you use `git-assist` without a preconfigured keyring to store your passwords. It seems like `keytar` is creating for you a default keyring with a set password if no default keyring was found on first run. This can lead users to not being able to unlock this keyring afterward and therefore freezes some applications.
 
@@ -50,7 +50,7 @@ Below are details on how to handle/prevent this situation.
 
 **Please install `seahorse` on your system via your package manager to get access to a frontend to manage your keyrings easily.**
 
-### :question: How to configure an initial keyring
+### :question: How to configure an initial keyring (Linux)
 
 It is recommended to perform this step before working with `git-assist` if you don't have a keyring set up on your machine already.
 
@@ -60,7 +60,7 @@ It is recommended to perform this step before working with `git-assist` if you d
 4. type a password that you will remember when prompted for a password
 5. back on the main page of `seahorse`, right click on your newly created keyring and click on _Set as default_
 
-### :question: How to fix a locked default keyring
+### :question: How to fix a locked default keyring (Linux)
 
 If you started using `git-assist` with no keyring configured it is possible that some of your apps may be frozen because the keyring would be locked (since you don't know the password to unlock it).
 
