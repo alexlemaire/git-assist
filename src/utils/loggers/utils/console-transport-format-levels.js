@@ -1,10 +1,15 @@
 const chalk = require('chalk')
 
 // utils
-function headedLog(msg, icon, color) {
-  const header = chalk[color](icon)
-  const body = chalk[color](msg)
-  return `${header} ${body}`
+function headedLog(body, head, bodyOpts, headOpts) {
+  if (!headOpts) {
+    headOpts = bodyOpts
+  }
+  return `${format(head, headOpts)} ${format(body, bodyOpts)}`
+}
+
+function format(msg, opts) {
+  return opts.split('.').reduce((acc, cur) => acc[cur], chalk)(msg)
 }
 
 // exports
@@ -17,9 +22,7 @@ function info(msg) {
 }
 
 function error(msg) {
-  const header = chalk.white.bgRed('Error')
-  const body = chalk.red(msg)
-  return `${header} ${body}`
+  return headedLog(msg, 'ERROR', 'red', 'white.bgRed')
 }
 
 module.exports = {
