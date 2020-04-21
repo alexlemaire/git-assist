@@ -6,7 +6,7 @@ module.exports = (args) => {
   require(appRoot + '/src/utils/welcome/welcome.js')
   if (args.length === 0) {
     globalHelp(Object.entries(fcts))
-    clog.info(`To get help for a specific function, please use ${chalk.italic.cyan('git-assist [-h, --help] <function_name>')}\n`, {makeLink: false, format: false})
+    clog.info(`To get help for a specific function, please use ${chalk.italic.cyan('git-assist [-h, --help] <function_name>')}\n`)
   } else {
     help([args[0], fcts[args[0]]])
   }

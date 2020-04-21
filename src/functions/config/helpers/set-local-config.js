@@ -32,7 +32,7 @@ function gpgParams() {
   if (!process.env.GITHUB_GPGKEY) {
     const chalk = require('chalk')
     clog.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
-    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`, {makeLink: false, format: false})
+    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
   } else {
     return [{

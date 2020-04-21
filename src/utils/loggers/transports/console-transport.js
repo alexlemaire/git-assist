@@ -6,7 +6,7 @@ module.exports = (opts) => {
 }
 
 function formatHandler(info) {
-  const formats = require('../utils/console-transport-format-levels.js')
+  const formats = require('../utils/console-transport-formats.js')
   const getTimestamp = require('../utils/get-timestamp.js')
   return formats[info.level](info.message)
 }

@@ -13,14 +13,14 @@ module.exports = async (args) => {
 }
 
 async function getPath(root, listHidden) {
-  clog.info(`Currently in ${root}`, {makeLink: false, format: false})
+  clog.info(`Currently in ${root}`)
   let { path } = await promptPath(root, listHidden)
   while (path === '..') {
     clog.info('Scanning parent folder...')
     if (fs.existsSync(pathMod.join(root, '..'))) {
       root = pathMod.join(root, '..')
     }
-    clog.info(`Currently in ${root}`, {makeLink: false, format: false})
+    clog.info(`Currently in ${root}`)
     path = (await promptPath(root, listHidden)).path
   }
   return path

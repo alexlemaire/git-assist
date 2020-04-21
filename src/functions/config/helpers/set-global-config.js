@@ -6,7 +6,7 @@ module.exports = (info) => {
   spawnSync('git', ['config', '--global', 'user.email', info.email])
   if (!process.env.GITHUB_GPGKEY) {
     clog.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
-    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`, {makeLink: false, format: false})
+    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
   } else {
     spawnSync('git', ['config', '--global', 'user.signingkey', process.env.GITHUB_GPGKEY])
     spawnSync('git', ['config', '--global', 'commit.gpgSign', true])
