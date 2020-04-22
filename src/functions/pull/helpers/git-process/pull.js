@@ -1,7 +1,6 @@
 const git = require('isomorphic-git')
 const fs = require('fs')
 const dir = '.'
-const clog = require('../../../../utils/loggers/console-log.js')
 
 module.exports = async (protocol, branches) => {
   switch (protocol) {
@@ -18,7 +17,7 @@ module.exports = async (protocol, branches) => {
 
 async function httpPull (branches) {
   const http = require('isomorphic-git/http/node')
-  require('../../../../utils/auth/user-heads-up.js')
+  require(appRoot + '/src/utils/auth/user-heads-up.js')
   for (const branch of branches) {
     clog.info(`Pulling from branch ${branch}`)
     await git.pull({
@@ -27,8 +26,8 @@ async function httpPull (branches) {
       dir,
       ref: branch,
       singleBranch: true,
-      onAuth: require('../../../../utils/auth/auth.js').onAuth,
-      onAuthFailure: require('../../../../utils/auth/auth.js').onAuthFailure
+      onAuth: require(appRoot + '/src/utils/auth/auth.js').onAuth,
+      onAuthFailure: require(appRoot + '/src/utils/auth/auth.js').onAuthFailure
     }).then(res => {clog.success(`Pulled from ${branch}!`)})
   }
 }

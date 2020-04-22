@@ -12,6 +12,6 @@ module.exports = async (args) => {
     if (!path) {
       throw new Error('No path defined in your auto-pull configuration. Please run git-assist auto-pull [-c, --config] in order to configurate your auto-pull utility.')
     }
-    require('./helpers/auto-pull.js')(path, config.get('excludedDirs'))
+    await require('./helpers/auto-pull.js')(path, config.get('excludedDirs'))
   }
 }

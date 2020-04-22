@@ -1,6 +1,6 @@
 module.exports = async (fcts, args) => {
   const inquirer = require('inquirer')
-  require('../welcome/welcome.js')
+  require(appRoot + '/src/utils/welcome/welcome.js')
   const {action} = await inquirer.prompt([
     {
       type: 'rawlist',
