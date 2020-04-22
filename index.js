@@ -3,13 +3,14 @@ async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
   global.appRoot = require('app-root-path').path
-  const { args, fct, fctName } = await processArgs(process.argv.splice(2))
+  let { args, fct, fctName } = await processArgs(process.argv.splice(2))
   global.clog = getLogger(fctName)
   if (!fct) {
     throw new Error(`${chalk.italic.blue(args[0])} is not an accepted command! Call ${chalk.italic.blue('git-assist --help')} or ${chalk.italic.blue('git-assist -h')} to get information on which commands are available.`)
   }
-  clog.heading(`Started running ${fctName.toUpperCase()}`)
-  await require(fct.handler)(args.splice(1))
+  args = args.splice(1)
+  clog.heading(`Started running ${fctName.toUpperCase()}${args.length > 0 ? ` with ${args.join(' & ')} as arguments` : ''}`)
+  await require(fct.handler)(args)
   require('./src/utils/version/check-version.js')()
   clog.heading(`${fctName.toUpperCase()} ended`)
 }
