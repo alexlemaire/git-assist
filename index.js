@@ -2,7 +2,8 @@
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
-  global.appRoot = require('app-root-path').path
+  const path = require('path')
+  global.appRoot = path.resolve(__dirname)
   let { args, fct, fctName } = await processArgs(process.argv.splice(2))
   global.clog = getLogger(fctName)
   if (!fct) {

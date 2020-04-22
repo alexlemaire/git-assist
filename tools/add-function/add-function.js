@@ -1,8 +1,8 @@
 (async function main() {
   const inquirer = require('inquirer')
-  const appRoot = require('app-root-path').path
-  const clog = require(appRoot + '/src/utils/loggers/console-log.js')
-  clog.info('This function will create a new utility function for you.\n')
+  const clog = require('../../src/utils/loggers/logger.js')({filename: 'add-function-tool.log'})
+  clog.heading('START ADD-FUNCTION tool')
+  clog.info('This function will create a new utility function for you.')
   const {name} = await inquirer.prompt({
     type: 'input',
     name: 'name',
@@ -24,4 +24,5 @@
   fs.writeFileSync(fctsPath, JSON.stringify(fcts, null, 2))
   console.log('\n')
   clog.success(`Function ${name} successfully added!`)
+  clog.heading('END ADD-FUNCTION tool')
 })()
