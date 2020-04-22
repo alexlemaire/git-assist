@@ -7,7 +7,7 @@ module.exports = async (args) => {
   require('./helpers/delete-genkey.js')(keyDefPath)
   const keyId = getKeyId()
   require('./helpers/init-shell-update.js')(keyId)
-  await require('./helpers/user-info.js')(getKeyASCII(keyId)).catch(err => {clog.error(err); process.exit(1)})
+  await require('./helpers/user-info.js')(getKeyASCII(keyId))
 }
 
 function getKeyId() {
