@@ -28,7 +28,7 @@ This package allows users to easily manage _GitHub_ on their machines. Some feat
 
 :warning: You will need to have `node` and `npm` installed on your machine for this to work.
 
-Some other dependencies are also required for some of the utilities contained in this package to work. See [here](##required-dependencies).
+Some other dependencies are also required for some of the utilities contained in this package to work. See [here](#:link:-required-dependencies).
 
 ## :computer: How to use it
 
@@ -78,7 +78,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 3. start `seahorse` via your application manager
 4. right click on the keyring containing `default` in its name and click on `Delete`
 5. when prompted, confirm deletion
-6. follow the steps 2 to 5 in the section [above](###how-to-configure-an-initial-keyring) to create a new default keyring
+6. follow the steps 2 to 5 in the section [above](#:question:-how-to-configure-an-initial-keyring) to create a new default keyring
 
 ## :bulb: Available features
 
