@@ -27,9 +27,9 @@ function getDate(date) {
 }
 
 function formatTime(time) {
-  return time < 10 ? `0${time}` : `${time}`
+  return `${time}`.padStart(2, '0')
 }
 
 function formatMs(ms) {
-  return ms < 100 ? `${ms} ` : `${ms}`
+  return `${ms}`.padEnd(3)
 }

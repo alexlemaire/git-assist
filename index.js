@@ -9,10 +9,10 @@ async function main() {
     throw new Error(`${chalk.italic.blue(args[0])} is not an accepted command! Call ${chalk.italic.blue('git-assist --help')} or ${chalk.italic.blue('git-assist -h')} to get information on which commands are available.`)
   }
   args = args.splice(1)
-  clog.heading(`Started running ${fctName.toUpperCase()}${args.length > 0 ? ` with ${args.join(' & ')} as arguments` : ''}`)
+  clog.heading(`START ${getHeading(fctName, args)}`)
   await require(fct.handler)(args)
   require('./src/utils/version/check-version.js')()
-  clog.heading(`${fctName.toUpperCase()} ended`)
+  clog.heading(`END ${getHeading(fctName, args)}`)
 }
 
 function getLogger(fctName) {
@@ -27,6 +27,10 @@ function getLogger(fctName) {
     default:
       return logger({filename: `${fctName}.log`})
   }
+}
+
+function getHeading(fctName, args) {
+  return `${fctName.toUpperCase()} utility${args.length > 0 ? ` with ${args.join(' & ')} as arguments` : ''}`
 }
 
 async function processArgs(args) {
