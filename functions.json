@@ -2,7 +2,7 @@
   "auto-pull": {
     "cmds": ["auto-pull"],
     "handler": "./src/functions/auto-pull/index.js",
-    "desc": "Configure auto pulling for your machine",
+    "desc": "Auto-pull from configurated repos",
     "optsData": [
       {
         "opts": ["-c", "--config"],

@@ -15,7 +15,6 @@ function openPopup(indexPath) {
 
 async function confirm(keyType) {
   const inquirer = require('inquirer')
-  const clog = require('../loggers/console-log.js')
   let confirm = false
   while (!confirm) {
     confirm = (await inquirer.prompt({

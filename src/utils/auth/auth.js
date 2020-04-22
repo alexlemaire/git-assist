@@ -10,7 +10,6 @@ module.exports = {
     return { username, password }
   },
   onAuthFailure: async (url, auth) => {
-    const clog = require('../loggers/console-log.js')
     clog.error('Wrong password, please provide an up-to-date password.')
     return {
       username: auth.username,

@@ -15,18 +15,17 @@ async function httpPush() {
   const http = require('isomorphic-git/http/node')
   const git = require('isomorphic-git')
   const fs = require('fs')
-  const clog = require('../../../../utils/loggers/console-log.js')
   const dir = '.'
   const currentBranch = await git.currentBranch({ fs, dir })
-  require('../../../../utils/auth/user-heads-up.js')
+  require(appRoot + '/src/utils/auth/user-heads-up.js')
   await git.push({
     fs,
     http,
     dir,
     remote: await git.getConfig({ fs, dir, path: `branch.${currentBranch}.remote` }),
     ref: currentBranch,
-    onAuth: require('../../../../utils/auth/auth.js').onAuth,
-    onAuthFailure: require('../../../../utils/auth/auth.js').onAuthFailure
+    onAuth: require(appRoot + '/src/utils/auth/auth.js').onAuth,
+    onAuthFailure: require(appRoot + '/src/utils/auth/auth.js').onAuthFailure
   }).then(res => {clog.success('Successfully commited, staged and pushed your changes!')})
 }
 

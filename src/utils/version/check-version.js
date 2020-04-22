@@ -1,10 +1,9 @@
 module.exports = () => {
-  const clog = require('../loggers/console-log.js')
   const chalk = require('chalk')
   const publishedVer = getPublishedVer()
   const currentVer = getCurrentVer()
   if (currentVer !== publishedVer) {
-    clog.info(`Your installed ${chalk.italic('git-assist')} version is outdated. Latest version is ${chalk.bold(publishedVer)}. Please update via ${chalk.cyan.italic('npm i -g git-assist')}`, {makeLink: false, format: false})
+    clog.info(`Your installed ${chalk.italic('git-assist')} version is outdated. Latest version is ${chalk.bold(publishedVer)}. Please update via ${chalk.cyan.italic('npm i -g git-assist')}`)
   }
 }
 
@@ -14,5 +13,5 @@ function getPublishedVer() {
 }
 
 function getCurrentVer() {
-  return require('../../../package.json').version.trim()
+  return require(appRoot + '/package.json').version.trim()
 }
