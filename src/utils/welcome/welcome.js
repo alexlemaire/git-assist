@@ -1,6 +1,10 @@
 if (!process.env.GITHUB_ACTIONS) {
   const chalk = require('chalk')
-  const pjson = require('../../../package.json')
+  if (!global.appRoot) {
+    const path = require('path')
+    appRoot = path.join(path.resolve(__dirname), '..', '..', '..')
+  }
+  const pjson = require(appRoot + '/package.json')
   console.log('\n')
   console.log(chalk.green(`Thanks for using this package! ${chalk.yellow('🖒')} ${chalk.red('♥')}\n`))
   console.log(`${chalk.italic.blue('git-assist')} is a small node utility aiming to help with your basic GitHub tasks and more.`)
