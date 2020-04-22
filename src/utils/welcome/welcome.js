@@ -1,3 +1,9 @@
+if (process.env.GITHUB_ACTIONS) {
+  process.exit(1)
+}
+if (!global.appRoot) {
+  global.appRoot = require('app-root-path').path
+}
 const chalk = require('chalk')
 const pjson = require(appRoot + '/package.json')
 console.log('\n')
