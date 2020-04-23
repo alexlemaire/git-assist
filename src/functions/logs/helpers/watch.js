@@ -1,3 +1,3 @@
-module.exports = async (args) => {
+module.exports = (file, filePath) => {
   console.log('watch')
 }
