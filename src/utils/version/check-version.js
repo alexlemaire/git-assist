@@ -2,7 +2,7 @@ module.exports = () => {
   const chalk = require('chalk')
   const publishedVer = getPublishedVer()
   const currentVer = getCurrentVer()
-  if (currentVer !== publishedVer) {
+  if (currentVer !== publishedVer && !publishedVer) {
     clog.info(`Your installed ${chalk.italic('git-assist')} version is outdated. Latest version is ${chalk.bold(publishedVer)}. Please update via ${chalk.cyan.italic('npm i -g git-assist')}`)
   }
 }

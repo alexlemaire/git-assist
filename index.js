@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+process.on('SIGINT', function () {
+  console.log('\n')
+  clog.info('Gracefully shutting down (CTRL + C)...')
+  clog.heading('REQUESTED END')
+  process.exit()
+})
+
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
@@ -37,15 +44,17 @@ function getHeading(fctName, args) {
 async function processArgs(args) {
   const fcts = require('./functions.json')
   if (args.length === 0) {
-    args = await require('./src/utils/no-args/no-args.js')(fcts, args)
-  }
-  const matchFct = Object.entries(fcts).filter(entry => entry[1].cmds.includes(args[0]))[0]
-  return {
-    args,
-    ...(matchFct && {fct: matchFct[1], fctName: matchFct[0]})
+    return await require('./src/utils/no-args/no-args.js')(fcts, args)
+  } else {
+    const matchFct = Object.entries(fcts).filter(entry => entry[1].cmds.includes(args[0]))[0]
+    return {
+      args,
+      ...(matchFct && {fct: matchFct[1], fctName: matchFct[0]})
+    }
   }
 }
 
 main().catch(err => {
   clog.error(err.stack)
+  clog.heading('UNEXPECTED END')
 })

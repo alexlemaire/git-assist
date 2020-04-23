@@ -9,20 +9,24 @@ module.exports = async (fcts, args) => {
       choices: Object.entries(fcts).map(entry => entry[1].desc)
     }
   ])
-  const fct = Object.values(fcts).filter(value => value.desc === action)[0]
+  const matchFct = Object.entries(fcts).filter(entry => entry[1].desc === action)[0]
+  const fctName = matchFct[0]
+  const fct = matchFct[1]
   args.push(fct.cmds[0])
   if (fct.optsData.length > 0) {
     const {opt} = await inquirer.prompt([
       {
-        type: 'rawlist',
+        type: 'checkbox',
         name: 'opt',
         message: 'Options are available for this function:',
-        choices: [...fct.optsData.map(optData => `${optData.opts.join(', ')}: ${optData.desc}`), 'No option']
+        choices: fct.optsData.map(optData => `${optData.opts.join(', ')}: ${optData.desc}`)
       }
     ])
-    if (opt !== 'No option') {
-      args.push(opt.split(':')[0].split(', ')[0])
-    }
+    args = [...args, ...opt.map(choice => choice.split(':')[0].split(', ')[0])]
   }
-  return args
+  return {
+    args,
+    fct,
+    fctName
+  }
 }
