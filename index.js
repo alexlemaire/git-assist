@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-process.stdin.resume()
-function requestedExit() {
-  clog.info('\nGracefully shutting down (CTRL + C)...')
+process.on('SIGINT', function () {
+  console.log('\n')
+  clog.info('Gracefully shutting down (CTRL + C)...')
   clog.heading('REQUESTED END')
   process.exit()
-}
-process.on('SIGINT', requestedExit)
+})
 
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')

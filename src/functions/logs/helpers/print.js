@@ -6,7 +6,9 @@ module.exports = async (args) => {
   if (args.length === 0) {
     args = (await prompt()).fileNames
   }
-  args.forEach(fileName => {printLog(fileName)})
+  for (const arg of args) {
+    printLog(arg)
+  }
 }
 
 function printLog(name) {
@@ -16,7 +18,8 @@ function printLog(name) {
   if (fs.existsSync(filePath)) {
     clog.success(`${chalk.italic.cyan(file)} log file found! Printing...`)
     console.log('\n')
-    console.log(fs.readFileSync(filePath, 'utf-8'))
+    const content = fs.readFileSync(filePath, 'utf-8')
+    console.log(content)
   } else {
     clog.error(`${chalk.italic.cyan(file)} log file does not exist!`)
     console.log('\n')
