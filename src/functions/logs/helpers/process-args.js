@@ -1,5 +1,4 @@
 module.exports = async (args) => {
-
   switch (args[0]) {
     case '--purge':
       console.log('purge')

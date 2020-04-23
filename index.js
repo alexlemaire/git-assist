@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 process.stdin.resume()
 function requestedExit() {
-  console.log('Hey')
   clog.info('\nGracefully shutting down (CTRL + C)...')
   clog.heading('REQUESTED END')
   process.exit()
