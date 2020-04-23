@@ -1,6 +1,6 @@
-module.exports = async (args, callback) => {
+module.exports = async (args, callback, multi = true) => {
   if (args.length === 0) {
-    args = (await prompt()).fileNames
+    args = await prompt(multi)
   }
   for (const arg of args) {
     process(arg, callback)
@@ -23,16 +23,17 @@ function process(arg, callback) {
   }
 }
 
-async function prompt() {
+async function prompt(multi) {
   const inquirer = require('inquirer')
   const fs = require('fs')
   const path = require('path')
-  return await inquirer.prompt([
+  const answer = await inquirer.prompt([
     {
-      type: 'checkbox',
+      type: multi ? 'checkbox' : 'rawlist',
       name: 'fileNames',
-      message: 'Select log files to print:',
+      message: 'Select log files:',
       choices: fs.readdirSync(path.join(appRoot, 'logs'), {withFileTypes: true}).filter(file => file.isFile()).map(file => file.name.replace('.log', ''))
     }
   ])
+  return multi ? answer.fileNames : [answer.fileNames]
 }
