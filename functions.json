@@ -77,6 +77,27 @@
     "desc": "Clone a repository",
     "optsData": []
   },
+  "logs": {
+    "cmds": [
+      "logs"
+    ],
+    "handler": "./src/functions/logs/index.js",
+    "desc": "Print git-assist logs",
+    "optsData": [
+      {
+        "opts": [
+          "--purge"
+        ],
+        "desc": "purge logs (some or all)"
+      },
+      {
+        "opts": [
+          "--watch"
+        ],
+        "desc": "watch a given log"
+      }
+    ]
+  },
   "version": {
     "cmds": [
       "-v",

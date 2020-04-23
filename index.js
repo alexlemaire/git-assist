@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+process.on('SIGINT', function () {
+  console.log('\n')
+  clog.info('Gracefully shutting down (CTRL + C)...')
+  clog.heading('REQUESTED END')
+  process.exit()
+})
+
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
@@ -49,4 +56,5 @@ async function processArgs(args) {
 
 main().catch(err => {
   clog.error(err.stack)
+  clog.heading('UNEXPECTED END')
 })
