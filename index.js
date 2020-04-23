@@ -37,12 +37,13 @@ function getHeading(fctName, args) {
 async function processArgs(args) {
   const fcts = require('./functions.json')
   if (args.length === 0) {
-    args = await require('./src/utils/no-args/no-args.js')(fcts, args)
-  }
-  const matchFct = Object.entries(fcts).filter(entry => entry[1].cmds.includes(args[0]))[0]
-  return {
-    args,
-    ...(matchFct && {fct: matchFct[1], fctName: matchFct[0]})
+    return await require('./src/utils/no-args/no-args.js')(fcts, args)
+  } else {
+    const matchFct = Object.entries(fcts).filter(entry => entry[1].cmds.includes(args[0]))[0]
+    return {
+      args,
+      ...(matchFct && {fct: matchFct[1], fctName: matchFct[0]})
+    }
   }
 }
 
