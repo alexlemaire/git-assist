@@ -27,12 +27,17 @@ async function prompt(multi) {
   const inquirer = require('inquirer')
   const fs = require('fs')
   const path = require('path')
+  const choices = fs.readdirSync(path.join(appRoot, 'logs'), {withFileTypes: true}).filter(file => file.isFile()).map(file => file.name.replace('.log', ''))
+  if (choices.length === 0) {
+    clog.info('There are currently no logs files. Exiting utility...')
+    return []
+  }
   const answer = await inquirer.prompt([
     {
       type: multi ? 'checkbox' : 'rawlist',
       name: 'fileNames',
       message: 'Select log files:',
-      choices: fs.readdirSync(path.join(appRoot, 'logs'), {withFileTypes: true}).filter(file => file.isFile()).map(file => file.name.replace('.log', ''))
+      choices
     }
   ])
   return multi ? answer.fileNames : [answer.fileNames]
