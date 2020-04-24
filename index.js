@@ -3,15 +3,17 @@ process.on('SIGINT', function () {
   console.log('\n')
   clog.info('Gracefully shutting down (CTRL + C)...')
   clog.heading('END (USER REQUESTED)')
-  clog.on('finish', function(info) {
+  clog.end()
+  require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
     process.exit()
   })
 })
 
 process.on('beforeExit', async function () {
   clog.heading('END')
+  clog.end()
   await new Promise((resolve, reject) => {
-    clog.on('finish', function(info) {
+    require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
       resolve()
     })
     clog.on('error', function(err) {
@@ -70,7 +72,8 @@ async function processArgs(args) {
 main().catch(err => {
   clog.error(err.stack)
   clog.heading('END (UNEXPECTED)')
-  clog.on('finish', function(info) {
+  clog.end()
+  require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
     process.exit()
   })
 })
