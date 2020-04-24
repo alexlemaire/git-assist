@@ -39,8 +39,10 @@
   "homepage": "https://github.com/alexlemaire/git-assist#readme",
   "keywords": [
     "git",
-    "cli",
     "github",
+    "cli",
+    "cli-app",
+    "automation",
     "pull",
     "push",
     "clone",
