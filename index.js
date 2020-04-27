@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // **** PROCESS EVENT LISTENERS ****
-process.on('SIGINT', function () {
+process.on('SIGINT', () => {
   console.log('\n')
   finishJob(
     {
@@ -14,7 +14,7 @@ process.on('SIGINT', function () {
   )
 })
 
-process.on('beforeExit', function () {
+process.on('beforeExit', () => {
   finishJob({ level: 'heading', content: 'END' })
 })
 
@@ -85,7 +85,7 @@ function finishJob(...msgs) {
     clog[msg.level](msg.content)
   }
   clog.end()
-  clog.transports.find(transport => transport.name === 'file')._dest.on('finish', function(info) {
+  clog.transports.find(transport => transport.name === 'file')._dest.on('finish', (info) => {
     process.exit()
   })
 }

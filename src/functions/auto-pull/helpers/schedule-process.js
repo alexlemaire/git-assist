@@ -1,5 +1,6 @@
+const chalk = require('chalk')
+
 module.exports = async (opts) => {
-  const chalk = require('chalk')
   if (process.platform === 'win32') {
     throw new Error(`Apologies, scheduling ${chalk.italic.blue('auto-pull')} is currently not supported on Windows...`)
   }
@@ -10,18 +11,22 @@ module.exports = async (opts) => {
   }
 }
 
-async function daemonize (opts) {
-  const path = require('path')
+function daemonize (opts) {
+  if (process.getuid() !== 0) {
+    throw new Error(`You must run this command with elevated rights... This command is working with ${chalk.italic.cyan('pm2')} to setup ${chalk.italic.cyan('auto-pull')} so that it restarts when your machine restarts.\nPlease run ${chalk.italic.blue('sudo git-assist auto-pull [-c, --config]')} instead.`)
+  }
   const startConf = {
     name: 'scheduled-auto-pull',
-    script: path.join()`${appRoot}/index.js'`,
+    script: `${appRoot}/index.js`,
     args: 'auto-pull',
     cron_restart: opts.cron,
-    max_memory_restart : '100M'
+    max_memory_restart : '100M',
+    autorestart: false
   }
-  await promisifyPm2('connect')
+  promisifyPm2('connect')
   .then(res => promisifyPm2('start', startConf))
-  .then(res => promisifyPm2('startup', process.platform === 'darwin' ? 'darwin' : 'systemd'))
+  .then(res => promisifyPm2('startup', null, {}))
+  .then(res => promisifyPm2('dump'))
   .then(res => promisifyPm2('disconnect'))
   .catch(err => {
     clog.error('There was an error with PM2...')
