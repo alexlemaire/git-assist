@@ -9,7 +9,7 @@ module.exports = async (args) => {
     clog.info(`Configurating ${chalk.italic.blue('auto-pull')}...`)
     config.store = await require('./helpers/conf-prompter.js')(args.splice(1))
     clog.success(`${chalk.italic.blue('auto-pull')} successfully configured!`)
-    require('./helpers/schedule-process.js')(await require('./helpers/schedule-prompter.js')())
+    await require('./helpers/schedule-process.js')(await require('./helpers/schedule-prompter.js')())
   } else {
     const path = config.get('path')
     if (!path) {

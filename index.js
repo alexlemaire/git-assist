@@ -1,27 +1,24 @@
 #!/usr/bin/env node
+// **** PROCESS EVENT LISTENERS ****
 process.on('SIGINT', function () {
   console.log('\n')
-  clog.info('Gracefully shutting down (CTRL + C)...')
-  clog.heading('END (USER REQUESTED)')
-  clog.end()
-  require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
-    process.exit()
-  })
+  finishJob(
+    {
+      level: 'info',
+      content: 'Gracefully shutting down (CTRL + C)...'
+    },
+    {
+      level: 'heading',
+      content: 'END (USER REQUESTED)'
+    }
+  )
 })
 
-process.on('beforeExit', async function () {
-  clog.heading('END')
-  clog.end()
-  await new Promise((resolve, reject) => {
-    require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
-      resolve()
-    })
-    clog.on('error', function(err) {
-      reject()
-    })
-  })
+process.on('beforeExit', function () {
+  finishJob({ level: 'heading', content: 'END' })
 })
 
+// **** MAIN RUNNER ****
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
@@ -38,6 +35,20 @@ async function main() {
   require('./src/utils/version/check-version.js')()
 }
 
+main().catch(err => {
+  finishJob(
+    {
+      level: 'error',
+      content: err.stack
+    },
+    {
+      level: 'heading',
+      content: 'END (UNEXPECTED)'
+    }
+  )
+})
+
+// **** HELPERS ****
 function getLogger(fctName) {
   const logger = require('./src/utils/loggers/logger.js')
   if (!fctName) {
@@ -69,11 +80,12 @@ async function processArgs(args) {
   }
 }
 
-main().catch(err => {
-  clog.error(err.stack)
-  clog.heading('END (UNEXPECTED)')
+function finishJob(...msgs) {
+  for (const msg of msgs) {
+    clog[msg.level](msg.content)
+  }
   clog.end()
-  require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
+  clog.transports.find(transport => transport.name === 'file')._dest.on('finish', function(info) {
     process.exit()
   })
-})
+}

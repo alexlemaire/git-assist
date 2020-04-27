@@ -1,49 +1,43 @@
-module.exports = (opts) => {
+module.exports = async (opts) => {
   const chalk = require('chalk')
   if (process.platform === 'win32') {
     throw new Error(`Apologies, scheduling ${chalk.italic.blue('auto-pull')} is currently not supported on Windows...`)
   }
   if (opts.scheduled) {
     clog.info(`Scheduling ${chalk.italic.blue('auto-pull')}...`)
-    daemonize(opts)
+    await daemonize(opts)
     clog.success(`${chalk.italic.blue('auto-pull')} scheduled!`)
   }
 }
 
-function daemonize (opts) {
-  const pm2 = require('pm2')
+async function daemonize (opts) {
+  const path = require('path')
   const startConf = {
     name: 'scheduled-auto-pull',
-    script: `${appRoot}/index.js'`,
+    script: path.join()`${appRoot}/index.js'`,
     args: 'auto-pull',
     cron_restart: opts.cron,
     max_memory_restart : '100M'
   }
-  pm2.connect(async function(err) {
-    await errorHandler(err)
-    pm2.start(startConf, async function(err, apps) {
-      await errorHandler(err)
-      pm2.startup(process.platform === 'darwin' ? 'darwin' : 'systemd', async function(err, result) {
-        await errorHandler(err)
-        pm2.disconnect()
-      })
-    })
+  await promisifyPm2('connect')
+  .then(res => promisifyPm2('start', startConf))
+  .then(res => promisifyPm2('startup', process.platform === 'darwin' ? 'darwin' : 'systemd'))
+  .then(res => promisifyPm2('disconnect'))
+  .catch(err => {
+    clog.error('There was an error with PM2...')
+    throw new Error(err)
   })
 }
 
-async function errorHandler(err) {
-  if (err) {
-    clog.error(`There was an error with PM2:\n${err[0]}`)
-    clog.heading('END (UNEXPECTED)')
-    clog.end()
-    await new Promise((resolve, reject) => {
-      require(appRoot + '/src/utils/loggers/utils/get-file-transport.js')(clog)._dest.on('finish', function(info) {
-        resolve()
-      })
-      clog.on('error', function(error) {
-        reject()
-      })
+function promisifyPm2(method, ...params) {
+  const pm2 = require('pm2')
+  return new Promise((resolve, reject) => {
+    pm2[method](...params, function(err, data) {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data)
+      }
     })
-    process.exit()
-  }
+  })
 }
