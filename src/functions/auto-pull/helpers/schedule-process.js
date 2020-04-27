@@ -5,6 +5,7 @@ module.exports = async (opts) => {
     throw new Error(`Apologies, scheduling ${chalk.italic.blue('auto-pull')} is currently not supported on Windows...`)
   }
   if (opts.scheduled) {
+    clog.info('WARNING: this feature is kind of experimental. It may not work on some OS or on your machine. Feel free to file any bugs you encounter! (I did not have many machines to try this on and since PM2 is already setup on mines I am not sure how it will work on a machine without prior configuration...)')
     clog.info(`Scheduling ${chalk.italic.blue('auto-pull')}...`)
     await daemonize(opts)
     clog.success(`${chalk.italic.blue('auto-pull')} scheduled!`)
