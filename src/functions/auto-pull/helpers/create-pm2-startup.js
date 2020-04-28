@@ -1,4 +1,7 @@
 const childProc = require('child_process')
+const chalk = require('chalk')
+const pm2Cli = require(appRoot + '/src/utils/pm2/pm2-cli.js')
+const pm2Print = chalk.italic.cyan('pm2')
 
 module.exports = async (config) => {
   const localVer = require(appRoot + '/package.json').dependencies.pm2.replace('^', '')
@@ -13,12 +16,12 @@ module.exports = async (config) => {
     process.exit()
   }
   if (localVer !== config.get('pm2_version')) {
-    childProc.spawnSync('node', [`${appRoot}/node_modules/pm2/bin/pm2`, 'update'])
+    clog.info(`Updating ${pm2Print} in-memory process...`)
+    pm2Cli(['update'], false)
     config.set('pm2_version', localVer)
+    clog.success(`${pm2Print} in-memory process successfully updated!`)
   }
-  clog.info('Creating pm2 startup script for this machine...')
   startup(config)
-  clog.success('pm2 startup script successfully created!')
 }
 
 async function promptConfirm() {
@@ -33,33 +36,31 @@ async function promptConfirm() {
 }
 
 function checkGlobalVer(localVer) {
-  const chalk = require('chalk')
   const globalVer = childProc.spawnSync('pm2', ['-v']).stdout.toString().trim()
   if (globalVer.match(/(\d+)\.(\d+)\.(\d+)/) && globalVer !== localVer) {
-    clog.info(`${chalk.underline('WARNING')}: your globally installed ${chalk.italic.cyan('pm2')} version is ${globalVer}. The locally used version of ${chalk.italic.cyan('pm2')} is ${localVer}. You may want to update your globally installed ${chalk.italic.cyan('pm2')} version to avoid conflict of in-memory process versions...`)
+    clog.info(`${chalk.underline('WARNING')}: your globally installed ${pm2Print} version is ${globalVer}. The locally used version of ${pm2Print} is ${localVer}. You may want to update your globally installed ${pm2Print} version to avoid conflict of in-memory process versions...`)
   }
 }
 
 function startup(config) {
-  const chalk = require('chalk')
-  console.log(`\n${chalk.cyan('---------------')}\n`)
-  console.log(`${chalk.cyan('All information displayed below are related to PM2...')}`)
-  console.log(`${chalk.italic.cyan('Running pm2 unstartup...')}\n`)
-  pm2ManualCall('unstartup')
-  console.log(`\n${chalk.italic.cyan('Running pm2 startup...')}\n`)
-  pm2ManualCall('startup')
-  console.log(`\n${chalk.cyan('---------------')}\n`)
+  clog.info(`Removing ${pm2Print} startup script for this machine...`)
+  runPm2Callback('unstartup')
+  clog.success(`${pm2Print} startup script successfully removed!`)
+  clog.info(`Creating ${pm2Print} startup script for this machine...`)
+  runPm2Callback('startup')
+  clog.success(`${pm2Print} startup script successfully created!`)
   config.set('node_version', process.version)
   config.set('startup_ran', true)
 }
 
-function pm2ManualCall(cmd) {
-  const pm2Call = childProc.spawnSync('node', [`${appRoot}/node_modules/pm2/bin/pm2`, cmd])
-  if (pm2Call.error) {
-    throw error
-  }
+function runPm2Callback(cmd) {
+  console.log(`\n${chalk.cyan('---------------')}\n`)
+  console.log(`${chalk.cyan('All information displayed below are related to PM2...')}\n`)
+  console.log(`${chalk.italic.cyan(`Running pm2 ${cmd}...`)}\n`)
+  const pm2Call = pm2Cli([cmd])
   try {
     childProc.execSync(pm2Call.stdout.toString().trim(), {stdio: 'inherit'})
+    console.log(`\n${chalk.cyan('---------------')}\n`)
   } catch (err) {
     throw err
   }

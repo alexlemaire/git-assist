@@ -69,13 +69,13 @@ async function editProcess(opts) {
 
 async function pm2Update(...commands) {
   const pm2 = require(appRoot + '/src/utils/pm2/pm2-utils.js')
+  const pm2Cli = require(appRoot + '/src/utils/pm2/pm2-cli.js')
   await pm2.connect().catch(pm2ErrorHandler)
   for (const command of commands) {
     await pm2[command.method](...command.params).catch(pm2ErrorHandler)
   }
-  await pm2.dump()
-  .then(res => pm2.disconnect())
-  .catch(pm2ErrorHandler)
+  pm2Cli(['save', '--force'])
+  await pm2.disconnect().catch(pm2ErrorHandler)
 }
 
 function pm2ErrorHandler(err) {
