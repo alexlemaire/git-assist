@@ -8,9 +8,6 @@ module.exports = async (opts) => {
   if (!opts.scheduled) {
     return
   }
-  console.log('\n')
-  clog.info(`${chalk.underline('BEWARE')}: this feature is kind of experimental. If you encounter any bug please report it @ ${chalk.italic.cyan(require(appRoot + '/package.json').bugs.url)}`)
-  console.log('\n')
   clog.info(`Scheduling ${chalk.italic.blue('auto-pull')}...`)
   await processAction(opts)
   clog.success(`${chalk.italic.blue('auto-pull')} scheduling successfully updated!`)
