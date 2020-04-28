@@ -18,13 +18,26 @@ module.exports = async (args, config) => {
 }
 
 async function promptConfirm(config) {
-  if (config.has('path')) {
+  const path = config.get('path')
+  if (path) {
     const inquirer = require('inquirer')
+    const chalk = require('chalk')
+    const autoPullPrint = chalk.italic.cyan('auto-pull')
+    const excludedDirs = config.get('excludedDirs')
+    const format = msg => chalk.magenta(msg)
+    const subFormat = msg => chalk.blue(msg)
+    clog.info(`Printing existing ${autoPullPrint} configuration...`)
+    console.log(format('\n---------\n'))
+    console.log(format(`${autoPullPrint} is currently pulling from: ${subFormat(path)}`))
+    if (excludedDirs.length > 0) {
+      console.log(format(`\nThe following repositories are not being processed by ${autoPullPrint}: ${excludedDirs.map(dir => subFormat(`\n    - ${path}/${dir}`))}`))
+    }
+    console.log(format('\n---------\n'))
     return await inquirer.prompt([
       {
         type: 'confirm',
         name: 'confirm',
-        message: 'A configuration for auto-pull already exists. Would you like to update it?'
+        message: 'A configuration for auto-pull already exists (see above). Would you like to update it?'
       }
     ])
   }
