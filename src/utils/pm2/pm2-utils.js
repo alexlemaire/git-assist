@@ -19,4 +19,4 @@ function buildExport(methods) {
   return exp
 }
 
-module.exports = buildExport(['connect', 'start', 'stop', 'delete', 'startup', 'dump', 'list', 'disconnect'])
+module.exports = buildExport(['connect', 'start', 'stop', 'delete', 'dump', 'list', 'disconnect'])

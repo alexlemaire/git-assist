@@ -8,16 +8,15 @@ module.exports = async (opts) => {
   if (!opts.scheduled) {
     return
   }
-  clog.info('WARNING: this feature is kind of experimental. It may not work on some OS or on your machine. Feel free to file any bugs you encounter! (I did not have many machines to try this on and since PM2 is already setup on mines I am not sure how it will work on a machine without prior configuration...)')
+  console.log('\n')
+  clog.info(`${chalk.underline('BEWARE')}: this feature is kind of experimental. If you encounter any bug please report it @ ${chalk.italic.cyan(require(appRoot + '/package.json').bugs.url)}`)
+  console.log('\n')
   clog.info(`Scheduling ${chalk.italic.blue('auto-pull')}...`)
   await processAction(opts)
   clog.success(`${chalk.italic.blue('auto-pull')} scheduling successfully updated!`)
 }
 
 async function processAction(opts) {
-  if (process.getuid() !== 0) {
-    throw new Error(`You must run this command with elevated rights... This command is working with ${chalk.italic.cyan('pm2')} to setup ${chalk.italic.cyan('auto-pull')} so that it restarts when your machine restarts.\nPlease run ${chalk.italic.blue('sudo git-assist auto-pull [-c, --config]')} instead.`)
-  }
   startConf = {
     script: `${appRoot}/index.js`,
     args: 'auto-pull',
@@ -77,8 +76,7 @@ async function pm2Update(...commands) {
   for (const command of commands) {
     await pm2[command.method](...command.params).catch(pm2ErrorHandler)
   }
-  await pm2.startup(null, {})
-  .then(res => pm2.dump())
+  await pm2.dump()
   .then(res => pm2.disconnect())
   .catch(pm2ErrorHandler)
 }

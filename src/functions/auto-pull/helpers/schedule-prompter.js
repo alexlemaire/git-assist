@@ -1,12 +1,16 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 
-module.exports = async () => {
-  const processes = await require('./get-processes.js')()
-  const { action } = await getAction(processes)
-  let res = {
-    scheduled: true
+module.exports = async (config) => {
+  const answer = await processAction(await require('./get-processes.js')(), { scheduled: true })
+  if (answer.scheduled) {
+    await require('./create-pm2-startup.js')(config)
   }
+  return answer
+}
+
+async function processAction(processes, res) {
+  const { action } = await getAction(processes)
   switch (action) {
     case 'nothing':
       res.scheduled = false
