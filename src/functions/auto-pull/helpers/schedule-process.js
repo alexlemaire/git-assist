@@ -43,26 +43,24 @@ async function processAction(opts) {
 
 async function addProcess(opts) {
   startConf.name = `${opts.type}-auto-pull`
-  await pm2Update([
+  await pm2Update(
     {
       method: 'start',
       params: [startConf]
-    }
-  ])
+    })
 }
 
 async function deleteProcess(opts) {
-  await pm2Update([
+  await pm2Update(
     {
       method: 'delete',
       params: [opts.name]
-    }
-  ])
+    })
 }
 
 async function editProcess(opts) {
   startConf.name = opts.name
-  await pm2Update([
+  await pm2Update(
     {
       method: 'delete',
       params: [opts.name]
@@ -70,21 +68,22 @@ async function editProcess(opts) {
     {
       method: 'start',
       params: [startConf]
-    }
-  ])
+    })
 }
 
-async function pm2Update(commands) {
+async function pm2Update(...commands) {
   const pm2 = require(appRoot + '/src/utils/pm2/pm2-utils.js')
-  await pm2.connect()
+  await pm2.connect().catch(pm2ErrorHandler)
   for (const command of commands) {
-    await pm2[command.method](...command.params)
+    await pm2[command.method](...command.params).catch(pm2ErrorHandler)
   }
   await pm2.startup(null, {})
   .then(res => pm2.dump())
   .then(res => pm2.disconnect())
-  .catch(err => {
-    clog.error('There was an error with PM2...')
-    throw new Error(err)
-  })
+  .catch(pm2ErrorHandler)
+}
+
+function pm2ErrorHandler(err) {
+  clog.error('There was an error with PM2...')
+  throw new Error(err)
 }

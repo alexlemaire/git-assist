@@ -72,10 +72,7 @@ async function addActionPrompt(processes) {
 }
 
 async function editActionPrompt(processes, action) {
-  let choices = processes
-  if (action === 'edit') {
-    choices = choices.filter(choice => choice.replace(/-auto-pull/g, '') !== 'startup')
-  }
+  const choices = action !== 'edit' ? processes : processes.filter(process => process !== 'startup-auto-pull')
   const questions = [
     {
       type: 'rawlist',
