@@ -3,13 +3,32 @@ const fs = require('fs')
 const pathMod = require('path')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
-module.exports = async (args) => {
+module.exports = async (args, config) => {
+  const { confirm } = await promptConfirm(config)
+  if (!confirm) {
+    clog.info('Aborting process...')
+    process.exit()
+  }
   const path = await getPath(process.cwd(), args[0] === '--list-hidden')
   const { excludedDirs } = await getExcludedDirs(path)
   return {
     path,
     excludedDirs
   }
+}
+
+async function promptConfirm(config) {
+  if (config.has('path')) {
+    const inquirer = require('inquirer')
+    return await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'confirm',
+        message: 'A configuration for auto-pull already exists. Would you like to update it?'
+      }
+    ])
+  }
+  return { confirm: false }
 }
 
 async function getPath(root, listHidden) {

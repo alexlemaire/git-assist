@@ -7,7 +7,7 @@ module.exports = async (args) => {
   })
   if (['-c', '--config'].includes(args[0])) {
     clog.info(`Configurating ${chalk.italic.blue('auto-pull')}...`)
-    config.store = {...config.store, ...await require('./helpers/conf-prompter.js')(args.splice(1))}
+    config.set(await require('./helpers/conf-prompter.js')(args.splice(1), config))
     clog.success(`${chalk.italic.blue('auto-pull')} successfully configured!`)
     await require('./helpers/schedule-process.js')(await require('./helpers/schedule-prompter.js')(config))
   } else {
