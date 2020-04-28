@@ -27,7 +27,7 @@ async function processAction(opts) {
       await addProcess(opts)
       break
     case 'edit':
-      clog.info(`Editing ${chalk.italic.blue(opts.name)} process...`)
+      clog.info(`Updating ${chalk.italic.blue(opts.name)} process...`)
       await editProcess(opts)
       break
     case 'delete':
