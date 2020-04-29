@@ -2,7 +2,7 @@
   <img src="static/git-assist-logo.jpg">
 
   ![Package version](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
-  [![Known Vulnerabilities](https://snyk.io/test/github/alexlemaire/git-assist/badge.svg)](https://snyk.io/test/github/alexlemaire/git-assist)
+  [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/alexlemaire/git-assist)](https://snyk.io/test/github/alexlemaire/git-assist)
   [![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
 
   ![Publish action status](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
@@ -17,31 +17,31 @@
   ![Windows support](static/windows-badge.svg)
 </div>
 
-## :space_invader: What is `git-assist`?
+## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
 
 This package allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
-## :package: How to install it
+## <img src="https://emoji.fileformat.info/gemoji/package.png" width="27px"> How to install it
 
 1. open a new terminal (can be _Terminal_ for _MacOS_, _cmd.exe_ for _Windows_, _Konsole_ for _Kubuntu_, etc.)
 2. run `npm i -g git-assist`
 
-:warning: You will need to have `node` and `npm` installed on your machine for this to work.
+<img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> You will need to have `node` and `npm` installed on your machine for this to work.
 
-Some other dependencies are also required for some of the utilities contained in this package to work. See [here](#link-required-dependencies).
+Some other dependencies are also required for some of the utilities contained in this package to work. See [here](#required-dependencies).
 
-## :computer: How to use it
+## <img src="https://emoji.fileformat.info/gemoji/computer.png" width="27px"> How to use it
 
 - **developers (CLI usage):** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-developers (non-CLI usage):** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
 
-:warning: **Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
+<img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> **Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
 
-:point_right: You will find the process for creating an access token for your account [here](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+<img src="https://emoji.fileformat.info/gemoji/point_right.png" width="16px"> You will find the process for creating an access token for your account [here](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
-:question: _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
+<img src="https://emoji.fileformat.info/gemoji/question.png" width="16px"> _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
-## :link: Required dependencies
+## <a name="required-dependencies"></a><img src="https://emoji.fileformat.info/gemoji/link.png" width="27px"> Required dependencies
 
 Until work has been done to automate dependencies installation on package installation (or suppress some of them), here are the dependencies that needs to be on your computer for this utility to work correctly:
 - `git`
@@ -49,7 +49,7 @@ Until work has been done to automate dependencies installation on package instal
 - `ssh` (to generate ssh keys)
 - Linux only: `libsecret` & `gnome-keyring`
 
-## :closed_lock_with_key: Password management
+## <img src="https://emoji.fileformat.info/gemoji/closed_lock_with_key.png" width="27px"> Password management
 
 Password management is handled via `keytar` (check it out [here](https://www.npmjs.com/package/keytar)). `keytar` is using system specific solutions in order to store your password in a secure way. This allows `git-assist` to reuse your saved password when working with _GitHub_ via HTTPS and not prompt you every time for it.
 
@@ -59,7 +59,7 @@ Below are details on how to handle/prevent this situation.
 
 **Please install `seahorse` on your system via your package manager to get access to a frontend to manage your keyrings easily.**
 
-### :question: How to configure an initial keyring (Linux)
+### <a name="initial-keyring-config"></a><img src="https://emoji.fileformat.info/gemoji/question.png" width="22px"> How to configure an initial keyring (Linux)
 
 It is recommended to perform this step before working with `git-assist` if you don't have a keyring set up on your machine already.
 
@@ -69,7 +69,7 @@ It is recommended to perform this step before working with `git-assist` if you d
 4. type a password that you will remember when prompted for a password
 5. back on the main page of `seahorse`, right click on your newly created keyring and click on _Set as default_
 
-### :question: How to fix a locked default keyring (Linux)
+### <img src="https://emoji.fileformat.info/gemoji/question.png" width="22px"> How to fix a locked default keyring (Linux)
 
 If you started using `git-assist` with no keyring configured it is possible that some of your apps may be frozen because the keyring would be locked (since you don't know the password to unlock it).
 
@@ -78,9 +78,9 @@ If you started using `git-assist` with no keyring configured it is possible that
 3. start `seahorse` via your application manager
 4. right click on the keyring containing `default` in its name and click on `Delete`
 5. when prompted, confirm deletion
-6. follow the steps 2 to 5 in the section [above](#question-how-to-configure-an-initial-keyring-linux) to create a new default keyring
+6. follow the steps 2 to 5 in the section [above](#initial-keyring-config) to create a new default keyring
 
-## :bulb: Available features
+## <img src="https://emoji.fileformat.info/gemoji/bulb.png" width="27px"> Available features
 
 |   Feature   |      Config      |             SSH            |             GPG            |        Clone       |                              Push                              |             Pull            |                                              Auto-pull                                              |                                        Logs                                        |             Help            |                     Version                     |
 |:-----------:|:----------------:|:--------------------------:|:--------------------------:|:------------------:|:--------------------------------------------------------------:|:---------------------------:|:---------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|:---------------------------:|:-----------------------------------------------:|
@@ -89,13 +89,13 @@ If you started using `git-assist` with no keyring configured it is possible that
 |  Arguments  |       `-g`       |                            |                            |                    |                                                                |                             |                                          `--config` or `-c`                                         | `[file1, file2, ..., fileN]` `--watch [file]` `--purge [file1, file2, ..., fileN]` |                             |                                                 |
 |    Status   |         ✔️        |              ✔️             |              ✔️             |          ✔️         |                                ✔️                               |              ✔️              |                                                  ✔️                                                  |                                          ✔️                                         |              ✔️              |                        ✔️                        |
 
-## :wrench: OS support
+## <img src="https://emoji.fileformat.info/gemoji/wrench.png" width="27px"> OS support
 
 | Windows | Linux | MacOS |
 |:-------:|:-----:|:-----:|
 | ❓       | ✔️     | ⏲     |
 
-## :bookmark: Legend
+## <img src="https://emoji.fileformat.info/gemoji/bookmark.png" width="27px"> Legend
 
 | Icon |           Meaning           |
 |:----:|:---------------------------:|
