@@ -4,44 +4,16 @@ const pathMod = require('path')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
 module.exports = async (args, config) => {
-  const { confirm } = await promptConfirm(config)
-  if (!confirm) {
-    clog.info('Aborting process...')
-    process.exit()
-  }
   const path = await getPath(process.cwd(), args[0] === '--list-hidden')
-  const { excludedDirs } = await getExcludedDirs(path)
+  const repos = require(appRoot + '/src/utils/fs/list-repo.js')(path)
+  const { excludedRepos } = await getExcludedRepos(repos)
+  const nonExcludedRepos = repos.filter(repo => !excludedRepos.includes(repo))
+  const { excludedBranches } = await getExcludedBranches(nonExcludedRepos, path)
   return {
     path,
-    excludedDirs
+    excludedRepos,
+    excludedBranches
   }
-}
-
-async function promptConfirm(config) {
-  const path = config.get('path')
-  if (path) {
-    const inquirer = require('inquirer')
-    const chalk = require('chalk')
-    const autoPullPrint = chalk.italic.cyan('auto-pull')
-    const excludedDirs = config.get('excludedDirs')
-    const format = msg => chalk.magenta(msg)
-    const subFormat = msg => chalk.blue(msg)
-    clog.info(`Printing existing ${autoPullPrint} configuration...`)
-    console.log(format('\n---------\n'))
-    console.log(format(`${autoPullPrint} is currently pulling from: ${subFormat(path)}`))
-    if (excludedDirs.length > 0) {
-      console.log(format(`\nThe following repositories are not being processed by ${autoPullPrint}: ${excludedDirs.map(dir => subFormat(`\n    - ${path}/${dir}`))}`))
-    }
-    console.log(format('\n---------\n'))
-    return await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'confirm',
-        message: 'A configuration for auto-pull already exists (see above). Would you like to update it?'
-      }
-    ])
-  }
-  return { confirm: false }
 }
 
 async function getPath(root, listHidden) {
@@ -79,11 +51,35 @@ async function promptPath(root, listHidden) {
   }])
 }
 
-async function getExcludedDirs(path) {
+async function getExcludedRepos(repos) {
   return await inquirer.prompt([{
     type: 'checkbox',
-    name: 'excludedDirs',
+    name: 'excludedRepos',
     message: 'Select repositories you would like not to enable auto-pulling for:',
-    choices: require(appRoot + '/src/utils/fs/list-repo.js')(path)
+    choices: repos
   }])
+}
+
+async function getExcludedBranches(repos, path) {
+  const git = require('isomorphic-git')
+  const reposData = await Promise.all(repos.map(async (repo) => {
+    return {
+      repo: pathMod.basename(repo),
+      branches: await git.listBranches({ fs, dir: pathMod.join(path, repo) })
+    }
+  }))
+  return await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'excludedBranches',
+      message: 'Select branches you would like not to enable auto-pulling for:',
+      choices: reposData.map(data => [new inquirer.Separator(` --- ${data.repo} branches --- `), ...data.branches.map(branch => `${data.repo}: ${branch}`)]).flat(1),
+      filter: function(input) {
+        let filteredInput = {}
+        const entries = input.map(choice => choice.split(': '))
+        entries.forEach(entry => filteredInput[entry[0]] = filteredInput[entry[0]] ? [...filteredInput[entry[0]], entry[1]] : [entry[1]])
+        return filteredInput
+      }
+    }
+  ])
 }
