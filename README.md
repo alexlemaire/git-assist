@@ -1,4 +1,6 @@
-![git-assist logo](static/git-assist-logo.jpg)
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+  <img src="static/git-assist-logo.jpg">
+</div>
 
 ![Package version](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
 [![Known Vulnerabilities](https://snyk.io/test/github/alexlemaire/git-assist/badge.svg)](https://snyk.io/test/github/alexlemaire/git-assist)
