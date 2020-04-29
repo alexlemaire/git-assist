@@ -2,7 +2,7 @@
   <img src="static/git-assist-logo.jpg">
 
   ![Package version](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
-  [![Known Vulnerabilities](https://snyk.io/test/github/alexlemaire/git-assist/badge.svg)](https://snyk.io/test/github/alexlemaire/git-assist)
+  [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/alexlemaire/git-assist)](https://snyk.io/test/github/alexlemaire/git-assist)
   [![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
 
   ![Publish action status](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
