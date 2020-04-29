@@ -41,7 +41,7 @@ Some other dependencies are also required for some of the utilities contained in
 
 <img src="https://emoji.fileformat.info/gemoji/question.png" width="16px"> _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
-## <img src="https://emoji.fileformat.info/gemoji/link.png" width="32px"> Required dependencies
+## <a name="required-dependencies"></a><img src="https://emoji.fileformat.info/gemoji/link.png" width="32px"> Required dependencies
 
 Until work has been done to automate dependencies installation on package installation (or suppress some of them), here are the dependencies that needs to be on your computer for this utility to work correctly:
 - `git`
@@ -59,7 +59,7 @@ Below are details on how to handle/prevent this situation.
 
 **Please install `seahorse` on your system via your package manager to get access to a frontend to manage your keyrings easily.**
 
-### <img src="https://emoji.fileformat.info/gemoji/question.png" width="24px"> How to configure an initial keyring (Linux)
+### <a name="initial-keyring-config"></a><img src="https://emoji.fileformat.info/gemoji/question.png" width="24px"> How to configure an initial keyring (Linux)
 
 It is recommended to perform this step before working with `git-assist` if you don't have a keyring set up on your machine already.
 
@@ -78,7 +78,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 3. start `seahorse` via your application manager
 4. right click on the keyring containing `default` in its name and click on `Delete`
 5. when prompted, confirm deletion
-6. follow the steps 2 to 5 in the section [above](#how-to-configure-an-initial-keyring-linux) to create a new default keyring
+6. follow the steps 2 to 5 in the section [above](#initial-keyring-config) to create a new default keyring
 
 ## <img src="https://emoji.fileformat.info/gemoji/bulb.png" width="32px"> Available features
 
