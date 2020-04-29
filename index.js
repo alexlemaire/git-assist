@@ -1,11 +1,24 @@
 #!/usr/bin/env node
-process.on('SIGINT', function () {
+// **** PROCESS EVENT LISTENERS ****
+process.on('SIGINT', () => {
   console.log('\n')
-  clog.info('Gracefully shutting down (CTRL + C)...')
-  clog.heading('REQUESTED END')
-  process.exit()
+  finishJob(
+    {
+      level: 'info',
+      content: 'Gracefully shutting down (CTRL + C)...'
+    },
+    {
+      level: 'heading',
+      content: 'END (USER REQUESTED)'
+    }
+  )
 })
 
+process.on('beforeExit', () => {
+  finishJob({ level: 'heading', content: 'END' })
+})
+
+// **** MAIN RUNNER ****
 async function main() {
   const logger = require('./src/utils/loggers/logger.js')
   const chalk = require('chalk')
@@ -20,9 +33,22 @@ async function main() {
   clog.heading(`START ${getHeading(fctName, args)}`)
   await require(fct.handler)(args)
   require('./src/utils/version/check-version.js')()
-  clog.heading(`END ${getHeading(fctName, args)}`)
 }
 
+main().catch(err => {
+  finishJob(
+    {
+      level: 'error',
+      content: err.stack
+    },
+    {
+      level: 'heading',
+      content: 'END (UNEXPECTED)'
+    }
+  )
+})
+
+// **** HELPERS ****
 function getLogger(fctName) {
   const logger = require('./src/utils/loggers/logger.js')
   if (!fctName) {
@@ -54,7 +80,12 @@ async function processArgs(args) {
   }
 }
 
-main().catch(err => {
-  clog.error(err.stack)
-  clog.heading('UNEXPECTED END')
-})
+function finishJob(...msgs) {
+  for (const msg of msgs) {
+    clog[msg.level](msg.content)
+  }
+  clog.end()
+  clog.transports.find(transport => transport.name === 'file')._dest.on('finish', (info) => {
+    process.exit()
+  })
+}
