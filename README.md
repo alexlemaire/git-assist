@@ -1,4 +1,4 @@
-<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+<div align="center">
   <img src="static/git-assist-logo.jpg">
 </div>
 
