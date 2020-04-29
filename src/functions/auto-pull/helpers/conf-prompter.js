@@ -3,12 +3,16 @@ const fs = require('fs')
 const pathMod = require('path')
 inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
 
-module.exports = async (args) => {
+module.exports = async (args, config) => {
   const path = await getPath(process.cwd(), args[0] === '--list-hidden')
-  const { excludedDirs } = await getExcludedDirs(path)
+  const repos = require(appRoot + '/src/utils/fs/list-repo.js')(path)
+  const { excludedRepos } = await getExcludedRepos(repos)
+  const nonExcludedRepos = repos.filter(repo => !excludedRepos.includes(repo))
+  const { excludedBranches } = await getExcludedBranches(nonExcludedRepos, path)
   return {
     path,
-    excludedDirs
+    excludedRepos,
+    excludedBranches
   }
 }
 
@@ -47,11 +51,35 @@ async function promptPath(root, listHidden) {
   }])
 }
 
-async function getExcludedDirs(path) {
+async function getExcludedRepos(repos) {
   return await inquirer.prompt([{
     type: 'checkbox',
-    name: 'excludedDirs',
+    name: 'excludedRepos',
     message: 'Select repositories you would like not to enable auto-pulling for:',
-    choices: require(appRoot + '/src/utils/fs/list-repo.js')(path)
+    choices: repos
   }])
+}
+
+async function getExcludedBranches(repos, path) {
+  const git = require('isomorphic-git')
+  const reposData = await Promise.all(repos.map(async (repo) => {
+    return {
+      repo: pathMod.basename(repo),
+      branches: await git.listBranches({ fs, dir: pathMod.join(path, repo) })
+    }
+  }))
+  return await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'excludedBranches',
+      message: 'Select branches you would like not to enable auto-pulling for:',
+      choices: reposData.map(data => [new inquirer.Separator(` --- ${data.repo} branches --- `), ...data.branches.map(branch => `${data.repo}: ${branch}`)]).flat(1),
+      filter: function(input) {
+        let filteredInput = {}
+        const entries = input.map(choice => choice.split(': '))
+        entries.forEach(entry => filteredInput[entry[0]] = filteredInput[entry[0]] ? [...filteredInput[entry[0]], entry[1]] : [entry[1]])
+        return filteredInput
+      }
+    }
+  ])
 }
