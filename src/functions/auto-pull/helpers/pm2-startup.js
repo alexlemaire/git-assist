@@ -6,6 +6,12 @@ const pm2Print = chalk.italic.cyan('pm2')
 module.exports = async (config) => {
   const localVer = require(appRoot + '/package.json').dependencies.pm2.replace('^', '')
   checkGlobalVer(localVer)
+  if (localVer !== config.get('pm2_version')) {
+    clog.info(`Updating ${pm2Print} in-memory process...`)
+    pm2Cli(['update'], false)
+    config.set('pm2_version', localVer)
+    clog.success(`${pm2Print} in-memory process successfully updated!`)
+  }
   if (process.version === config.get('node_version') && config.get('startup_ran')) {
     clog.info('No need to create pm2 startup script for this machine.')
     return
@@ -14,12 +20,6 @@ module.exports = async (config) => {
   if (!confirm) {
     clog.info('Aborting process...')
     process.exit()
-  }
-  if (localVer !== config.get('pm2_version')) {
-    clog.info(`Updating ${pm2Print} in-memory process...`)
-    pm2Cli(['update'], false)
-    config.set('pm2_version', localVer)
-    clog.success(`${pm2Print} in-memory process successfully updated!`)
   }
   startup(config)
 }

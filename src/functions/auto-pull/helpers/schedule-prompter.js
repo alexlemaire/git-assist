@@ -7,7 +7,7 @@ module.exports = async (config) => {
     console.log('\n')
     clog.info(`${chalk.underline('BEWARE')}: this feature is kind of experimental. If you encounter any bug please report it @ ${chalk.italic.cyan(require(appRoot + '/package.json').bugs.url)}`)
     console.log('\n')
-    await require('./create-pm2-startup.js')(config)
+    await require('./pm2-startup.js')(config)
   }
   return answer
 }
