@@ -1,4 +1,5 @@
 module.exports = async (url, protocol, repo) => {
+  await require(appRoot + '/src/utils/config/sync-config.js')()
   clog.info(`Cloning ${repo} into current folder...`)
   switch (protocol) {
     case 'ssh':

@@ -3,6 +3,7 @@ const fs = require('fs')
 const dir = '.'
 
 module.exports = async (protocol, branches) => {
+  await require(appRoot + '/src/utils/config/sync-config.js')()
   switch (protocol) {
     case 'https':
       await httpPull(branches)

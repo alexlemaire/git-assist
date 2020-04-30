@@ -2,6 +2,10 @@ const git = require('isomorphic-git')
 const fs = require('fs')
 const dir = '.'
 module.exports = async () => {
+  if (!fs.existsSync('.git/config')) {
+    clog.info('Not currently working from a repository: will not proceed to synchronize global and local GitHub configurations.')
+    return
+  }
   let paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
   for (const path of paths) {
     const entry = await git.getConfig({ fs, dir, path })

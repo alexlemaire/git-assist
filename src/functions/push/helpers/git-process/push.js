@@ -1,4 +1,5 @@
 module.exports = async (protocol) => {
+  await require(appRoot + '/src/utils/config/sync-config.js')()
   switch (protocol) {
     case 'https':
       await httpPush()

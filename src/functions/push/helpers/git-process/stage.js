@@ -1,4 +1,5 @@
 module.exports = async (addAll, params) => {
+  await require(appRoot + '/src/utils/config/sync-config.js')()
   if (addAll){
     await stageAll()
   } else {
