@@ -12,6 +12,7 @@ module.exports = async (protocol) => {
     default:
       break
   }
+  clog.success('Successfully commited, staged and pushed your changes!')
 }
 
 async function httpPush() {
@@ -29,7 +30,7 @@ async function httpPush() {
     ref: currentBranch,
     onAuth: auth.onAuth,
     onAuthFailure: auth.onAuthFailure
-  }).then(res => {clog.success('Successfully commited, staged and pushed your changes!')})
+  })
 }
 
 async function sshPush() {
