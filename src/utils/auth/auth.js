@@ -15,6 +15,26 @@ module.exports = {
       username: auth.username,
       password: await askPwd(auth.username)
     }
+  },
+  sshAuth: async () => {
+    const username = await getUsername()
+    const Conf = require('conf')
+    const config = new Conf({
+      configName: 'keys',
+      fileExtension: 'conf'
+    })
+    const sshKeyMap = config.get('ssh') || {}
+    const keyPath = sshKeyMap ? sshKeyMap[username] : undefined
+    if (!keyPath) {
+      throw new Error(`No SSH key was found for ${username}.`)
+    }
+    try {
+      const execSync = require('child_process').execSync
+      // fool ssh-add so that we add the SSH key with its password without user prompt
+      execSync(`SSH_PASS=${await pwdManager.getPwd(keyPath)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${keyPath} < /dev/null`)
+    } catch (err) {
+      throw err
+    }
   }
 }
 

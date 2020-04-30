@@ -1,6 +1,7 @@
 const git = require('isomorphic-git')
 const fs = require('fs')
 const dir = '.'
+const auth = require(appRoot + '/src/utils/auth/auth.js')
 
 module.exports = async (protocol, branches) => {
   await require(appRoot + '/src/utils/config/sync-config.js')()
@@ -27,13 +28,14 @@ async function httpPull (branches) {
       dir,
       ref: branch,
       singleBranch: true,
-      onAuth: require(appRoot + '/src/utils/auth/auth.js').onAuth,
-      onAuthFailure: require(appRoot + '/src/utils/auth/auth.js').onAuthFailure
+      onAuth: auth.onAuth,
+      onAuthFailure: auth.onAuthFailure
     }).then(res => {clog.success(`Pulled from ${branch}!`)})
   }
 }
 
 async function sshPull (branches) {
+  await auth.sshAuth()
   const currentBranch = await git.currentBranch({ fs, dir })
   const spawnSync = require('child_process').spawnSync
   for (const branch of branches) {

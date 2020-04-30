@@ -1,3 +1,5 @@
+const auth = require(appRoot + '/src/utils/auth/auth.js')
+
 module.exports = async (protocol) => {
   await require(appRoot + '/src/utils/config/sync-config.js')()
   switch (protocol) {
@@ -5,7 +7,7 @@ module.exports = async (protocol) => {
       await httpPush()
       break
     case 'ssh':
-      sshPush()
+      await sshPush()
       break
     default:
       break
@@ -25,12 +27,13 @@ async function httpPush() {
     dir,
     remote: await git.getConfig({ fs, dir, path: `branch.${currentBranch}.remote` }),
     ref: currentBranch,
-    onAuth: require(appRoot + '/src/utils/auth/auth.js').onAuth,
-    onAuthFailure: require(appRoot + '/src/utils/auth/auth.js').onAuthFailure
+    onAuth: auth.onAuth,
+    onAuthFailure: auth.onAuthFailure
   }).then(res => {clog.success('Successfully commited, staged and pushed your changes!')})
 }
 
-function sshPush() {
+async function sshPush() {
+  await auth.sshAuth()
   // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
   const spawnSync = require('child_process').spawnSync
   spawnSync('git' , ['push'])
