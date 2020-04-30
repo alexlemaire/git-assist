@@ -1,15 +1,8 @@
-module.exports = (info) => {
-  const spawnSync = require('child_process').spawnSync
+module.exports = async (info) => {
   createFolder(info.path)
-  clog.info('Generating SSH key...')
-  spawnSync('ssh-keygen', [
-    '-t', 'rsa',
-    '-b', '4096',
-    '-C', info.email,
-    '-N', info.pwd,
-    '-f', info.path
-  ])
-  clog.success('SSH key generated!')
+  generateKey(info)
+  updateConfig(info)
+  await storePwd(info)
 }
 
 function createFolder(folderPath) {
@@ -25,4 +18,46 @@ function createFolder(folderPath) {
       clog.success('Done!')
     }
   }
+}
+
+function generateKey(info) {
+  const spawnSync = require('child_process').spawnSync
+  clog.info('Generating SSH key...')
+  const sshKeygen = spawnSync('ssh-keygen', [
+    '-t', 'rsa',
+    '-b', '4096',
+    '-C', info.email,
+    '-N', info.pwd,
+    '-f', info.path
+  ])
+  // error handling needs to be done via stderr in this case since "ssh-keygen" doesn't seem to always exit with an error...
+  const stderr = sshKeygen.stderr.toString().trim()
+  if (stderr.length > 0) {
+    throw new Error(stderr)
+  }
+  clog.success('SSH key generated!')
+}
+
+function updateConfig(info) {
+  const chalk = require('chalk')
+  const Conf = require('conf')
+  const config = new Conf({
+    configName: 'keys',
+    fileExtension: 'conf'
+  })
+  clog.info(`Adding the SSH key to ${chalk.italic.cyan('git-assist')}...`)
+  let sshKeyMap = config.get('ssh') || {}
+  if (sshKeyMap[info.email]) {
+    clog.info(`An SSH key already exists for ${info.email}, this key will now be updated with the newly generated key...`)
+  }
+  sshKeyMap[info.email] = info.path
+  config.set('ssh', sshKeyMap)
+  clog.success(`SSH key successfully added for ${info.email}!`)
+}
+
+async function storePwd(info) {
+  const pwdManager = require(appRoot + '/src/utils/auth/pwd-manager.js')
+  clog.info('Storing your password for automatic SSH key unlocking...')
+  await pwdManager.setPwd(info.path, info.pwd)
+  clog.success('Password successfully stored!')
 }

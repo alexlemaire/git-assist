@@ -20,7 +20,8 @@ function getQuestions() {
     {
       type: 'password',
       name: 'pwd',
-      message: 'Enter a password:'
+      message: 'Enter a password:',
+      validate: validateLength
     },
     {
       type: 'password',
@@ -42,7 +43,15 @@ function processPath(input) {
 
 function validatePwd(input, answer) {
   if (input !== answer.pwd) {
-    throw new Error('\nError: passwords must match!\n')
+    throw new Error('passwords must match!')
+  }
+  return true
+}
+
+function validateLength(input, answer) {
+  // SSH requires passwords to contain at least 5 characters
+  if (input.length < 5) {
+    throw new Error('password must contain at least 5 characters!')
   }
   return true
 }

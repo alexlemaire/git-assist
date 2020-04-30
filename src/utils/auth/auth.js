@@ -15,6 +15,29 @@ module.exports = {
       username: auth.username,
       password: await askPwd(auth.username)
     }
+  },
+  sshAuth: async () => {
+    const username = await getUsername()
+    const Conf = require('conf')
+    const config = new Conf({
+      configName: 'keys',
+      fileExtension: 'conf'
+    })
+    const sshKeyMap = config.get('ssh') || {}
+    const keyPath = sshKeyMap ? sshKeyMap[username] : undefined
+    if (!keyPath) {
+      const chalk = require('chalk')
+      clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys already added to the SSH agent instead.`)
+      clog.info(`If this fails/you are unsure and want to authenticate to GitHub via SSH, you can run ${chalk.italic.cyan('git-assist generate-ssh')} in order to generate an SSH key that will work with ${chalk.italic.cyan('git-assist')}`)
+      return
+    }
+    try {
+      const execSync = require('child_process').execSync
+      // fool ssh-add so that we add the SSH key with its password without user prompt
+      execSync(`SSH_PASS=${await pwdManager.getPwd(keyPath)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${keyPath} < /dev/null`)
+    } catch (err) {
+      throw err
+    }
   }
 }
 
