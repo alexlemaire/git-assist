@@ -25,19 +25,27 @@ function generateParams(info) {
     path: 'user.email',
     value: info.email
   }]
-  return [...baseParams, ...gpgParams()]
+  return [...baseParams, ...gpgParams(info)]
 }
 
-function gpgParams() {
-  if (!process.env.GITHUB_GPGKEY) {
-    const chalk = require('chalk')
-    clog.error('No GPG key was created for GitHub: not adding a GPG key to this configuration.')
+function gpgParams(info) {
+  const chalk = require('chalk')
+  const Conf = require('conf')
+  const config = new Conf({
+    configName: 'keys',
+    fileExtension: 'conf'
+  })
+  const gpgKeyMap = config.get('gpg') || {}
+  const keyId = gpgKeyMap[info.email]
+  if (!keyId) {
+    clog.error(`No GPG key was created for GitHub for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
     clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
   } else {
+    clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')}.`)
     return [{
       path: 'user.signingkey',
-      value: process.env.GITHUB_GPGKEY
+      value: keyId
     },
     {
       path: 'commit.gpgSign',

@@ -36,7 +36,7 @@ Some other dependencies are also required for some of the utilities contained in
 
 If you don't have `npm` installed on your machine, you can alternatively use the install script (`install.sh`) available in the [easy-use](./easy-use) folder (see [docs](./easy-use/README.md) to know how to use them).
 
-This will install `git-assist` on your machine as well as all [necessary system dependencies]((#required-dependencies)).
+This will install `git-assist` on your machine as well as all [necessary system dependencies](#required-dependencies).
 
 This script is part of a collection of scripts available here:
 - [Linux](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Linux.zip)
