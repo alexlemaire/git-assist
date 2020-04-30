@@ -8,8 +8,6 @@ module.exports = async (message) => {
     '-S',
     '-m', message
   ])
-  const commitOpStderr = commitOp.stderr.toString().trim()
-  if (commitOpStderr.length > 0) {
-    throw new Error(commitOpStderr)
-  }
+  const output = commitOp.stdout.toString().trim()
+  console.log(output)
 }

@@ -5,7 +5,7 @@ module.exports = async (url, protocol, repo) => {
   clog.info(`Cloning ${repo} into current folder...`)
   switch (protocol) {
     case 'ssh':
-      sshClone(url)
+      await sshClone(url)
       break
     case 'https':
       await httpsClone(url, repo)
@@ -39,9 +39,6 @@ async function sshClone(url) {
   await auth.sshAuth()
   // isomorphic-git doesn't seem to handle SSH cloning just yet so we use regular git command for now. Same as in push utility
   const spawnSync = require('child_process').spawnSync
-  const cloneOp = spawnSync('git', ['clone', url])
-  const cloneOpStderr = cloneOp.stderr.toString().trim()
-  if (cloneOpStderr.length > 0) {
-    throw new Error(cloneOpStderr)
-  }
+  const output = spawnSync('git', ['clone', url]).stdout.toString().trim()
+  console.log(output)
 }
