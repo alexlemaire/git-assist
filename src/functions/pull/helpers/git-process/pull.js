@@ -41,8 +41,15 @@ async function sshPull (branches) {
   for (const branch of branches) {
     clog.info(`Pulling from branch ${branch}`)
     spawnSync('git', ['checkout', branch])
-    const output = spawnSync('git', ['pull']).stdout.toString().trim()
-    console.log(output)
+    const pullOp = spawnSync('git', ['pull'])
+    const stdout = pullOp.stdout.toString().trim()
+    const stderr = pullOp.stderr.toString().trim()
+    if (stdout.length > 0) {
+      console.log(stdout)
+    }
+    if (stderr.length > 0) {
+      console.log(stderr)
+    }
     clog.success('Done!')
   }
   spawnSync('git', ['checkout', currentBranch])

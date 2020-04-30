@@ -39,6 +39,13 @@ async function sshClone(url) {
   await auth.sshAuth()
   // isomorphic-git doesn't seem to handle SSH cloning just yet so we use regular git command for now. Same as in push utility
   const spawnSync = require('child_process').spawnSync
-  const output = spawnSync('git', ['clone', url]).stdout.toString().trim()
-  console.log(output)
+  const cloneOp = spawnSync('git', ['clone', url])
+  const stdout = cloneOp.stdout.toString().trim()
+  const stderr = cloneOp.stderr.toString().trim()
+  if (stdout.length > 0) {
+    console.log(stdout)
+  }
+  if (stderr.length > 0) {
+    console.log(stderr)
+  }
 }
