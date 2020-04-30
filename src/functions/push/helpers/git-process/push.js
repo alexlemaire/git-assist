@@ -36,5 +36,9 @@ async function sshPush() {
   await auth.sshAuth()
   // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
   const spawnSync = require('child_process').spawnSync
-  spawnSync('git' , ['push'])
+  const pullOp = spawnSync('git' , ['push'])
+  const pullOpStderr = pullOp.stderr.toString().trim()
+  if (pullOpStderr.length > 0) {
+    throw new Error(pullOpStderr)
+  }
 }
