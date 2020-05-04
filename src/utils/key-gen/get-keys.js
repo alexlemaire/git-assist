@@ -1,6 +1,4 @@
 module.exports = (type) => {
-  const chalk = require('chalk')
-  clog.info(`Retrieving SSH keys generated with ${chalk.italic.cyan('git-assist')}...`)
   const keys = readKeys(type)
   return normalize(keys)
 }

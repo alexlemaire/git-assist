@@ -1,3 +1,4 @@
 module.exports = async (args) => {
-  console.log('Adding key')
+  const { user, key } = await require('./info-prompter.js')()
+  require('./add-key.js')(user, key)
 }
