@@ -36,7 +36,7 @@ function gpgParams(info) {
     fileExtension: 'conf'
   })
   const gpgKeyMap = config.get('gpg') || {}
-  const keyId = gpgKeyMap[info.email]
+  const keyId = gpgKeyMap[info.email].id
   if (!keyId) {
     clog.error(`No GPG key was created for GitHub for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
     clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)

@@ -21,6 +21,15 @@
 
 This package allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
+**Examples of what can be done:**
+- commit, stage & push operation at once via interactive CLI
+- pull (for current, multiple or all branches)
+- clone a repository
+- generate an SSH key and automatically work with it inside of `git-assist`
+- generate a GPG key and automatically work with it inside of `git-assist`
+- configure user globally or for a repository
+- setup `git-assist` so that it auto-pulls from multiple repository. This can also be scheduled to run on machine startup or following a _cron_ pattern
+
 ## <img src="https://emoji.fileformat.info/gemoji/package.png" width="27px"> How to install it
 
 **NPM (developers)**

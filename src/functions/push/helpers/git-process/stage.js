@@ -5,15 +5,7 @@ module.exports = async (addAll, params) => {
   } else {
     // TODO: rewrite this to work with isomorphic-git. There needs to be a way
     const spawnSync = require('child_process').spawnSync
-    const stageOp = spawnSync('git', ['add', ...params])
-    const stdout = stageOp.stdout.toString().trim()
-    const stderr = stageOp.stderr.toString().trim()
-    if (stdout.length > 0) {
-      console.log(stdout)
-    }
-    if (stderr.length > 0) {
-      console.log(stderr)
-    }
+    spawnSync('git', ['add', ...params], {stdio: 'inherit'})
   }
 }
 

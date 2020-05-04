@@ -50,7 +50,10 @@ function updateConfig(info) {
   if (sshKeyMap[info.email]) {
     clog.info(`An SSH key already exists for ${info.email}, this key will now be updated with the newly generated key...`)
   }
-  sshKeyMap[info.email] = info.path
+  sshKeyMap[info.email] = {
+    lastModified: Date.now(),
+    path: info.path
+  }
   config.set('ssh', sshKeyMap)
   clog.success(`SSH key successfully added for ${info.email}!`)
 }
