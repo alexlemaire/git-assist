@@ -17,6 +17,14 @@
   ![Windows support](static/windows-badge.svg)
 </div>
 
+**Temporary disclaimer for existing users:** going into versions `0.7.x`, `git-assist` sees changes for its `SSH` and `GPG` utilities.
+
+In previous versions (up to `0.6.x`) you could generate `SSH` (resp. `GPG`) keys via `git-assist generate-ssh` (resp. `git-assist generate-gpg`). But `SSH` and `GPG` key utilities received an upgrade:
+- call `git-assist ssh` (resp. `git-assist gpg`) to access an interactive mode for this utility
+- call `git-assist ssh [--generate] [--add] [--delete] [--list]` (resp. `git-assist gpg [--generate] [--add] [--delete] [--list]`) to access any of the new utilities available for `SSH` (resp. `GPG`) keys, `--generate` option being the equivalent of the former `generate-ssh` (resp. `generate-gpg`)
+
+As always, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
+
 ## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
 
 This package allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
