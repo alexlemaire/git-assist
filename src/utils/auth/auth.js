@@ -24,7 +24,7 @@ module.exports = {
       fileExtension: 'conf'
     })
     const sshKeyMap = config.get('ssh') || {}
-    const keyPath = sshKeyMap ? sshKeyMap[username] : undefined
+    const keyPath = sshKeyMap ? sshKeyMap[username].path : undefined
     if (!keyPath) {
       const chalk = require('chalk')
       clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys already added to the SSH agent instead.`)

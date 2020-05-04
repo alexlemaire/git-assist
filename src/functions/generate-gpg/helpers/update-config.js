@@ -10,7 +10,10 @@ module.exports = (info, keyId) => {
   if (gpgKeyMap[info.email]) {
     clog.info(`A GPG key already exists for ${info.email}, this key will now be updated with the newly generated key...`)
   }
-  gpgKeyMap[info.email] = keyId
+  gpgKeyMap[info.email] = {
+    lastModified: Date.now(),
+    id: keyId
+  }
   config.set('gpg', gpgKeyMap)
   clog.success(`GPG key successfully added for ${info.email}!`)
 }
