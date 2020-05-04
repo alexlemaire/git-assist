@@ -4,5 +4,6 @@ module.exports = (keyPath) => {
   const chalk = require('chalk')
   clog.info(`Deleting key file for ${chalk.italic.cyan(path.basename(keyPath))}...`)
   fs.unlinkSync(keyPath)
+  fs.unlinkSync(`${keyPath}.pub`)
   clog.success('Key file successfully deleted!')
 }

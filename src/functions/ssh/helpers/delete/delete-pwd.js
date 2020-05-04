@@ -3,5 +3,5 @@ module.exports = async (key) => {
   const pwdManager = require(appRoot + '/src/utils/auth/pwd-manager.js')
   clog.info(`Deleting password for ${chalk.italic.cyan(key)}...`)
   await pwdManager.deletePwd(key)
-  clog.success(`Successfully password for ${chalk.italic.cyan(key)}!`)
+  clog.success(`Successfully deleted password for ${chalk.italic.cyan(key)}!`)
 }

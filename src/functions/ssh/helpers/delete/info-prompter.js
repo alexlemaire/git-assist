@@ -1,12 +1,11 @@
-module.exports = async () => {
+module.exports = async (keys) => {
   const path = require('path')
   clog.info('Warning: if you delete a key via this utility, the associated users will not be able to authenticate via SSH until a new key has been generated for them.')
   const inquirer = require('inquirer')
-  const keys = require(appRoot + '/src/utils/key-gen/get-keys.js')('ssh')
   const questions = [
     {
       type: 'checkbox',
-      name: 'keys',
+      name: 'chosenKeys',
       message: 'Select all the keys you would like to delete:',
       choices: keys.map(keyData => `${keyData.key} (users: ${keyData.users.map(userData => userData.user).join(', ')})`),
       filter: input => {

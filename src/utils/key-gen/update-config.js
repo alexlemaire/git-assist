@@ -1,4 +1,5 @@
 module.exports = (type, user, key) => {
+  const chalk = require('chalk')
   const Conf = require('conf')
   const config = new Conf({
     configName: 'keys',
@@ -6,7 +7,7 @@ module.exports = (type, user, key) => {
   })
   let keyMap = config.get(type) || {}
   if (keyMap[user]) {
-    clog.info(`${type = 'ssh' ? 'An SSH' : 'A GPG'} key already exists for ${info.email}, this key will now be updated with the newly generated key...`)
+    clog.info(`${type === 'ssh' ? 'An SSH' : 'A GPG'} key already exists for ${chalk.italic.cyan(user)}. Updating existing key...`)
   }
   keyMap[user] = {
     lastModified: Date.now()
