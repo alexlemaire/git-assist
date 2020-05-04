@@ -53,21 +53,55 @@
     "desc": "Pull commits from remote repository",
     "optsData": []
   },
-  "generate-ssh": {
+  "ssh": {
     "cmds": [
-      "generate-ssh"
+      "ssh"
     ],
-    "handler": "./src/functions/generate-ssh/index.js",
-    "desc": "Generate a new SSH key (added to SSH agent automatically)",
-    "optsData": []
+    "handler": "./src/functions/ssh/index.js",
+    "desc": "Manipulate SSH keys",
+    "optsData": [
+      {
+        "opts": ["--generate"],
+        "desc": "generate a new SSH key to use in git-assist utilities"
+      },
+      {
+        "opts": ["--list"],
+        "desc": "list all SSH keys created via git-assist"
+      },
+      {
+        "opts": ["--add"],
+        "desc": "add an SSH key to a given user"
+      },
+      {
+        "opts": ["--delete"],
+        "desc": "delete an SSH key previously generated via git-assist"
+      }
+    ]
   },
-  "generate-gpg": {
+  "gpg": {
     "cmds": [
-      "generate-gpg"
+      "gpg"
     ],
-    "handler": "./src/functions/generate-gpg/index.js",
-    "desc": "Generate a new GPG key",
-    "optsData": []
+    "handler": "./src/functions/gpg/index.js",
+    "desc": "Manipulate GPG keys",
+    "optsData": [
+      {
+        "opts": ["--generate"],
+        "desc": "generate a new GPG key to use in git-assist utilities"
+      },
+      {
+        "opts": ["--list"],
+        "desc": "list all GPG keys created via git-assist"
+      },
+      {
+        "opts": ["--add"],
+        "desc": "add a GPG key to a given user"
+      },
+      {
+        "opts": ["--delete"],
+        "desc": "delete a GPG key previously generated via git-assist"
+      }
+    ]
   },
   "clone": {
     "cmds": [
