@@ -1,5 +1,8 @@
 module.exports = async (args) => {
-  const info = await require('./helpers/info-prompter.js')()
-  await require('./helpers/generate-ssh.js')(info)
-  await require('./helpers/user-info.js')(info.path)
+  let opt = args[0]
+  if (!opt) {
+    opt = (await require(appRoot + '/src/utils/key-gen/no-args.js')()).opt
+  }
+  const fct = opt.replace('--', '')
+  await require(`./helpers/${fct}/main.js`)(args)
 }
