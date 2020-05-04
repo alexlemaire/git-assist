@@ -1,6 +1,18 @@
 module.exports = (type) => {
-  const keys = readKeys(type)
-  return normalize(keys)
+  let keys = readKeys(type)
+  keys = normalize(keys)
+  keys.sort((a, b) => {
+    const keyA = a.key.toUpperCase()
+    const keyB = b.key.toUpperCase()
+    if (keyA < keyB) {
+      return -1
+    }
+    if (keyA > keyB) {
+      return 1
+    }
+    return 0
+  })
+  return keys
 }
 
 function readKeys(type) {

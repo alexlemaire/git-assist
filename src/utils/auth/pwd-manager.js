@@ -1,9 +1,14 @@
+const keytar = require('keytar')
+
 module.exports = {
   getPwd: (user) => {
     return timedWrapper(getPwdHandler, user).catch(err => {throw new Error(err)})
   },
   setPwd: (user, password) => {
     return timedWrapper(setPwdHandler, user, password).catch(err => {throw new Error(err)})
+  },
+  deletePwd: (user) => {
+    return timedWrapper(deletePwdHandler, user).catch(err => {throw new Error(err)})
   },
   promptPwd: async () => {
     const inquirer = require('inquirer')
@@ -27,11 +32,13 @@ function timedWrapper(task, ...args) {
 }
 
 function getPwdHandler(user) {
-  const keytar = require('keytar')
   return keytar.getPassword('git-assist', user)
 }
 
 function setPwdHandler (user, password) {
-  const keytar = require('keytar')
   return keytar.setPassword('git-assist', user, password)
+}
+
+function deletePwdHandler (user) {
+  return keytar.deletePassword('git-assist', user)
 }
