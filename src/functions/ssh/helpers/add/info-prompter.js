@@ -10,7 +10,7 @@ module.exports = async (keys) => {
       type: 'rawlist',
       name: 'key',
       message: 'Select the key you would like to add to this user:',
-      choices: keys.map(keyData => keyData.key)
+      choices: keys.map(keyData => keyData.ref)
     }
   ]
   return await inquirer.prompt(questions)

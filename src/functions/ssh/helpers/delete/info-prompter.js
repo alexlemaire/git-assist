@@ -7,11 +7,9 @@ module.exports = async (keys) => {
       type: 'checkbox',
       name: 'chosenKeys',
       message: 'Select all the keys you would like to delete:',
-      choices: keys.map(keyData => `${keyData.key} (users: ${keyData.users.map(userData => userData.user).join(', ')})`),
+      choices: keys.map(key => `${key.ref} (users: ${key.users.join(', ')})`),
       filter: input => {
-        const chosenKeys = input.map(choice => choice.split(' ')[0])
-        console.log(chosenKeys)
-        return keys.filter(key => chosenKeys.includes(key.key))
+        return input.map(choice => choice.split(' ')[0])
       }
     }
   ]

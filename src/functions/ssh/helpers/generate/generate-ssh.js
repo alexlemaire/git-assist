@@ -42,7 +42,7 @@ function updateConfig(info) {
   const chalk = require('chalk')
   clog.info(`Adding the SSH key to ${chalk.italic.cyan('git-assist')}...`)
   require(appRoot + '/src/utils/key-gen/update-config.js')('ssh', info.email, info.path)
-  clog.success(`SSH key successfully added for ${info.email}!`)
+  clog.success(`SSH key successfully added for ${chalk.italic.blue(info.email)}!`)
 }
 
 async function storePwd(info) {
