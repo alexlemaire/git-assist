@@ -13,21 +13,18 @@ function updateKeyConfig(type, user, key) {
     accessPropertiesByDotNotation: false
   })
   const path = require('path')
-  const id = type === 'ssh' ? path.basename(key) : key
-  let data = {
-    ref: key,
+  let infoMsg = `Storing ${type.toUpperCase()} key ${chalk.italic.cyan(key)} information...`
+  let successMsg = 'Key information successfully stored!'
+  if (keyConfig.has(key)) {
+    infoMsg = `${type.toUpperCase()} key ${chalk.italic.cyan(key)} already exists. Updating...`
+    successMsg = 'Key information successfully updated!'
+  }
+  clog.info(infoMsg)
+  keyConfig.set(key, {
+    user,
     lastModified: Date.now()
-  }
-  if (keyConfig.has(id)) {
-    clog.info(`${type.toUpperCase()} key ${chalk.italic.cyan(id)} already exists. Updating...`)
-    data.users = [...keyConfig.get(id).users, user]
-    clog.success('Key information successfully updated!')
-  } else {
-    clog.info(`Storing ${type.toUpperCase()} key ${chalk.italic.cyan(id)} information...`)
-    data.users = [user]
-    clog.success('Key information successfully stored!')
-  }
-  keyConfig.set(id, data)
+  })
+  clog.success(successMsg)
 }
 
 function updateUserConfig(type, user, key) {
@@ -40,38 +37,17 @@ function updateUserConfig(type, user, key) {
     lastModified: Date.now()
   }
   data[type] = key
+  let infoMsg = `Storing ${chalk.italic.blue(user)} information...`
+  let successMsg = 'Information successfully stored!'
   if (userConfig.has(user)) {
-    clog.info(`User ${chalk.italic.blue(user)} already exists. Updating...`)
-    const userData = userConfig.get(user)
-    removeOldRef(type, user, userData[type])
-    userConfig.set(user, {
-      ...userData,
+    infoMsg = `User ${chalk.italic.blue(user)} already exists. Updating...`
+    successMsg = 'User successfully updated!'
+    data = {
+      ...userConfig.get(user),
       ...data
-    })
-    clog.success('User successfully updated!')
-  } else {
-    clog.info(`Storing ${chalk.italic.blue(user)} information...`)
-    userConfig.set(user, data)
-    clog.success('Information successfully stored!')
-  }
-}
-
-function removeOldRef(type, user, key) {
-  const keyConfig = new Conf({
-    configName: type,
-    fileExtension: 'keys',
-    accessPropertiesByDotNotation: false
-  })
-  const path = require('path')
-  const id = type === 'ssh' ? path.basename(key) : key
-  clog.info(`Removing user ${chalk.italic.blue(user)} reference from former ${type.toUpperCase()} key ${chalk.italic.cyan(id)}...`)
-  const oldKeyConfig = keyConfig.get(id)
-  keyConfig.set(id, {
-    ...oldKeyConfig,
-    ...{
-      users: oldKeyConfig.users.filter(filterUser => filterUser !== user),
-      lastModified: Date.now()
     }
-  })
-  clog.success('Successfully removed old reference!')
+  }
+  clog.info(infoMsg)
+  userConfig.set(user, data)
+  clog.success(successMsg)
 }

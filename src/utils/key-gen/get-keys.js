@@ -5,7 +5,12 @@ module.exports = (type) => {
     fileExtension: 'keys',
     accessPropertiesByDotNotation: false
   })
-  let keys = Object.values(config.store)
+  let keys = Object.entries(config.store).map(entry => {
+    return {
+      ref: entry[0],
+      ...entry[1]
+    }
+  })
   keys.sort((a, b) => {
     const keyA = a.ref.toUpperCase()
     const keyB = b.ref.toUpperCase()

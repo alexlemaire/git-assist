@@ -12,14 +12,19 @@ module.exports = (type, key) => {
     fileExtension: 'conf',
     accessPropertiesByDotNotation: false
   })
-  const id = type === 'ssh' ? path.basename(key) : key
-  const users = keyConfig.get(id).users
-  clog.info(`Deleting ${type.toUpperCase()} key ${chalk.italic.cyan(id)}...`)
-  keyConfig.delete(id)
+  const user = keyConfig.get(key).user
+  clog.info(`Deleting ${type.toUpperCase()} key ${chalk.italic.cyan(key)}...`)
+  keyConfig.delete(key)
   clog.success('Key successfully deleted!')
-  clog.info(`Deleting users using ${chalk.italic.cyan(id)}...`)
-  for (const user of users) {
+  clog.info(`Removing ${type.toUpperCase()} key from associated user ${chalk.italic.blue(user)}...`)
+  let userData = userConfig.get(user)
+  delete userData[type]
+  if (!userData.gpg && !userData.ssh) {
+    clog.info(`User ${chalk.italic.blue(user)} does not have any GPG or SSH keys associated, deleting user...`)
     userConfig.delete(user)
+    clog.success(`${chalk.italic.blue(user)} successfully deleted!`)
+  } else {
+    userConfig.set(user, userData)
+    clog.success(`Successfully removed ${type.toUpperCase()} key from ${chalk.italic.blue(user)}!`)
   }
-  clog.success(`Successfully deleted all users using ${chalk.italic.cyan(id)}!`)
 }
