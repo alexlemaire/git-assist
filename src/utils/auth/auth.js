@@ -28,7 +28,7 @@ module.exports = {
     const key = userData.ssh
     if (!key) {
       const chalk = require('chalk')
-      clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys already added to the SSH agent instead.`)
+      clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys being already added by user to the SSH agent.`)
       clog.info(`If this fails/you are unsure and want to authenticate to GitHub via SSH, you can run ${chalk.italic.cyan('git-assist generate-ssh')} in order to generate an SSH key that will work with ${chalk.italic.cyan('git-assist')}`)
       return
     }
