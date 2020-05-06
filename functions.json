@@ -62,15 +62,15 @@
     "optsData": [
       {
         "opts": ["--generate"],
-        "desc": "generate a new SSH key to use in git-assist utilities"
+        "desc": "generate a new SSH key to use with git-assist"
       },
       {
         "opts": ["--list"],
-        "desc": "list all SSH keys created via git-assist"
+        "desc": "list all SSH keys generated via git-assist"
       },
       {
         "opts": ["--delete"],
-        "desc": "delete an SSH key previously generated via git-assist"
+        "desc": "delete one or multiple SSH keys generated via git-assist"
       }
     ]
   },
@@ -83,15 +83,15 @@
     "optsData": [
       {
         "opts": ["--generate"],
-        "desc": "generate a new GPG key to use in git-assist utilities"
+        "desc": "generate a new GPG key to use with git-assist"
       },
       {
         "opts": ["--list"],
-        "desc": "list all GPG keys created via git-assist"
+        "desc": "list all GPG keys generated via git-assist"
       },
       {
         "opts": ["--delete"],
-        "desc": "delete a GPG key previously generated via git-assist"
+        "desc": "delete one or multiple GPG keys generated via git-assist"
       }
     ]
   },

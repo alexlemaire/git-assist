@@ -27,7 +27,7 @@ function help (entry) {
 function logInfo(entry) {
   console.log(`${chalk.yellow('➢')} ${chalk.yellow.underline('Function')}: ${entry[0]}`)
   console.log(`  ${chalk.blue.underline('Description')}: ${entry[1].desc}`)
-  console.log(`  ${chalk.cyan.underline('Command')}: ${chalk.italic.magenta(`git-assist ${entry[0]} ${entry[1].optsData.map(optData => `[${optData.opts.join(', ')}]`).join(' ')}`.trim())}`)
+  console.log(`  ${chalk.cyan.underline('Command')}: ${chalk.italic.magenta(`git-assist ${entry[1].cmds.length === 1 ? entry[1].cmds[0] : `<${entry[1].cmds.join(', ')}>`} ${entry[1].optsData.map(optData => `[${optData.opts.join(', ')}]`).join(' ')}`.trim())}`)
   for (const optData of entry[1].optsData) {
     if (entry[1].optsData.indexOf(optData) === 0) {
       console.log(`  ${chalk.green.underline('Accepted options')}:`)
