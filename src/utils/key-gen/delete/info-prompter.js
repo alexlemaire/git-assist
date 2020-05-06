@@ -12,7 +12,7 @@ module.exports = async (type, keys) => {
       type: 'checkbox',
       name: 'chosenKeys',
       message: `Select all the ${type.toUpperCase()} keys you would like to delete:`,
-      choices: keys.map(key => `${key.ref} (users: ${key.users.join(', ')})`),
+      choices: keys.map(key => `${key.ref} (user: ${key.user})`),
       filter: input => {
         return input.map(choice => choice.split(' ')[0])
       }
