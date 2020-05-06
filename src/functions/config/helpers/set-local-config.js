@@ -32,12 +32,12 @@ function gpgParams(info) {
   const chalk = require('chalk')
   const Conf = require('conf')
   const config = new Conf({
-    configName: 'keys',
+    configName: 'users',
     fileExtension: 'conf'
   })
-  const gpgKeyMap = config.get('gpg') || {}
-  const keyId = gpgKeyMap[info.email].id
-  if (!keyId) {
+  const user = config.get(info.email) || {}
+  const key = user.gpg
+  if (!key) {
     clog.error(`No GPG key was created for GitHub for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
     clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
@@ -45,7 +45,7 @@ function gpgParams(info) {
     clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')}.`)
     return [{
       path: 'user.signingkey',
-      value: keyId
+      value: key
     },
     {
       path: 'commit.gpgSign',
