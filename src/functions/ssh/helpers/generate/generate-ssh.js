@@ -40,22 +40,9 @@ function generateKey(info) {
 
 function updateConfig(info) {
   const chalk = require('chalk')
-  const Conf = require('conf')
-  const config = new Conf({
-    configName: 'keys',
-    fileExtension: 'conf'
-  })
   clog.info(`Adding the SSH key to ${chalk.italic.cyan('git-assist')}...`)
-  let sshKeyMap = config.get('ssh') || {}
-  if (sshKeyMap[info.email]) {
-    clog.info(`An SSH key already exists for ${info.email}, this key will now be updated with the newly generated key...`)
-  }
-  sshKeyMap[info.email] = {
-    lastModified: Date.now(),
-    path: info.path
-  }
-  config.set('ssh', sshKeyMap)
-  clog.success(`SSH key successfully added for ${info.email}!`)
+  require(appRoot + '/src/utils/key-gen/update-config.js')('ssh', info.email, info.path)
+  clog.success(`SSH key successfully added for ${chalk.italic.blue(info.email)}!`)
 }
 
 async function storePwd(info) {

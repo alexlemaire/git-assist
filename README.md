@@ -2,7 +2,7 @@
   <img src="static/git-assist-logo.jpg">
 
   ![Package version](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
-  [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/alexlemaire/git-assist)](https://snyk.io/test/github/alexlemaire/git-assist)
+  [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/git-assist)](https://snyk.io/test/github/alexlemaire/git-assist)
   [![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
 
   ![Publish action status](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
@@ -16,6 +16,16 @@
   ![MacOS support](static/mac-badge.svg)
   ![Windows support](static/windows-badge.svg)
 </div>
+
+**Temporary disclaimer for existing users:** going into versions `0.7.x`, `git-assist` sees changes for its `SSH` and `GPG` utilities.
+
+In previous versions (up to `0.6.x`) you could generate `SSH` (resp. `GPG`) keys via `git-assist generate-ssh` (resp. `git-assist generate-gpg`). But `SSH` and `GPG` key utilities received an upgrade:
+- call `git-assist ssh` (resp. `git-assist gpg`) to access an interactive mode for this utility
+- call `git-assist ssh [--generate] [--delete] [--list]` (resp. `git-assist gpg [--generate] [--delete] [--list]`) to access any of the new utilities available for `SSH` (resp. `GPG`) keys, `--generate` option being the equivalent of the former `generate-ssh` (resp. `generate-gpg`)
+
+This was done to expand on `SSH` and `GPG` possibilities with `git-assist` as well as to get rid of an initial opinionated approach taken with the way those keys were handled. Now the package will manage its own keys but tries to allow enough freedom so that custom made solution to use `SSH` and `GPG` keys still works.
+
+As always, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
 
 ## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
 

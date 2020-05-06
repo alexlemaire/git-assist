@@ -85,7 +85,10 @@ function finishJob(...msgs) {
     clog[msg.level](msg.content)
   }
   clog.end()
-  clog.transports.find(transport => transport.name === 'file')._dest.on('finish', (info) => {
-    process.exit()
-  })
+  const fileTransport = clog.transports.find(transport => transport.name === 'file')
+  if (fileTransport) {
+    fileTransport._dest.on('finish', (info) => {
+      process.exit()
+    })
+  }
 }

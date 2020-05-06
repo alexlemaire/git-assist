@@ -8,22 +8,11 @@ main() {
 
   EXEC="$(npm bin -g 2> /dev/null)/git-assist"
 
-  # generate SSH key
-  header_print "Generating SSH key for GitHub..."
-  $EXEC ssh --generate
-
   # generate GPG key
   header_print "Generating GPG key for GitHub..."
   $EXEC gpg --generate
 
-  # configurate user
-  header_print "Configurating GitHub user..."
-  $EXEC config -g
-
-  if [[ $2 != "--noEndMsg" ]]
-  then
-    echo "Done!"
-  fi
+  echo "Done!"
 }
 
 export -f main
