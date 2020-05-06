@@ -43,7 +43,7 @@ function gpgParams(info) {
     clog.info(`Please run ${chalk.cyan.italic('git-assist gpg --generate')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
   } else {
-    clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')}.`)
+    clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')} for ${chalk.italic.blue(info.email)}...`)
     return [{
       path: 'user.signingkey',
       value: key
