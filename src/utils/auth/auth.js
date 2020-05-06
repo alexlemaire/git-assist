@@ -19,22 +19,23 @@ module.exports = {
   sshAuth: async () => {
     const username = await getUsername()
     const Conf = require('conf')
-    const config = new Conf({
-      configName: 'keys',
-      fileExtension: 'conf'
+    const userConfig = new Conf({
+      configName: 'users',
+      fileExtension: 'conf',
+      accessPropertiesByDotNotation: false
     })
-    const sshKeyMap = config.get('ssh') || {}
-    const keyPath = sshKeyMap ? sshKeyMap[username].path : undefined
-    if (!keyPath) {
+    const userData = userConfig.get(username) || {}
+    const key = userData.ssh
+    if (!key) {
       const chalk = require('chalk')
-      clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys already added to the SSH agent instead.`)
-      clog.info(`If this fails/you are unsure and want to authenticate to GitHub via SSH, you can run ${chalk.italic.cyan('git-assist generate-ssh')} in order to generate an SSH key that will work with ${chalk.italic.cyan('git-assist')}`)
+      clog.info(`No SSH key was found for ${chalk.italic.green(username)}: not proceeding to authenticate via ${chalk.italic.cyan('git-assist')}. Relying on SSH keys being already added by user to the SSH agent.`)
+      clog.info(`If this fails/you are unsure and want to authenticate to GitHub via SSH, you can run ${chalk.italic.cyan('git-assist ssh --generate')} in order to generate an SSH key that will work with ${chalk.italic.cyan('git-assist')}`)
       return
     }
     try {
       const execSync = require('child_process').execSync
       // fool ssh-add so that we add the SSH key with its password without user prompt
-      execSync(`SSH_PASS=${await pwdManager.getPwd(keyPath)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${keyPath} < /dev/null`)
+      execSync(`SSH_PASS=${await pwdManager.getPwd(key)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${key} < /dev/null`, {stdio: 'inherit'})
     } catch (err) {
       throw err
     }
