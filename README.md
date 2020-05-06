@@ -23,6 +23,8 @@ In previous versions (up to `0.6.x`) you could generate `SSH` (resp. `GPG`) keys
 - call `git-assist ssh` (resp. `git-assist gpg`) to access an interactive mode for this utility
 - call `git-assist ssh [--generate] [--add] [--delete] [--list]` (resp. `git-assist gpg [--generate] [--add] [--delete] [--list]`) to access any of the new utilities available for `SSH` (resp. `GPG`) keys, `--generate` option being the equivalent of the former `generate-ssh` (resp. `generate-gpg`)
 
+This was done to expand on `SSH` and `GPG` possibilities with `git-assist` as well as to get rid of an initial opinionated approach taken with the way we handle those keys. Now the package will manage its own keys but tries to allow enough freedom so that custom made solution to use `SSH` and `GPG` keys still works.
+
 As always, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
 
 ## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
