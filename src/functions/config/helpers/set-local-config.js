@@ -33,13 +33,14 @@ function gpgParams(info) {
   const Conf = require('conf')
   const config = new Conf({
     configName: 'users',
-    fileExtension: 'conf'
+    fileExtension: 'conf',
+    accessPropertiesByDotNotation: false
   })
   const user = config.get(info.email) || {}
   const key = user.gpg
   if (!key) {
     clog.error(`No GPG key was created for GitHub for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
-    clog.info(`Please run ${chalk.cyan.italic('git-assist generate-gpg')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
+    clog.info(`Please run ${chalk.cyan.italic('git-assist gpg --generate')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
   } else {
     clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')}.`)
