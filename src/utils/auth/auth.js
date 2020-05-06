@@ -35,7 +35,7 @@ module.exports = {
     try {
       const execSync = require('child_process').execSync
       // fool ssh-add so that we add the SSH key with its password without user prompt
-      execSync(`SSH_PASS=${await pwdManager.getPwd(key)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${key} < /dev/null`)
+      execSync(`SSH_PASS=${await pwdManager.getPwd(key)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${key} < /dev/null`, {stdio: 'inherit'})
     } catch (err) {
       throw err
     }
