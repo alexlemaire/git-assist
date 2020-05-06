@@ -1,3 +1,3 @@
 module.exports = async (keys) => {
-  require('./print-keys.js')(keys)
+  require(appRoot + '/src/utils/key-gen/list/print-keys.js')(keys, 'ssh')
 }
