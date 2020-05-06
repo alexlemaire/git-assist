@@ -10,11 +10,11 @@ main() {
 
   # generate SSH key
   header_print "Generating SSH key for GitHub..."
-  $EXEC generate-ssh
+  $EXEC ssh --generate
 
   # generate GPG key
   header_print "Generating GPG key for GitHub..."
-  $EXEC generate-gpg
+  $EXEC gpg --generate
 
   # configurate user
   header_print "Configurating GitHub user..."
