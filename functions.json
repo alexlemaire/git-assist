@@ -69,10 +69,6 @@
         "desc": "list all SSH keys created via git-assist"
       },
       {
-        "opts": ["--add"],
-        "desc": "add an SSH key to a given user"
-      },
-      {
         "opts": ["--delete"],
         "desc": "delete an SSH key previously generated via git-assist"
       }
@@ -92,10 +88,6 @@
       {
         "opts": ["--list"],
         "desc": "list all GPG keys created via git-assist"
-      },
-      {
-        "opts": ["--add"],
-        "desc": "add a GPG key to a given user"
       },
       {
         "opts": ["--delete"],
