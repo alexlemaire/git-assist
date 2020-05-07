@@ -1,6 +1,5 @@
 module.exports = (type, key) => {
   const chalk = require('chalk')
-  const path = require('path')
   const Conf = require('conf')
   const keyConfig = new Conf({
     configName: type,
@@ -17,7 +16,7 @@ module.exports = (type, key) => {
   keyConfig.delete(key)
   clog.success('Key successfully deleted!')
   clog.info(`Removing ${type.toUpperCase()} key from associated user ${chalk.italic.blue(user)}...`)
-  let userData = userConfig.get(user)
+  const userData = userConfig.get(user)
   delete userData[type]
   if (!userData.gpg && !userData.ssh) {
     clog.info(`User ${chalk.italic.blue(user)} does not have any GPG or SSH keys associated, deleting user...`)

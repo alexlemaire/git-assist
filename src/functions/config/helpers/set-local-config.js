@@ -2,7 +2,7 @@ module.exports = async (info) => {
   await setConfig(generateParams(info))
 }
 
-async function setConfig(params) {
+async function setConfig (params) {
   const git = require('isomorphic-git')
   const fs = require('fs')
   for (const param of params) {
@@ -16,7 +16,7 @@ async function setConfig(params) {
   clog.success('Local configuration successfully updated!')
 }
 
-function generateParams(info) {
+function generateParams (info) {
   const baseParams = [{
     path: 'user.name',
     value: info.name
@@ -28,7 +28,7 @@ function generateParams(info) {
   return [...baseParams, ...gpgParams(info)]
 }
 
-function gpgParams(info) {
+function gpgParams (info) {
   const chalk = require('chalk')
   const Conf = require('conf')
   const config = new Conf({

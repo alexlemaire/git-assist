@@ -1,6 +1,5 @@
 module.exports = async (keys, type) => {
   const chalk = require('chalk')
-  const path = require('path')
   clog.info(`Printing ${type.toUpperCase()} keys generated with ${chalk.italic.cyan('git-assist')}...`)
   for (const key of keys) {
     console.log(`\n${chalk.italic.blue(key.ref)} ${chalk.magenta('information:')}`)

@@ -12,34 +12,37 @@ module.exports = async (config) => {
   return answer
 }
 
-async function processAction(processes, res) {
+async function processAction (processes, res) {
   const { action } = await getAction(processes)
   switch (action) {
-    case 'nothing':
+    case 'nothing': {
       res.scheduled = false
       break
-    case 'add':
+    }
+    case 'add': {
       const addAnswer = await addActionPrompt(processes)
       if (!addAnswer.type) {
         clog.info(`There are no scheduled ${chalk.italic.cyan('auto-pull')} runs you can add for this machine.`)
         res.scheduled = false
       }
-      res = {...res, action, ...addAnswer}
+      res = { ...res, action, ...addAnswer }
       break
+    }
     case 'edit':
-    case 'delete':
+    case 'delete': {
       const editAnswer = await editActionPrompt(processes, action)
       if (!editAnswer.name) {
         clog.info(`There are no scheduled ${chalk.italic.cyan('auto-pull')} runs you can ${action} for this machine.`)
         res.scheduled = false
       }
-      res = {...res, action, ...editAnswer}
+      res = { ...res, action, ...editAnswer }
       break
+    }
   }
   return res
 }
 
-async function getAction(processes) {
+function getAction (processes) {
   const subChoices = processes.length > 0 ? ['edit', 'delete'] : []
   const questions = [
     {
@@ -49,10 +52,10 @@ async function getAction(processes) {
       choices: ['add', ...subChoices, 'nothing']
     }
   ]
-  return await inquirer.prompt(questions)
+  return inquirer.prompt(questions)
 }
 
-async function addActionPrompt(processes) {
+function addActionPrompt (processes) {
   const processTypes = processes.map(process => process.replace(/-auto-pull/g, ''))
   const choices = ['startup', 'cron'].filter(choice => !processTypes.includes(choice))
   const questions = [
@@ -75,10 +78,10 @@ async function addActionPrompt(processes) {
       }
     }
   ]
-  return await inquirer.prompt(questions)
+  return inquirer.prompt(questions)
 }
 
-async function editActionPrompt(processes, action) {
+function editActionPrompt (processes, action) {
   const choices = action !== 'edit' ? processes : processes.filter(process => process !== 'startup-auto-pull')
   const questions = [
     {
@@ -103,5 +106,5 @@ async function editActionPrompt(processes, action) {
       }
     }
   ]
-  return await inquirer.prompt(questions)
+  return inquirer.prompt(questions)
 }

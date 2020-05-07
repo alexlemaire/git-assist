@@ -7,13 +7,13 @@ module.exports = async (key, keyType, root) => {
   fs.unlinkSync(keyPath)
 }
 
-function openPopup(indexPath) {
+function openPopup (indexPath) {
   const spawnSync = require('child_process').spawnSync
   spawnSync('xdg-open', ['https://github.com/settings/keys'])
   spawnSync('xdg-open', [indexPath])
 }
 
-async function confirm(keyType) {
+async function confirm (keyType) {
   const inquirer = require('inquirer')
   let confirm = false
   while (!confirm) {

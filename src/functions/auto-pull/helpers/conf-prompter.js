@@ -16,7 +16,7 @@ module.exports = async (args, config) => {
   }
 }
 
-async function getPath(root, listHidden) {
+async function getPath (root, listHidden) {
   clog.info(`Currently in ${root}`)
   let { path } = await promptPath(root, listHidden)
   while (path === '..') {
@@ -30,12 +30,11 @@ async function getPath(root, listHidden) {
   return path
 }
 
-async function promptPath(root, listHidden) {
-  return await inquirer.prompt([{
+function promptPath (root, listHidden) {
+  return inquirer.prompt([{
     type: 'fuzzypath',
     name: 'path',
-    excludePath: nodePath =>
-    {
+    excludePath: nodePath => {
       let test = nodePath.includes('node_modules') || fs.existsSync(pathMod.join(nodePath, '.git'))
       if (!listHidden) {
         test = test || pathMod.basename(nodePath).startsWith('.')
@@ -51,8 +50,8 @@ async function promptPath(root, listHidden) {
   }])
 }
 
-async function getExcludedRepos(repos) {
-  return await inquirer.prompt([{
+function getExcludedRepos (repos) {
+  return inquirer.prompt([{
     type: 'checkbox',
     name: 'excludedRepos',
     message: 'Select repositories you would like not to enable auto-pulling for:',
@@ -60,7 +59,7 @@ async function getExcludedRepos(repos) {
   }])
 }
 
-async function getExcludedBranches(repos, path) {
+async function getExcludedBranches (repos, path) {
   const git = require('isomorphic-git')
   const reposData = await Promise.all(repos.map(async (repo) => {
     return {
@@ -68,16 +67,18 @@ async function getExcludedBranches(repos, path) {
       branches: await git.listBranches({ fs, dir: pathMod.join(path, repo) })
     }
   }))
-  return await inquirer.prompt([
+  return inquirer.prompt([
     {
       type: 'checkbox',
       name: 'excludedBranches',
       message: 'Select branches you would like not to enable auto-pulling for:',
       choices: reposData.map(data => [new inquirer.Separator(` --- ${data.repo} branches --- `), ...data.branches.map(branch => `${data.repo}: ${branch}`)]).flat(1),
-      filter: function(input) {
-        let filteredInput = {}
+      filter: function (input) {
+        const filteredInput = {}
         const entries = input.map(choice => choice.split(': '))
-        entries.forEach(entry => filteredInput[entry[0]] = filteredInput[entry[0]] ? [...filteredInput[entry[0]], entry[1]] : [entry[1]])
+        entries.forEach(entry => {
+          filteredInput[entry[0]] = filteredInput[entry[0]] ? [...filteredInput[entry[0]], entry[1]] : [entry[1]]
+        })
         return filteredInput
       }
     }

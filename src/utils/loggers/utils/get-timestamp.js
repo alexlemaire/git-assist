@@ -8,10 +8,9 @@ module.exports = (type) => {
     default:
       return `${getDate(now)} @ ${getTime(now)}`
   }
-  return `${year}-${month}-${day} @ ${hours}:${mins}:${secs}.${ms}`
 }
 
-function getTime(date) {
+function getTime (date) {
   const hours = formatTime(date.getHours())
   const mins = formatTime(date.getMinutes())
   const secs = formatTime(date.getSeconds())
@@ -19,17 +18,17 @@ function getTime(date) {
   return `${hours}:${mins}:${secs}.${ms}`
 }
 
-function getDate(date) {
+function getDate (date) {
   const year = date.getFullYear()
   const month = formatTime(date.getMonth() + 1)
   const day = formatTime(date.getDate())
   return `${year}-${month}-${day}`
 }
 
-function formatTime(time) {
+function formatTime (time) {
   return `${time}`.padStart(2, '0')
 }
 
-function formatMs(ms) {
+function formatMs (ms) {
   return `${ms}`.padEnd(3)
 }

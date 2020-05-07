@@ -7,10 +7,10 @@ module.exports = (opts) => {
   return winston.createLogger({ levels, transports })
 }
 
-function getOpts(opts) {
+function getOpts (opts) {
   const defaults = {
     transports: ['console', 'file'],
     filename: 'default.log'
   }
-  return {...defaults, ...opts}
+  return { ...defaults, ...opts }
 }

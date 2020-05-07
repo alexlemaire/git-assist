@@ -7,7 +7,7 @@ module.exports = async (args, callback, multi = true) => {
   }
 }
 
-function process(arg, callback) {
+function process (arg, callback) {
   const fs = require('fs')
   const path = require('path')
   const chalk = require('chalk')
@@ -23,11 +23,11 @@ function process(arg, callback) {
   }
 }
 
-async function prompt(multi) {
+async function prompt (multi) {
   const inquirer = require('inquirer')
   const fs = require('fs')
   const path = require('path')
-  const choices = fs.readdirSync(path.join(appRoot, 'logs'), {withFileTypes: true}).filter(file => file.isFile()).map(file => file.name.replace('.log', ''))
+  const choices = fs.readdirSync(path.join(appRoot, 'logs'), { withFileTypes: true }).filter(file => file.isFile()).map(file => file.name.replace('.log', ''))
   if (choices.length === 0) {
     clog.info('There are currently no logs files. Exiting utility...')
     return []

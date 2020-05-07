@@ -1,9 +1,9 @@
-(async function main() {
+(async function main () {
   const inquirer = require('inquirer')
-  const clog = require('../../src/utils/loggers/logger.js')({filename: 'add-function-tool.log'})
+  const clog = require('../../src/utils/loggers/logger.js')({ filename: 'add-function-tool.log' })
   clog.heading('START ADD-FUNCTION tool')
   clog.info('This function will create a new utility function for you.')
-  const {name} = await inquirer.prompt({
+  const { name } = await inquirer.prompt({
     type: 'input',
     name: 'name',
     message: 'Function name:'
@@ -14,7 +14,7 @@
   const fs = require('fs')
   fs.mkdirSync(root)
   fs.copyFileSync('tools/add-function/function.js', path)
-  let fcts = JSON.parse(fs.readFileSync(fctsPath, 'utf-8'))
+  const fcts = JSON.parse(fs.readFileSync(fctsPath, 'utf-8'))
   fcts[name] = {
     cmds: [name],
     handler: `./${path}`,

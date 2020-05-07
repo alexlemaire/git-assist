@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 
 module.exports = (args) => {
-  let fcts = require(appRoot + '/functions.json')
-  delete fcts['help']
+  const fcts = require(appRoot + '/functions.json')
+  delete fcts.help
   require(appRoot + '/src/utils/welcome/welcome.js')
   if (args.length === 0) {
     globalHelp(Object.entries(fcts))
@@ -24,7 +24,7 @@ function help (entry) {
   logInfo(entry)
 }
 
-function logInfo(entry) {
+function logInfo (entry) {
   console.log(`${chalk.yellow('➢')} ${chalk.yellow.underline('Function')}: ${entry[0]}`)
   console.log(`  ${chalk.blue.underline('Description')}: ${entry[1].desc}`)
   console.log(`  ${chalk.cyan.underline('Command')}: ${chalk.italic.magenta(`git-assist ${entry[1].cmds.length === 1 ? entry[1].cmds[0] : `<${entry[1].cmds.join(', ')}>`} ${entry[1].optsData.map(optData => `[${optData.opts.join(', ')}]`).join(' ')}`.trim())}`)

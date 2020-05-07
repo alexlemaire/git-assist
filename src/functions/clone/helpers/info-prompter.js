@@ -1,4 +1,4 @@
-module.exports = async () => {
+module.exports = () => {
   const inquirer = require('inquirer')
   const questions = [
     {
@@ -15,5 +15,5 @@ module.exports = async () => {
       }
     }
   ]
-  return await inquirer.prompt(questions)
+  return inquirer.prompt(questions)
 }

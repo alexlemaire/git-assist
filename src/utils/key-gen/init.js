@@ -13,5 +13,5 @@ module.exports = async (args, type) => {
       process.exit(0)
     }
   }
-  return {fct, keys}
+  return { fct, keys }
 }

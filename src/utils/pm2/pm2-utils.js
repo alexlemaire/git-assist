@@ -1,7 +1,7 @@
-function promisifyPm2(method, ...params) {
+function promisifyPm2 (method, ...params) {
   const pm2 = require('pm2')
   return new Promise((resolve, reject) => {
-    pm2[method](...params, function(err, data) {
+    pm2[method](...params, function (err, data) {
       if (err) {
         reject(err)
       } else {
@@ -11,8 +11,8 @@ function promisifyPm2(method, ...params) {
   })
 }
 
-function buildExport(methods) {
-  let exp = {}
+function buildExport (methods) {
+  const exp = {}
   methods.forEach(method => {
     exp[method] = (...params) => promisifyPm2(method, ...params)
   })

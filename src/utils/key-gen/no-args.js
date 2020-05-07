@@ -1,6 +1,6 @@
-module.exports = async () => {
+module.exports = () => {
   const inquirer = require('inquirer')
-  return await inquirer.prompt([
+  return inquirer.prompt([
     {
       type: 'rawlist',
       name: 'opt',

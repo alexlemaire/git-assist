@@ -1,7 +1,7 @@
 module.exports = async (fcts, args) => {
   const inquirer = require('inquirer')
   require(appRoot + '/src/utils/welcome/welcome.js')
-  const {action} = await inquirer.prompt([
+  const { action } = await inquirer.prompt([
     {
       type: 'rawlist',
       name: 'action',
@@ -14,7 +14,7 @@ module.exports = async (fcts, args) => {
   const fct = matchFct[1]
   args.push(fct.cmds[0])
   if (fct.optsData.length > 0) {
-    const {opt} = await inquirer.prompt([
+    const { opt } = await inquirer.prompt([
       {
         type: 'checkbox',
         name: 'opt',

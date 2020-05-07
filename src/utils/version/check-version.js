@@ -7,11 +7,11 @@ module.exports = () => {
   }
 }
 
-function getPublishedVer() {
+function getPublishedVer () {
   const spawnSync = require('child_process').spawnSync
   return spawnSync('npm', ['view', 'git-assist', 'version']).stdout.toString().trim()
 }
 
-function getCurrentVer() {
+function getCurrentVer () {
   return require(appRoot + '/package.json').version.trim()
 }

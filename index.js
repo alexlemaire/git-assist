@@ -19,8 +19,7 @@ process.on('beforeExit', () => {
 })
 
 // **** MAIN RUNNER ****
-async function main() {
-  const logger = require('./src/utils/loggers/logger.js')
+async function main () {
   const chalk = require('chalk')
   const path = require('path')
   global.appRoot = path.resolve(__dirname)
@@ -49,7 +48,7 @@ main().catch(err => {
 })
 
 // **** HELPERS ****
-function getLogger(fctName) {
+function getLogger (fctName) {
   const logger = require('./src/utils/loggers/logger.js')
   if (!fctName) {
     return logger()
@@ -57,30 +56,30 @@ function getLogger(fctName) {
   switch (fctName) {
     case 'help':
     case 'version':
-      return logger({transports: ['console']})
+      return logger({ transports: ['console'] })
     default:
-      return logger({filename: `${fctName}.log`})
+      return logger({ filename: `${fctName}.log` })
   }
 }
 
-function getHeading(fctName, args) {
+function getHeading (fctName, args) {
   return `${fctName.toUpperCase()} utility${args.length > 0 ? ` with ${args.join(' & ')} as arguments` : ''}`
 }
 
-async function processArgs(args) {
+async function processArgs (args) {
   const fcts = require('./functions.json')
   if (args.length === 0) {
-    return await require('./src/utils/no-args/no-args.js')(fcts, args)
+    return require('./src/utils/no-args/no-args.js')(fcts, args)
   } else {
     const matchFct = Object.entries(fcts).filter(entry => entry[1].cmds.includes(args[0]))[0]
     return {
       args,
-      ...(matchFct && {fct: matchFct[1], fctName: matchFct[0]})
+      ...(matchFct && { fct: matchFct[1], fctName: matchFct[0] })
     }
   }
 }
 
-function finishJob(...msgs) {
+function finishJob (...msgs) {
   for (const msg of msgs) {
     clog[msg.level](msg.content)
   }
