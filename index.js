@@ -80,14 +80,15 @@ async function processArgs (args) {
 }
 
 function finishJob (...msgs) {
+  const fileTransport = clog.transports.find(transport => transport.name === 'file')
   for (const msg of msgs) {
     clog[msg.level](msg.content)
   }
   clog.end()
-  const fileTransport = clog.transports.find(transport => transport.name === 'file')
   if (fileTransport) {
-    fileTransport._dest.on('finish', (info) => {
+    fileTransport._dest.on('finish', () => {
       process.exit()
     })
+    setTimeout(() => {}, 100000) // pause process until process.exit() is called
   }
 }

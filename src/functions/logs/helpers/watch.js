@@ -12,7 +12,6 @@ module.exports = (file, filePath) => {
     clog.error(error)
   })
   process.on('SIGINT', function () {
-    clog.info(`Stopping to watch ${chalk.italic.cyan(file)}...`)
     tail.unwatch()
   })
 }
