@@ -5,14 +5,13 @@ module.exports = (file, filePath) => {
   console.log(fs.readFileSync(filePath, 'utf-8'))
   const Tail = require('tail').Tail
   const tail = new Tail(filePath)
-  tail.on('line', function(data) {
+  tail.on('line', function (data) {
     console.log(data)
   })
-  tail.on('error', function(error) {
+  tail.on('error', function (error) {
     clog.error(error)
   })
   process.on('SIGINT', function () {
-    clog.info(`Stopping to watch ${chalk.italic.cyan(file)}...`)
     tail.unwatch()
   })
 }

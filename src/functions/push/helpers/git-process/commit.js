@@ -6,21 +6,15 @@ module.exports = async (message) => {
   const fs = require('fs')
   const dir = '.'
   const paths = ['user.signingKey', 'commit.gpgSign']
-  let values = []
-  for (const path of paths) {
-    values.push(git.getConfig({ fs, dir, path }))
+  const values = await Promise.all(paths.map(path => git.getConfig({ fs, dir, path })))
+  let opts = ['commit', '-S', '-m', message]
+  let msg = true
+  if (values.filter(value => !!value).length !== paths.length) {
+    msg = false
+    opts = opts.filter(opt => opt !== '-S')
   }
-  await Promise.all(values).then(res => {
+  if (msg) {
     clog.info('If required, please input your passphrase for your GPG key in order to sign your commit.')
-    spawnSync('git', [
-      'commit',
-      '-S',
-      '-m', message
-    ], {stdio: 'inherit'})
-  }).catch(err => {
-    spawnSync('git', [
-      'commit',
-      '-m', message
-    ], {stdio: 'inherit'})
-  })
+  }
+  spawnSync('git', opts, { stdio: 'inherit' })
 }

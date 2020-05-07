@@ -1,19 +1,11 @@
 const chalk = require('chalk')
 
-module.exports = async (config) => {
-  const { confirm } = await promptConfirm(config)
-  if (!confirm) {
-    clog.info('Aborting process...')
-    process.exit()
-  }
-}
-
-async function promptConfirm(config) {
+module.exports = (config) => {
   const path = config.get('path')
   if (path) {
     const inquirer = require('inquirer')
     printConfig(path, config.get('excludedRepos'), config.get('excludedBranches'))
-    return await inquirer.prompt([
+    return inquirer.prompt([
       {
         type: 'confirm',
         name: 'confirm',
@@ -24,15 +16,15 @@ async function promptConfirm(config) {
   return { confirm: false }
 }
 
-function format(msg) {
+function format (msg) {
   return chalk.magenta(msg)
 }
 
-function subFormat(msg) {
+function subFormat (msg) {
   return chalk.blue(msg)
 }
 
-function printConfig(path, excludedRepos, excludedBranches) {
+function printConfig (path, excludedRepos, excludedBranches) {
   const autoPullPrint = chalk.italic.cyan('auto-pull')
   clog.info(`Printing existing ${autoPullPrint} configuration...`)
   console.log(format('\n---------\n'))
@@ -47,12 +39,12 @@ function printConfig(path, excludedRepos, excludedBranches) {
   console.log(format('\n---------\n'))
 }
 
-function getReposMsg(excludedRepos, path) {
+function getReposMsg (excludedRepos, path) {
   const indent = '    '
   return excludedRepos.map(dir => subFormat(`${indent}- ${path}/${dir}`)).join('\n')
 }
 
-function getBranchesMsg(excludedBranchesEntries) {
+function getBranchesMsg (excludedBranchesEntries) {
   const indent = '    '
   const printHeader = repo => `${indent}${indent}*** ${repo} ***`
   const printBranchesList = branches => branches.map(branch => `${indent}- ${branch}`).join('\n')

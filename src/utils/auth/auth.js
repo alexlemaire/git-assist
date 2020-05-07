@@ -32,21 +32,17 @@ module.exports = {
       clog.info(`If this fails/you are unsure and want to authenticate to GitHub via SSH, you can run ${chalk.italic.cyan('git-assist ssh --generate')} in order to generate an SSH key that will work with ${chalk.italic.cyan('git-assist')}`)
       return
     }
-    try {
-      const execSync = require('child_process').execSync
-      // fool ssh-add so that we add the SSH key with its password without user prompt
-      execSync(`SSH_PASS=${await pwdManager.getPwd(key)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${key} < /dev/null`, {stdio: 'inherit'})
-    } catch (err) {
-      throw err
-    }
+    const execSync = require('child_process').execSync
+    // fool ssh-add so that we add the SSH key with its password without user prompt
+    execSync(`SSH_PASS=${await pwdManager.getPwd(key)} DISPLAY=1 SSH_ASKPASS=${appRoot}/src/utils/auth/echo-pass.sh ssh-add ${key} < /dev/null`, { stdio: 'inherit' })
   }
 }
 
-async function getUsername() {
+async function getUsername () {
   const fs = require('fs')
   if (fs.existsSync('.git/config')) {
     const git = require('isomorphic-git')
-    return await git.getConfig({
+    return git.getConfig({
       fs,
       dir: '.',
       path: 'user.email'
@@ -62,7 +58,7 @@ async function getUsername() {
   ])).username
 }
 
-async function askPwd(username) {
+async function askPwd (username) {
   const { password } = await pwdManager.promptPwd()
   await pwdManager.setPwd(username, password)
   return password

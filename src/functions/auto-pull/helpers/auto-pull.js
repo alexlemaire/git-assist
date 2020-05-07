@@ -10,7 +10,7 @@ module.exports = async (path, excludedRepos, excludedBranches) => {
   process.chdir(wd)
 }
 
-async function listBranches(repo, excludedBranches) {
+async function listBranches (repo, excludedBranches) {
   const fs = require('fs')
   const git = require('isomorphic-git')
   const dir = '.'

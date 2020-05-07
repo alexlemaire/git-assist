@@ -13,12 +13,12 @@ module.exports = async (opts) => {
   clog.success(`${chalk.italic.blue('auto-pull')} scheduling successfully updated!`)
 }
 
-async function processAction(opts) {
+async function processAction (opts) {
   startConf = {
     script: `${appRoot}/index.js`,
     args: 'auto-pull',
     cron_restart: opts.cron,
-    max_memory_restart : '100M',
+    max_memory_restart: '100M',
     autorestart: false
   }
   switch (opts.action) {
@@ -37,7 +37,7 @@ async function processAction(opts) {
   }
 }
 
-async function addProcess(opts) {
+async function addProcess (opts) {
   startConf.name = `${opts.type}-auto-pull`
   await pm2Update(
     {
@@ -46,7 +46,7 @@ async function addProcess(opts) {
     })
 }
 
-async function deleteProcess(opts) {
+async function deleteProcess (opts) {
   await pm2Update(
     {
       method: 'delete',
@@ -54,7 +54,7 @@ async function deleteProcess(opts) {
     })
 }
 
-async function editProcess(opts) {
+async function editProcess (opts) {
   startConf.name = opts.name
   await pm2Update(
     {
@@ -67,7 +67,7 @@ async function editProcess(opts) {
     })
 }
 
-async function pm2Update(...commands) {
+async function pm2Update (...commands) {
   const pm2 = require(appRoot + '/src/utils/pm2/pm2-utils.js')
   const pm2Cli = require(appRoot + '/src/utils/pm2/pm2-cli.js')
   await pm2.connect().catch(pm2ErrorHandler)
@@ -78,7 +78,7 @@ async function pm2Update(...commands) {
   await pm2.disconnect().catch(pm2ErrorHandler)
 }
 
-function pm2ErrorHandler(err) {
+function pm2ErrorHandler (err) {
   clog.error('There was an error with PM2...')
   throw new Error(err)
 }

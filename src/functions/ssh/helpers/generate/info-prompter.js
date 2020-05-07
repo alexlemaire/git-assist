@@ -1,9 +1,9 @@
-module.exports = async () => {
+module.exports = () => {
   const inquirer = require('inquirer')
-  return await inquirer.prompt(getQuestions())
+  return inquirer.prompt(getQuestions())
 }
 
-function getQuestions() {
+function getQuestions () {
   return [
     {
       type: 'input',
@@ -32,23 +32,23 @@ function getQuestions() {
   ]
 }
 
-function getDefaultPath() {
+function getDefaultPath () {
   const path = require('path')
   return path.join(process.env.HOME, '.ssh', 'id_rsa')
 }
 
-function processPath(input) {
+function processPath (input) {
   return input.replace('~', process.env.HOME)
 }
 
-function validatePwd(input, answer) {
+function validatePwd (input, answer) {
   if (input !== answer.pwd) {
     throw new Error('passwords must match!')
   }
   return true
 }
 
-function validateLength(input, answer) {
+function validateLength (input, answer) {
   // SSH requires passwords to contain at least 5 characters
   if (input.length < 5) {
     throw new Error('password must contain at least 5 characters!')

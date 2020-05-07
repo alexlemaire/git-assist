@@ -7,9 +7,11 @@ module.exports = async (args) => {
   })
   if (['-c', '--config'].includes(args[0])) {
     clog.info(`Configurating ${chalk.italic.blue('auto-pull')}...`)
-    await require('./helpers/conf-check.js')(config)
-    config.set(await require('./helpers/conf-prompter.js')(args.splice(1)))
-    clog.success(`${chalk.italic.blue('auto-pull')} successfully configured!`)
+    const { confirm } = await require('./helpers/conf-check.js')(config)
+    if (confirm) {
+      config.set(await require('./helpers/conf-prompter.js')(args.splice(1)))
+      clog.success(`${chalk.italic.blue('auto-pull')} successfully configured!`)
+    }
     await require('./helpers/schedule-process.js')(await require('./helpers/schedule-prompter.js')(config))
   } else {
     const path = config.get('path')

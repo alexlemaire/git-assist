@@ -6,7 +6,7 @@ module.exports = async () => {
   clog.info(`Your newly generated key will now automatically be added to your GitHub configuration if you run ${chalk.italic.cyan('git-assist config [-g, --global]')} to configure user ${chalk.italic.blue(info.email)}!`)
 }
 
-function getKeyASCII(keyId) {
+function getKeyASCII (keyId) {
   const spawnSync = require('child_process').spawnSync
   return spawnSync('gpg', [
     '--armor',

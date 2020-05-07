@@ -6,13 +6,12 @@ module.exports = (type, user, key) => {
   updateUserConfig(type, user, key)
 }
 
-function updateKeyConfig(type, user, key) {
+function updateKeyConfig (type, user, key) {
   const keyConfig = new Conf({
     configName: type,
     fileExtension: 'keys',
     accessPropertiesByDotNotation: false
   })
-  const path = require('path')
   let infoMsg = `Storing ${type.toUpperCase()} key ${chalk.italic.cyan(key)} information...`
   let successMsg = 'Key information successfully stored!'
   if (keyConfig.has(key)) {
@@ -27,7 +26,7 @@ function updateKeyConfig(type, user, key) {
   clog.success(successMsg)
 }
 
-function updateUserConfig(type, user, key) {
+function updateUserConfig (type, user, key) {
   const userConfig = new Conf({
     configName: 'users',
     fileExtension: 'conf',

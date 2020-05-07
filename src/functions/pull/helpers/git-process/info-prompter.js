@@ -8,7 +8,7 @@ module.exports = async () => {
     {
       type: 'confirm',
       name: 'current',
-      message: `Do you want to pull only from the current branch? (${currentBranch})`,
+      message: `Do you want to pull only from the current branch? (${currentBranch})`
     },
     {
       type: 'confirm',

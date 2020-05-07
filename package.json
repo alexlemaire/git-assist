@@ -1,6 +1,6 @@
 {
   "name": "git-assist",
-  "version": "0.7.3",
+  "version": "1.0.0",
   "description": "node utility to help working with GitHub",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,14 @@
   "scripts": {
     "postinstall": "bash src/utils/create-logs/create-logs.sh && node src/utils/welcome/welcome.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard --fix",
     "add-function": "node tools/add-function/add-function.js"
+  },
+  "standard": {
+    "globals": [
+      "appRoot",
+      "clog"
+    ]
   },
   "kaskadi": {
     "s3-push": {
@@ -62,5 +69,8 @@
     "strip-ansi": "^6.0.0",
     "tail": "^2.0.3",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "standard": "^14.3.3"
   }
 }

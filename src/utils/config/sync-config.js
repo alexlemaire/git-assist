@@ -6,7 +6,7 @@ module.exports = async () => {
     clog.info('Not currently working from a repository: will not proceed to synchronize global and local GitHub configurations.')
     return
   }
-  let paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
+  const paths = ['user.name', 'user.email', 'user.signingKey', 'commit.gpgSign']
   for (const path of paths) {
     const entry = await git.getConfig({ fs, dir, path })
     if (!entry) {
@@ -17,7 +17,7 @@ module.exports = async () => {
   }
 }
 
-async function setConfig(path) {
+async function setConfig (path) {
   const spawnSync = require('child_process').spawnSync
   const value = spawnSync('git', ['config', '--global', path]).stdout.toString().trim()
   if (value) {

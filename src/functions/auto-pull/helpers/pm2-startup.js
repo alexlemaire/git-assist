@@ -24,9 +24,9 @@ module.exports = async (config) => {
   startup(config)
 }
 
-async function promptConfirm() {
+function promptConfirm () {
   const inquirer = require('inquirer')
-  return await inquirer.prompt([
+  return inquirer.prompt([
     {
       type: 'confirm',
       name: 'confirm',
@@ -35,14 +35,14 @@ async function promptConfirm() {
   ])
 }
 
-function checkGlobalVer(localVer) {
+function checkGlobalVer (localVer) {
   const globalVer = childProc.spawnSync('pm2', ['-v']).stdout.toString().trim()
   if (globalVer.match(/(\d+)\.(\d+)\.(\d+)/) && globalVer !== localVer) {
     clog.info(`${chalk.underline('WARNING')}: your globally installed ${pm2Print} version is ${globalVer}. The locally used version of ${pm2Print} is ${localVer}. You may want to update your globally installed ${pm2Print} version to avoid conflict of in-memory process versions...`)
   }
 }
 
-function startup(config) {
+function startup (config) {
   clog.info(`Removing ${pm2Print} startup script for this machine...`)
   runPm2Callback('unstartup')
   clog.success(`${pm2Print} startup script successfully removed!`)
@@ -53,15 +53,11 @@ function startup(config) {
   config.set('startup_ran', true)
 }
 
-function runPm2Callback(cmd) {
+function runPm2Callback (cmd) {
   console.log(`\n${chalk.cyan('---------------')}\n`)
   console.log(`${chalk.cyan('All information displayed below are related to PM2...')}\n`)
   console.log(`${chalk.italic.cyan(`Running pm2 ${cmd}...`)}\n`)
   const pm2Call = pm2Cli([cmd])
-  try {
-    childProc.execSync(pm2Call.stdout.toString().trim(), {stdio: 'inherit'})
-    console.log(`\n${chalk.cyan('---------------')}\n`)
-  } catch (err) {
-    throw err
-  }
+  childProc.execSync(pm2Call.stdout.toString().trim(), { stdio: 'inherit' })
+  console.log(`\n${chalk.cyan('---------------')}\n`)
 }

@@ -3,8 +3,7 @@ const msgs = {
   gpg: 'Warning: if you delete a key via this utility, the associated users will not be able to sign commits via GPG until a new key has been generated for them.'
 }
 
-module.exports = async (type, keys) => {
-  const path = require('path')
+module.exports = (type, keys) => {
   clog.info(msgs[type])
   const inquirer = require('inquirer')
   const questions = [
@@ -18,5 +17,5 @@ module.exports = async (type, keys) => {
       }
     }
   ]
-  return await inquirer.prompt(questions)
+  return inquirer.prompt(questions)
 }

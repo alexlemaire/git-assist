@@ -30,7 +30,7 @@ async function httpPull (branches) {
       singleBranch: true,
       onAuth: auth.onAuth,
       onAuthFailure: auth.onAuthFailure
-    }).then(res => {clog.success(`Pulled from ${branch}!`)})
+    }).then(res => { clog.success(`Pulled from ${branch}!`) })
   }
 }
 
@@ -41,7 +41,7 @@ async function sshPull (branches) {
   for (const branch of branches) {
     clog.info(`Pulling from branch ${branch}`)
     spawnSync('git', ['checkout', branch])
-    spawnSync('git', ['pull'], {stdio: 'inherit'})
+    spawnSync('git', ['pull'], { stdio: 'inherit' })
     clog.success('Done!')
   }
   spawnSync('git', ['checkout', currentBranch])

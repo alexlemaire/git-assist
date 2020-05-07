@@ -5,7 +5,7 @@ module.exports = (type) => {
     fileExtension: 'keys',
     accessPropertiesByDotNotation: false
   })
-  let keys = Object.entries(config.store).map(entry => {
+  const keys = Object.entries(config.store).map(entry => {
     return {
       ref: entry[0],
       ...entry[1]

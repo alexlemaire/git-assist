@@ -11,14 +11,14 @@ module.exports = (info) => {
   return keyId
 }
 
-function createGenkey(info, path) {
+function createGenkey (info, path) {
   const data = `Key-Type: 1\nKey-Length: 4096\nSubkey-Type: 1\nSubkey-Length: 4096\nName-Real: ${info.name}\nName-Email: ${info.email}\nExpire-Date: 0\nPassphrase: ${info.pwd}`
   clog.info('Creating key definition file...')
   fs.writeFileSync(path, data, 'utf-8')
   clog.success('File created!')
 }
 
-function generateGpg(path) {
+function generateGpg (path) {
   clog.info('Started generating GPG key. Please hold on...')
   clog.info('If you try to generate multiple keys in a row this may take a while (low entropy). To help speed up the process simply use your computer for other tasks.')
   spawnSync('gpg', [
@@ -28,13 +28,13 @@ function generateGpg(path) {
   clog.success('GPG key successfully generated!')
 }
 
-function deleteGenkey(path) {
+function deleteGenkey (path) {
   clog.info('Removing key definition file...')
   fs.unlinkSync(path)
   clog.success('File removed!')
 }
 
-function getKeyId() {
+function getKeyId () {
   const keyList = spawnSync('gpg', [
     '--list-secret-keys',
     '--keyid-format', 'LONG'
@@ -45,7 +45,7 @@ function getKeyId() {
   return lastKey.match(regex)[0]
 }
 
-function updateConfig(info, keyId) {
+function updateConfig (info, keyId) {
   const chalk = require('chalk')
   clog.info(`Adding the GPG key to ${chalk.italic.cyan('git-assist')}...`)
   require(appRoot + '/src/utils/key-gen/update-config.js')('gpg', info.email, keyId)

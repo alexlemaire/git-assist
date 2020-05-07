@@ -15,7 +15,7 @@ module.exports = async (protocol) => {
   clog.success('Successfully commited, staged and pushed your changes!')
 }
 
-async function httpPush() {
+async function httpPush () {
   const http = require('isomorphic-git/http/node')
   const git = require('isomorphic-git')
   const fs = require('fs')
@@ -33,9 +33,9 @@ async function httpPush() {
   })
 }
 
-async function sshPush() {
+async function sshPush () {
   await auth.sshAuth()
   // isomorphic-git is not supporting ssh yet so we use the regular bash call to git to operate over ssh
   const spawnSync = require('child_process').spawnSync
-  spawnSync('git' , ['push'], {stdio: 'inherit'})
+  spawnSync('git', ['push'], { stdio: 'inherit' })
 }

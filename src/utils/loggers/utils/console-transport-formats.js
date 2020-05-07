@@ -1,27 +1,27 @@
 const chalk = require('chalk')
 
 // utils
-function headedLog(body, head, bodyOpts, headOpts) {
+function headedLog (body, head, bodyOpts, headOpts) {
   if (!headOpts) {
     headOpts = bodyOpts
   }
   return `${format(head, headOpts)} ${format(body, bodyOpts)}`
 }
 
-function format(msg, opts) {
+function format (msg, opts) {
   return opts.split('.').reduce((acc, cur) => acc[cur], chalk)(msg)
 }
 
 // exports
-function success(msg) {
+function success (msg) {
   return headedLog(msg, '✔️', 'green')
 }
 
-function info(msg) {
+function info (msg) {
   return headedLog(msg, 'ℹ', 'yellow')
 }
 
-function error(msg) {
+function error (msg) {
   return headedLog(msg, 'ERROR', 'red', 'white.bgRed')
 }
 

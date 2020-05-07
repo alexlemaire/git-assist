@@ -2,17 +2,17 @@ const keytar = require('keytar')
 
 module.exports = {
   getPwd: (user) => {
-    return timedWrapper(getPwdHandler, user).catch(err => {throw new Error(err)})
+    return timedWrapper(getPwdHandler, user).catch(err => { throw new Error(err) })
   },
   setPwd: (user, password) => {
-    return timedWrapper(setPwdHandler, user, password).catch(err => {throw new Error(err)})
+    return timedWrapper(setPwdHandler, user, password).catch(err => { throw new Error(err) })
   },
   deletePwd: (user) => {
-    return timedWrapper(deletePwdHandler, user).catch(err => {throw new Error(err)})
+    return timedWrapper(deletePwdHandler, user).catch(err => { throw new Error(err) })
   },
-  promptPwd: async () => {
+  promptPwd: () => {
     const inquirer = require('inquirer')
-    return await inquirer.prompt([
+    return inquirer.prompt([
       {
         type: 'password',
         name: 'password',
@@ -22,16 +22,16 @@ module.exports = {
   }
 }
 
-function timedWrapper(task, ...args) {
+function timedWrapper (task, ...args) {
   return new Promise((resolve, reject) => {
     task(...args).then(res => resolve(res))
     setTimeout(() => {
-      reject('Timed out after 2 seconds! Your keyring may be locked, please check.')
+      reject(new Error('Timed out after 2 seconds! Your keyring may be locked, please check.'))
     }, 2000)
   })
 }
 
-function getPwdHandler(user) {
+function getPwdHandler (user) {
   return keytar.getPassword('git-assist', user)
 }
 
