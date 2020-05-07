@@ -1,14 +1,6 @@
 const chalk = require('chalk')
 
-module.exports = async (config) => {
-  const { confirm } = await promptConfirm(config)
-  if (!confirm) {
-    clog.info('Aborting process...')
-    process.exit()
-  }
-}
-
-function promptConfirm (config) {
+module.exports = (config) => {
   const path = config.get('path')
   if (path) {
     const inquirer = require('inquirer')
