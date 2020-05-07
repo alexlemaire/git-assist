@@ -39,8 +39,9 @@ function gpgParams (info) {
   const user = config.get(info.email) || {}
   const key = user.gpg
   if (!key) {
-    clog.error(`No GPG key was created for GitHub for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
-    clog.info(`Please run ${chalk.cyan.italic('git-assist gpg --generate')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
+    clog.error(`No GPG key was created via ${chalk.italic.blue('git-assist')} for ${chalk.italic.green(info.email)}: not adding a GPG key to this configuration.`)
+    clog.info(`GitHub global configuration is synchronized (if needed) before any operation done with ${chalk.italic.blue('git-assist')}. So if you already generated and assigned a GPG key to your global user, you're good to go!`)
+    clog.info(`If you wish to let ${chalk.italic.blue('git-assist')} handle your GPG keys accross users, please run ${chalk.cyan.italic('git-assist gpg --generate')} in order to generate a GPG key then rerun this command to add it automatically to your configuration.\n`)
     return []
   } else {
     clog.info(`Automatically pulling GPG key created via ${chalk.italic.cyan('git-assist')} for ${chalk.italic.blue(info.email)}...`)
