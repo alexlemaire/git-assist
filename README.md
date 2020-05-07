@@ -1,21 +1,21 @@
 <div align="center">
   <img src="static/git-assist-logo.jpg">
-
-  ![Package version](https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue)
-  [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/git-assist)](https://snyk.io/test/github/alexlemaire/git-assist)
-  [![Depfu](https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg)](https://depfu.com/github/alexlemaire/git-assist?project_id=11766)
-
-  ![Publish action status](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm)
-  ![Upload action status](https://img.shields.io/github/workflow/status/alexlemaire/git-assist/upload?label=upload&logo=Amazon%20AWS)
-
-  [![](https://img.shields.io/codeclimate/maintainability/alexlemaire/git-assist?label=maintainability&logo=Code%20Climate)](https://codeclimate.com/github/alexlemaire/git-assist)
-  [![](https://img.shields.io/codeclimate/tech-debt/alexlemaire/git-assist?label=technical%20debt&logo=Code%20Climate)](https://codeclimate.com/github/alexlemaire/git-assist)
-  <!-- [![](https://img.shields.io/codeclimate/coverage/alexlemaire/git-assist?label=test%20coverage&logo=Code%20Climate)](https://codeclimate.com/github/alexlemaire/git-assist) -->
-
-  ![Linux support](static/linux-badge.svg)
-  ![MacOS support](static/mac-badge.svg)
-  ![Windows support](static/windows-badge.svg)
 </div>
+
+![Package version][version-badge]
+[![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities]
+[![Dependencies status][dependencies-badge]][dependencies]
+
+![Publish action status][publish-badge]
+![Upload action status][upload-badge]
+
+[![Code maintainability][maintainability-badge]][code-climate]
+[![Technical debt][tech-debt-badge]][code-climate]
+<!-- [![Code coverage][code-cov-badge]][code-climate] -->
+
+![Linux support](static/linux-badge.svg)
+![MacOS support](static/mac-badge.svg)
+![Windows support](static/windows-badge.svg)
 
 **Temporary disclaimer for existing users:** going into versions `0.7.x`, `git-assist` sees changes for its `SSH` and `GPG` utilities.
 
@@ -145,3 +145,19 @@ If you started using `git-assist` with no keyring configured it is possible that
 |   ❌  | Not implemented/not working |
 
 _*Logo generated via [Tailor Brands](https://www.tailorbrands.com/)_
+
+<!-- Badges URLs -->
+[version-badge]:https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue
+[vulnerabilities-badge]:https://img.shields.io/snyk/vulnerabilities/npm/git-assist
+[vulnerabilities]:https://snyk.io/test/github/alexlemaire/git-assist
+[dependencies-badge]:https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg
+[dependencies]:https://depfu.com/github/alexlemaire/git-assist?project_id=11766
+[publish-badge]:https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm
+[upload-badge]:https://img.shields.io/github/workflow/status/alexlemaire/git-assist/upload?label=upload&logo=Amazon%20AWS
+[maintainability-badge]:https://img.shields.io/codeclimate/maintainability/alexlemaire/git-assist?label=maintainability&logo=Code%20Climate
+[tech-debt-badge]:https://img.shields.io/codeclimate/tech-debt/alexlemaire/git-assist?label=technical%20debt&logo=Code%20Climate
+[code-cov-badge]:https://img.shields.io/codeclimate/coverage/alexlemaire/git-assist?label=test%20coverage&logo=Code%20Climate
+[code-climate]:https://codeclimate.com/github/alexlemaire/git-assist
+[linux-badge]:static/linux-badge.svg
+[mac-badge]:static/mac-badge.svg
+[win-badge]:static/windows-badge.svg
