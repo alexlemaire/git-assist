@@ -17,16 +17,6 @@
 ![MacOS support](static/mac-badge.svg)
 ![Windows support](static/windows-badge.svg)
 
-**Temporary disclaimer for existing users:** going into versions `0.7.x`, `git-assist` sees changes for its `SSH` and `GPG` utilities.
-
-In previous versions (up to `0.6.x`) you could generate `SSH` (resp. `GPG`) keys via `git-assist generate-ssh` (resp. `git-assist generate-gpg`). But `SSH` and `GPG` key utilities received an upgrade:
-- call `git-assist ssh` (resp. `git-assist gpg`) to access an interactive mode for this utility
-- call `git-assist ssh [--generate] [--delete] [--list]` (resp. `git-assist gpg [--generate] [--delete] [--list]`) to access any of the new utilities available for `SSH` (resp. `GPG`) keys, `--generate` option being the equivalent of the former `generate-ssh` (resp. `generate-gpg`)
-
-This was done to expand on `SSH` and `GPG` possibilities with `git-assist` as well as to get rid of an initial opinionated approach taken with the way those keys were handled. Now the package will manage its own keys but tries to allow enough freedom so that custom made solution to use `SSH` and `GPG` keys still works.
-
-As always, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
-
 ## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
 
 This package allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
@@ -74,6 +64,8 @@ To install `git-assist` following this method:
 
 - **developers (CLI usage):** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-developers (non-CLI usage):** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
+
+If needed, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
 
 <img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> **Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
 
