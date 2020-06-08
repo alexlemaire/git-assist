@@ -1,6 +1,6 @@
 {
   "name": "git-assist",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "node utility to help working with GitHub",
   "main": "index.js",
   "bin": {
@@ -65,7 +65,7 @@
     "inquirer": "^7.1.0",
     "inquirer-fuzzy-path": "^2.3.0",
     "isomorphic-git": "^1.4.0",
-    "keytar": "^6.0.0",
+    "keytar": "^6.0.1",
     "pm2": "^4.4.0",
     "strip-ansi": "^6.0.0",
     "tail": "^2.0.3",
