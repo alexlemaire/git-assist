@@ -48,13 +48,14 @@
     "git",
     "github",
     "cli",
-    "cli-app",
-    "automation",
+    "auto",
     "pull",
     "push",
     "clone",
     "commit",
-    "stage"
+    "stage",
+    "ssh",
+    "gpg"
   ],
   "author": "Alexis Lemaire (a.lemaire94@gmail.com)",
   "license": "MIT",
