@@ -62,7 +62,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "conf": "^6.2.4",
-    "inquirer": "^7.1.0",
+    "inquirer": "^7.2.0",
     "inquirer-fuzzy-path": "^2.3.0",
     "isomorphic-git": "^1.4.4",
     "keytar": "^6.0.1",
