@@ -1,6 +1,6 @@
 {
   "name": "git-assist",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "node utility to help working with GitHub",
   "main": "index.js",
   "bin": {
