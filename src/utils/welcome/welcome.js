@@ -11,5 +11,6 @@ if (!process.env.GITHUB_ACTIONS) {
   console.log('\n')
   console.log(chalk.cyan(`If you would like to contribute to this project, you can find us on ${chalk.italic('GitHub')} at ${chalk.italic.yellow(pjson.homepage.replace('#readme', ''))}`))
   console.log(chalk.red(`If you encounter any bugs and would like to report it, please head to our ${chalk.italic('GitHub repo issues')} at ${chalk.italic.yellow(pjson.bugs.url)}`))
+  console.log(chalk.magenta(`If you like this package, feel free to star it (★) at ${chalk.italic.yellow(pjson.homepage.replace('#readme', ''))}`))
   console.log('\n')
 }
