@@ -10,7 +10,9 @@
     "postinstall": "bash src/utils/create-logs/create-logs.sh && node src/utils/welcome/welcome.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "standard --fix",
-    "add-function": "node tools/add-function/add-function.js"
+    "add-function": "node tools/add-function/add-function.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "standard": {
     "globals": [
@@ -69,9 +71,11 @@
     "pm2": "^4.3.0",
     "strip-ansi": "^6.0.0",
     "tail": "^2.0.4",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "snyk": "^1.360.0"
   },
   "devDependencies": {
     "standard": "^14.3.4"
-  }
+  },
+  "snyk": true
 }
