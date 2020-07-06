@@ -32,18 +32,25 @@ This package allows users to easily manage _GitHub_ on their machines. Some feat
 
 ## <img src="https://emoji.fileformat.info/gemoji/package.png" width="27px"> How to install it
 
-**NPM (developers)**
+**via NPM (recommended)**
+
+```
+npm i -g git-assist
+```
 
 <img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> You will need to have `node` and `npm` installed on your machine for this to work.
 
-1. open a new terminal (can be _Terminal_ for _MacOS_, _cmd.exe_ for _Windows_, _Konsole_ for _Kubuntu_, etc.)
-2. run `npm i -g git-assist`
-
 Some other dependencies are also required for some of the utilities contained in this package to work. See [here](#required-dependencies).
 
-**Install script (non-developers)**
+**via install script**
 
-If you don't have `npm` installed on your machine, you can alternatively use the install script (`install.sh`) available in the [easy-use](./easy-use) folder (see [docs](./easy-use/README.md) to know how to use them).
+If you don't feel comfortable with the command line/you don't have `npm` installed on your machine, you can use the install script (`install.sh`) available in the [easy-use](./easy-use) folder (see [docs](./easy-use/README.md) to know how to use them).
+
+To install `git-assist` following this method:
+
+1. download the appropriate collection of scripts for your OS following the appropriated link below
+2. extract this collection on your machine
+3. double click on `install.sh`
 
 This will install `git-assist` on your machine as well as all [necessary system dependencies](#required-dependencies).
 
@@ -52,18 +59,12 @@ This script is part of a collection of scripts available here:
 - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
 - **Windows**: not created yet...
 
-To install `git-assist` following this method:
-
-1. download the collection of scripts following the appropriated link above
-2. extract this collection on your machine
-3. double click on `install.sh`
-
-<img src="https://emoji.fileformat.info/gemoji/bulb.png" width="16px"> _Tip:_ you can also use `update.sh` when you installed `git-assist` in order to update it to the latest version if your local version is outdated.
+<img src="https://emoji.fileformat.info/gemoji/bulb.png" width="16px"> _Tip:_ you can use `update.sh` when `git-assist` is installed to update it to the latest version if yours is outdated.
 
 ## <img src="https://emoji.fileformat.info/gemoji/computer.png" width="27px"> How to use it
 
-- **developers (CLI usage):** you can type `git-assist` as soon as your package is installed to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
-- **non-developers (non-CLI usage):** you can copy files from the [easy-use](./easy-use) folder and use them directly (see [docs](./easy-use/README.md) to know how to use them)
+- **via CLI:** you can type `git-assist` to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
+- **non-CLI usage:** you can copy files from the [easy-use](./easy-use) folder and use them directly inside of your repository (see [docs](./easy-use/README.md) to know how to use them)
 
 If needed, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
 
