@@ -66,7 +66,7 @@
     "inquirer-fuzzy-path": "^2.3.0",
     "isomorphic-git": "^1.7.5",
     "keytar": "^6.0.1",
-    "pm2": "^4.4.1",
+    "pm2": "^4.5.0",
     "strip-ansi": "^6.0.0",
     "tail": "^2.0.4",
     "winston": "^3.3.3"
