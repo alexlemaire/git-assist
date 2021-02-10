@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="static/git-assist-logo.jpg">
+  <img src="static/git-assist-logo.png">
 </div>
 
 ![Package version][version-badge]
