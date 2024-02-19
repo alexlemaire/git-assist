@@ -1,23 +1,12 @@
-<div align="center">
-  <img src="static/git-assist-logo.png">
-</div>
+# ⚠️ Repository status
 
-![Package version][version-badge]
-[![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities]
-[![Dependencies status][dependencies-badge]][dependencies]
+---
 
-![Publish action status][publish-badge]
-![Upload action status][upload-badge]
+**This repository is no longer maintained!** 😦
 
-[![Code maintainability][maintainability-badge]][code-climate]
-[![Technical debt][tech-debt-badge]][code-climate]
-<!-- [![Code coverage][code-cov-badge]][code-climate] -->
+---
 
-![Linux support](static/linux-badge.svg)
-![MacOS support](static/mac-badge.svg)
-![Windows support](static/windows-badge.svg)
-
-## <img src="https://emoji.fileformat.info/gemoji/space_invader.png" width="27px"> What is `git-assist`?
+## What is `git-assist`?
 
 This package allows users to easily manage _GitHub_ on their machines. Some features are aimed at developers while some are aiming novice users/non developers.
 
@@ -30,7 +19,7 @@ This package allows users to easily manage _GitHub_ on their machines. Some feat
 - configure user globally or for a repository
 - setup `git-assist` so that it auto-pulls from multiple repository. This can also be scheduled to run on machine startup or following a _cron_ pattern
 
-## <img src="https://emoji.fileformat.info/gemoji/package.png" width="27px"> How to install it
+## How to install it
 
 **via NPM (recommended)**
 
@@ -38,7 +27,7 @@ This package allows users to easily manage _GitHub_ on their machines. Some feat
 npm i -g git-assist
 ```
 
-<img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> You will need to have `node` and `npm` installed on your machine for this to work.
+You will need to have `node` and `npm` installed on your machine for this to work.
 
 Some other dependencies are also required for some of the utilities contained in this package to work. See [here](#required-dependencies).
 
@@ -59,22 +48,22 @@ This script is part of a collection of scripts available here:
 - [Mac](https://cdn.klimapartner.net/alexis/@git-assist/easy-use_Mac.zip)
 - **Windows**: not created yet...
 
-<img src="https://emoji.fileformat.info/gemoji/bulb.png" width="16px"> _Tip:_ you can use `update.sh` when `git-assist` is installed to update it to the latest version if yours is outdated.
+_Tip:_ you can use `update.sh` when `git-assist` is installed to update it to the latest version if yours is outdated.
 
-## <img src="https://emoji.fileformat.info/gemoji/computer.png" width="27px"> How to use it
+## How to use it
 
 - **via CLI:** you can type `git-assist` to enter interactive mode. Otherwise if you know which command to call simply do `git-assist <command> <arguments>`
 - **non-CLI usage:** you can copy files from the [easy-use](./easy-use) folder and use them directly inside of your repository (see [docs](./easy-use/README.md) to know how to use them)
 
 If needed, call `git-assist [-h, --help] <function_name>` in order to get access to the help for `git-assist` or any of its utilities!
 
-<img src="https://emoji.fileformat.info/gemoji/warning.png" width="16px"> **Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
+**Important: when using _two-factor authentication_ and _https_ protocol to work with _GitHub_, you should generate an access token in place of your password to be able to authenticate.**
 
-<img src="https://emoji.fileformat.info/gemoji/point_right.png" width="16px"> You will find the process for creating an access token for your account [here](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+You will find the process for creating an access token for your account [here](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
-<img src="https://emoji.fileformat.info/gemoji/question.png" width="16px"> _Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
+_Note:_ when choosing options for your token, you can go with _repo_ (all checkbox), _admin:repo_hook_ (all checkbox) and _delete_repo_.
 
-## <a name="required-dependencies"></a><img src="https://emoji.fileformat.info/gemoji/link.png" width="27px"> Required dependencies
+## <a name="required-dependencies"></a> Required dependencies
 
 Until work has been done to automate dependencies installation on package installation (or suppress some of them), here are the dependencies that needs to be on your computer for this utility to work correctly:
 - `git`
@@ -82,7 +71,7 @@ Until work has been done to automate dependencies installation on package instal
 - `ssh` (to generate ssh keys)
 - Linux only: `libsecret` & `gnome-keyring`
 
-## <img src="https://emoji.fileformat.info/gemoji/closed_lock_with_key.png" width="27px"> Password management
+## Password management
 
 Password management is handled via `keytar` (check it out [here](https://www.npmjs.com/package/keytar)). `keytar` is using system specific solutions in order to store your password in a secure way. This allows `git-assist` to reuse your saved password when working with _GitHub_ via HTTPS and not prompt you every time for it.
 
@@ -92,7 +81,7 @@ Below are details on how to handle/prevent this situation.
 
 **Please install `seahorse` on your system via your package manager to get access to a frontend to manage your keyrings easily.**
 
-### <a name="initial-keyring-config"></a><img src="https://emoji.fileformat.info/gemoji/question.png" width="22px"> How to configure an initial keyring (Linux)
+### <a name="initial-keyring-config"></a> How to configure an initial keyring (Linux)
 
 It is recommended to perform this step before working with `git-assist` if you don't have a keyring set up on your machine already.
 
@@ -102,7 +91,7 @@ It is recommended to perform this step before working with `git-assist` if you d
 4. type a password that you will remember when prompted for a password
 5. back on the main page of `seahorse`, right click on your newly created keyring and click on _Set as default_
 
-### <img src="https://emoji.fileformat.info/gemoji/question.png" width="22px"> How to fix a locked default keyring (Linux)
+### How to fix a locked default keyring (Linux)
 
 If you started using `git-assist` with no keyring configured it is possible that some of your apps may be frozen because the keyring would be locked (since you don't know the password to unlock it).
 
@@ -113,7 +102,7 @@ If you started using `git-assist` with no keyring configured it is possible that
 5. when prompted, confirm deletion
 6. follow the steps 2 to 5 in the section [above](#initial-keyring-config) to create a new default keyring
 
-## <img src="https://emoji.fileformat.info/gemoji/bulb.png" width="27px"> Available features
+## Available features
 
 |   Feature   |      Config      |                                                                                    SSH                                                                                    |                                                                                    GPG                                                                                    |        Clone       |                              Push                              |             Pull            |                                              Auto-pull                                              |                                                                            Logs                                                                           |             Help            |                     Version                     |
 |:-----------:|:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------:|:--------------------------------------------------------------:|:---------------------------:|:---------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------:|:-----------------------------------------------:|
@@ -122,13 +111,13 @@ If you started using `git-assist` with no keyring configured it is possible that
 |  Arguments  |       `-g`       | `--generate`: generate a new key for given user,  `--list`: list all keys generated via `git-assist`,  `--delete`: delete one or multiple keys generated via `git-assist` | `--generate`: generate a new key for given user,  `--list`: list all keys generated via `git-assist`,  `--delete`: delete one or multiple keys generated via `git-assist` |                    |                                                                |                             |                                          `--config` or `-c`                                         | `[file1, file2, ..., fileN]`: target specific log,  `--watch [file]`: watch a given log file,  `--purge [file1, file2, ..., fileN]`: purge given log file |                             |                                                 |
 |    Status   |         ✔️        |                                                                                     ✔️                                                                                     |                                                                                     ✔️                                                                                     |          ✔️         |                                ✔️                               |              ✔️              |                                                  ✔️                                                  |                                                                             ✔️                                                                             |              ✔️              |                        ✔️                        |
 
-## <img src="https://emoji.fileformat.info/gemoji/wrench.png" width="27px"> OS support
+## OS support
 
 | Windows | Linux | MacOS |
 |:-------:|:-----:|:-----:|
 | ❓       | ✔️     | ⏲     |
 
-## <img src="https://emoji.fileformat.info/gemoji/bookmark.png" width="27px"> Legend
+## Legend
 
 | Icon |           Meaning           |
 |:----:|:---------------------------:|
@@ -136,21 +125,3 @@ If you started using `git-assist` with no keyring configured it is possible that
 |   ⏲  |       Work in progress      |
 |   ❓  |          Not tested         |
 |   ❌  | Not implemented/not working |
-
-_*Logo generated via [Tailor Brands](https://www.tailorbrands.com/)_
-
-<!-- Badges URLs -->
-[version-badge]:https://img.shields.io/github/package-json/v/alexlemaire/git-assist?color=blue
-[vulnerabilities-badge]:https://img.shields.io/snyk/vulnerabilities/npm/git-assist
-[vulnerabilities]:https://snyk.io/test/github/alexlemaire/git-assist
-[dependencies-badge]:https://badges.depfu.com/badges/370e3d75a8141b8e5bf0ea1f2c891132/overview.svg
-[dependencies]:https://depfu.com/github/alexlemaire/git-assist?project_id=11766
-[publish-badge]:https://img.shields.io/github/workflow/status/alexlemaire/git-assist/publish?label=publish&logo=npm
-[upload-badge]:https://img.shields.io/github/workflow/status/alexlemaire/git-assist/upload?label=upload&logo=Amazon%20AWS
-[maintainability-badge]:https://img.shields.io/codeclimate/maintainability/alexlemaire/git-assist?label=maintainability&logo=Code%20Climate
-[tech-debt-badge]:https://img.shields.io/codeclimate/tech-debt/alexlemaire/git-assist?label=technical%20debt&logo=Code%20Climate
-[code-cov-badge]:https://img.shields.io/codeclimate/coverage/alexlemaire/git-assist?label=test%20coverage&logo=Code%20Climate
-[code-climate]:https://codeclimate.com/github/alexlemaire/git-assist
-[linux-badge]:static/linux-badge.svg
-[mac-badge]:static/mac-badge.svg
-[win-badge]:static/windows-badge.svg
